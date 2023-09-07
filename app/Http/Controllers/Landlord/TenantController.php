@@ -174,7 +174,7 @@ class TenantController extends Controller
             // return \Redirect::to('https://'.$request->tenant.'.'.env('CENTRAL_DOMAIN'));
         }
 
-        Mail::to($request->email)->send(new ConfirmationEmail($request));
+        // Mail::to($request->email)->send(new ConfirmationEmail($request));
         // event(new CustomerRegistered($request)); // Testing Purpose
     }
 
