@@ -118,7 +118,7 @@
                             <label><strong>@lang('file.Sub-domain')</strong></label>
                             <div class="input-group">
                                 <input class="form-control" type="text" name="tenant" placeholder="Subdomain..."
-                                    aria-label="ubdomain..." aria-describedby="basic-addon2">
+                                    aria-label="subdomain..." aria-describedby="basic-addon2">
                                 <span class="input-group-text" id="basic-addon2">{{ '@' . env('CENTRAL_DOMAIN') }}</span>
                             </div>
                         </div>

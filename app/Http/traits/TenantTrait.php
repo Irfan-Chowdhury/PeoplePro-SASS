@@ -127,7 +127,7 @@ trait TenantTrait {
 
         $tenantData = [
             'id' => $request->tenant,
-            'tenancy_db_name' => $request->tenant,
+            'tenancy_db_name' => env('DB_PREFIX').$request->tenant,
             'customer_id' => $customer->id,
             'package_id' => $package->id,
             'subscription_type'=> $request->subscription_type,
