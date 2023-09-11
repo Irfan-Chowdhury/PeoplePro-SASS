@@ -118,13 +118,4 @@ class LandingPageController extends Controller
 
         return view('landlord.public-section.pages.pages.page-details',compact('socials', 'page', 'pages'));
     }
-
-    public function contactForRenewal(PackageContract $packageContract)
-    {
-        $socials = $this->socialContract->getOrderByPosition(); //Common
-        $pages =  $this->pageContract->getAllByLanguageId($this->languageId); //Common
-        $packages = $packageContract->getSelectData(['id','name']);
-
-        return view('landlord.public-section.pages.renew.contact_for_renewal', compact('socials','pages','packages'));
-    }
 }
