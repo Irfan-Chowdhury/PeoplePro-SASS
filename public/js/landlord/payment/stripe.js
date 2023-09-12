@@ -51,6 +51,12 @@
                     cache: false,
                     processData: false,
                     dataType: "json",
+                    error: function(response) {
+                        console.log(response);
+                        let htmlContent = prepareMessage(response);
+                        displayErrorMessage(htmlContent);
+                        $('#payNowBtn').text('Pay Now');
+                    },
                     success: function (response) {
                         console.log(response);
                         $('#payNowBtn').text('Pay Now');

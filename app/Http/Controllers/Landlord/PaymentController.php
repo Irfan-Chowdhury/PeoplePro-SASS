@@ -43,12 +43,14 @@ class PaymentController extends Controller
         switch ($paymentMethod) {
             case 'stripe':
                 return view('landlord.public-section.pages.payment.stripe',compact('socials', 'pages','paymentMethod','tenantRequestData','totalAmount'));
+            case 'paypal':
+                return view('landlord.public-section.pages.payment.paypal',compact('socials', 'pages','paymentMethod','tenantRequestData','totalAmount'));
             default:
                 break;
         }
     }
 
-    public function paymentAndTenantManage($paymentMethod, Request $request)
+    public function paymentProcessWithTenantAndLandlord($paymentMethod, Request $request)
     {
         DB::beginTransaction();
         try {
@@ -56,7 +58,14 @@ class PaymentController extends Controller
             $tenantRequestData = json_decode(str_replace('&quot;', '"', $request->tenantRequestData));
 
             $payment = self::paymentPayConfirm($paymentMethod, $tenantRequestData, $paymentRequestData);
-            self::tenantHandle($tenantRequestData, $payment);
+            if(isset($tenantRequestData->is_new_tenant) && (int) $tenantRequestData->is_new_tenant ===1) {
+                $tenant = $this->tenantService->NewTenantGenerate($tenantRequestData);
+            } else {
+                self::existingTenantHandle($tenantRequestData);
+            }
+
+            $tenantId = isset($tenant) ? $tenant->id : $tenantRequestData->tenant_id;
+            self::landlordHandle($payment, $tenantId);
 
             DB::commit();
             return response()->json('ok');
@@ -77,13 +86,16 @@ class PaymentController extends Controller
         return $payment->pay($tenantRequestData, $paymentRequestData);
     }
 
-    protected function tenantHandle($tenantRequestData, $payment) : void
+    protected function existingTenantHandle($tenantRequestData) : void
     {
         $tenant = Tenant::find($tenantRequestData->tenant_id);
         $package = Package::find($tenantRequestData->package_id);
         $this->tenantService->permissionUpdate($tenant, $tenantRequestData, $package);
+    }
 
-        Payment::where('id', $payment->id)->update(['tenant_id'=> $tenantRequestData->tenant_id]);
+    protected function landlordHandle($payment, $tenantId) : void
+    {
+        Payment::where('id', $payment->id)->update(['tenant_id'=> $tenantId]);
     }
 
     public function paymentPayCancel($paymentMethod, PaymentService $paymentService)

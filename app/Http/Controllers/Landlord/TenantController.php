@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\CustomerSignUpRequest;
 use App\Http\Requests\Tenant\RenewExpiryDataRequest;
 use App\Http\Requests\Tenant\RenewSubscriptionRequest;
+use App\Http\traits\PaymentTrait;
 use App\Http\traits\PermissionHandleTrait;
 use App\Mail\ConfirmationEmail;
 use App\Models\Landlord\Customer;
@@ -33,6 +34,7 @@ class TenantController extends Controller
 
     public $languageId;
     use PermissionHandleTrait;
+    use PaymentTrait;
 
     public function __construct(
         public SocialContract $socialContract,
@@ -101,8 +103,13 @@ class TenantController extends Controller
     {
         DB::beginTransaction();
         try {
+            $paymentMethodList = array_column($this->paymentMethods(), 'payment_method');
+            if(!$request->is_free_trail && in_array($request->payment_method ,$paymentMethodList)) {
+                return redirect(route("payment.pay.page",$request->payment_method), 307);
+            }
 
-            $this->tenantGenerate($request);
+            // $this->tenantGenerate($request);
+            $this->tenantService->NewTenantGenerate($request);
 
             DB::commit();
             $result =  Alert::successMessage('Data Created Successfully');
@@ -181,7 +188,6 @@ class TenantController extends Controller
         return response()->json($result['alertMsg'], $result['statusCode']);
     }
 
-
     protected function tenantGenerate($request) : void
     {
         $customer = Customer::create($this->customerData($request));
@@ -228,32 +234,11 @@ class TenantController extends Controller
         $socials = $this->socialContract->getOrderByPosition(); //Common
         $pages =  $this->pageContract->getAllByLanguageId($this->languageId); //Common
         $packages = $packageContract->getSelectData(['id','name']);
-        $paymentMethods = self::paymentMethods();
+        $paymentMethods = $this->paymentMethods();
 
         return view('landlord.public-section.pages.renew.contact_for_renewal', compact('socials','pages','packages','paymentMethods'));
     }
 
-    protected function paymentMethods() : array
-    {
-        return [
-            (object)[
-                'title' => 'Cash On Delivery',
-                'payment_method' => 'cash_on_delivery',
-            ],
-            (object)[
-                'title' => 'Stripe',
-                'payment_method' => 'stripe',
-            ],
-            (object)[
-                'title' => 'Paypal',
-                'payment_method' => 'paypal',
-            ],
-            (object)[
-                'title' => 'Other',
-                'payment_method' => 'other',
-            ]
-        ];
-    }
 
     // public function renewSubscription(RenewSubscriptionRequest $request)
     public function renewSubscription(Request $request)
@@ -267,9 +252,8 @@ class TenantController extends Controller
             else
                 $request->session()->put('price', $package->yearly_fee);
 
-            if ($request->payment_method === 'stripe')
+            if ($request->payment_method === 'stripe' || $request->payment_method === 'paypal')
                 return redirect(route("payment.pay.page",$request->payment_method), 307);
-
 
             $tenant = Tenant::find($request->tenant_id);
             $this->tenantService->permissionUpdate($tenant, $request, $package);

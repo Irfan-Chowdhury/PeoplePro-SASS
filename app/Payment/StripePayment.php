@@ -14,7 +14,7 @@ class StripePayment implements PaybleContract
     {
         $totalAmount = request()->session()->get('price');
         $this->stripe($totalAmount * 100, $paymentRequestData['stripeToken']);
-        
+
         $payment = Payment::create([
             'package_id' => $tenantRequestData->package_id,
             'amount' => $totalAmount,

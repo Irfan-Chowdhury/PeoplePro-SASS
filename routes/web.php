@@ -62,7 +62,7 @@ Route::controller(TenantController::class)->group(function () {
 
 Route::controller(PaymentController::class)->group(function () {
     Route::post('/payment/{paymentMethod}/pay', 'paymentPayPage')->name('payment.pay.page');
-    Route::post('payment/{paymentMethod}/pay/process', 'paymentAndTenantManage')->name('payment.pay.process');
+    Route::post('payment/{paymentMethod}/pay/process', 'paymentProcessWithTenantAndLandlord')->name('payment.pay.process');
     // Route::post('payment/{paymentMethod}/pay/confirm', 'paymentPayConfirm')->name('payment.pay.confirm');
     Route::post('payment/{paymentMethod}/pay/cancel', 'paymentPayCancel')->name('payment.pay.cancel');
     Route::get('payment-success', function () {
