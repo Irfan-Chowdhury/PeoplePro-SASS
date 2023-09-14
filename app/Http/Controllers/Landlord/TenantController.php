@@ -112,8 +112,8 @@ class TenantController extends Controller
             $this->tenantService->NewTenantGenerate($request);
 
             DB::commit();
-            $result =  Alert::successMessage('Data Created Successfully');
 
+            $result =  Alert::successMessage('Data Created Successfully');
             if (request()->ajax()) {
                 return response()->json($result['alertMsg'], $result['statusCode']);
             } else {
@@ -240,8 +240,7 @@ class TenantController extends Controller
     }
 
 
-    // public function renewSubscription(RenewSubscriptionRequest $request)
-    public function renewSubscription(Request $request)
+    public function renewSubscription(RenewSubscriptionRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -252,8 +251,14 @@ class TenantController extends Controller
             else
                 $request->session()->put('price', $package->yearly_fee);
 
-            if ($request->payment_method === 'stripe' || $request->payment_method === 'paypal')
+
+            $paymentMethodList = array_column($this->paymentMethods(), 'payment_method');
+            if(!$request->is_free_trail && in_array($request->payment_method ,$paymentMethodList)) {
                 return redirect(route("payment.pay.page",$request->payment_method), 307);
+            }
+
+            // if ($request->payment_method === 'stripe' || $request->payment_method === 'paypal')
+            //     return redirect(route("payment.pay.page",$request->payment_method), 307);
 
             $tenant = Tenant::find($request->tenant_id);
             $this->tenantService->permissionUpdate($tenant, $request, $package);

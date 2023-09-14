@@ -50,20 +50,13 @@ class TenantService
     {
         $generalSetting = GeneralSetting::latest()->first();
 
-        if($package->is_free_trial)
-            $numberOfDaysToExpired = $generalSetting->free_trial_limit;
-        elseif($request->subscription_type == 'monthly')
-            $numberOfDaysToExpired = 30;
-        elseif($request->subscription_type == 'yearly')
-            $numberOfDaysToExpired = 365;
+        $numberOfDaysToExpired = self::numberOfDaysToExpired($package, $generalSetting, $request);
+        $packageDetailsForTenant =  self::packageDetailsForTenant($package, $generalSetting, $request);
+        $packageDetailsForTenant['expiry_date'] = date("Y-m-d", strtotime("+".$numberOfDaysToExpired." days"));
 
         $permissions = json_decode($package->permissions, true);
         $allPermissionIds = explode(',',$package->permission_ids);
         // package_details
-
-        $packageDetailsForTenant =  self::packageDetailsForTenant($package, $generalSetting, $request);
-        $packageDetailsForTenant['expiry_date'] = date("Y-m-d", strtotime("+".$numberOfDaysToExpired." days"));
-
 
         $tenantData = [
             'id' => $request->tenant,
@@ -87,6 +80,18 @@ class TenantService
         });
 
         return $tenant;
+    }
+
+    protected function numberOfDaysToExpired($package, $generalSetting, $request)
+    {
+        if($package->is_free_trial)
+            $numberOfDaysToExpired = $generalSetting->free_trial_limit;
+        elseif($request->subscription_type == 'monthly')
+            $numberOfDaysToExpired = 30;
+        elseif($request->subscription_type == 'yearly')
+            $numberOfDaysToExpired = 365;
+
+        return $numberOfDaysToExpired;
     }
 
 
@@ -133,6 +138,8 @@ class TenantService
 
     public function permissionUpdate($tenant, $request, $package)
     {
+        $generalSetting = GeneralSetting::latest()->first();
+
         $prevPermissions = json_decode($tenant->package->permissions, true);
         $prevPermissionIds = array_column($prevPermissions, 'id');
 
@@ -149,11 +156,19 @@ class TenantService
             }
         }
 
-        $tenant->run(function () use ($newAddedPermissions, $latestPermissionsIds) {
+
+        $numberOfDaysToExpired = self::numberOfDaysToExpired($package, $generalSetting, $request);
+        $packageDetailsForTenant =  self::packageDetailsForTenant($package, $generalSetting, $request);
+        $packageDetailsForTenant['expiry_date'] = date("Y-m-d", strtotime("+".$numberOfDaysToExpired." days"));
+
+
+        $tenant->run(function () use ($newAddedPermissions, $latestPermissionsIds, $packageDetailsForTenant) {
             DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
             DB::table('permissions')->insert($newAddedPermissions);
             $role = Role::findById(1);
             $role->syncPermissions($latestPermissionsIds);
+
+            self::setDataInTenantGeneralSetting($packageDetailsForTenant);
         });
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Payment\PaypalPayment;
+use App\Payment\RazorpayPayment;
 use App\Payment\StripePayment;
 
 class PaymentService
@@ -14,6 +15,8 @@ class PaymentService
                 return new StripePayment();
             case 'paypal':
                 return new PaypalPayment();
+            case 'razorpay':
+                return new RazorpayPayment();
             default:
                 break;
         }

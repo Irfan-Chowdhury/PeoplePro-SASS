@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Landlord;
 
 use App\Contracts\PageContract;
 use App\Contracts\SocialContract;
+use App\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Http\traits\PermissionHandleTrait;
 use App\Models\Landlord\Package;
@@ -45,6 +46,8 @@ class PaymentController extends Controller
                 return view('landlord.public-section.pages.payment.stripe',compact('socials', 'pages','paymentMethod','tenantRequestData','totalAmount'));
             case 'paypal':
                 return view('landlord.public-section.pages.payment.paypal',compact('socials', 'pages','paymentMethod','tenantRequestData','totalAmount'));
+            case 'razorpay':
+                return view('landlord.public-section.pages.payment.razorpay',compact('socials', 'pages','paymentMethod','tenantRequestData','totalAmount'));
             default:
                 break;
         }
@@ -61,14 +64,21 @@ class PaymentController extends Controller
             if(isset($tenantRequestData->is_new_tenant) && (int) $tenantRequestData->is_new_tenant ===1) {
                 $tenant = $this->tenantService->NewTenantGenerate($tenantRequestData);
             } else {
-                self::existingTenantHandle($tenantRequestData);
+                $tenant = self::existingTenantHandle($tenantRequestData);
             }
-
-            $tenantId = isset($tenant) ? $tenant->id : $tenantRequestData->tenant_id;
+            // $tenantId = isset($tenant) ? $tenant->id : $tenantRequestData->tenant_id;
+            $tenantId = $tenant->id;
             self::landlordHandle($payment, $tenantId);
 
+
             DB::commit();
-            return response()->json('ok');
+
+            $result =  Alert::successMessage('Data Created Successfully');
+            if (request()->ajax()) {
+                return response()->json($result['alertMsg'], $result['statusCode']);
+            } else {
+                return redirect()->route('payment.success', $tenant->domainInfo->domain);
+            }
         }
         catch (Exception $e) {
             DB::rollback();
@@ -86,11 +96,13 @@ class PaymentController extends Controller
         return $payment->pay($tenantRequestData, $paymentRequestData);
     }
 
-    protected function existingTenantHandle($tenantRequestData) : void
+    protected function existingTenantHandle($tenantRequestData) : object
     {
-        $tenant = Tenant::find($tenantRequestData->tenant_id);
+        $tenant = Tenant::with('domainInfo')->find($tenantRequestData->tenant_id);
         $package = Package::find($tenantRequestData->package_id);
         $this->tenantService->permissionUpdate($tenant, $tenantRequestData, $package);
+
+        return $tenant;
     }
 
     protected function landlordHandle($payment, $tenantId) : void
@@ -102,6 +114,14 @@ class PaymentController extends Controller
     {
         $payment = $paymentService->initialize($paymentMethod);
         return $payment->cancel();
+    }
+
+    public function paymentSuccess($domain)
+    {
+        $socials = $this->socialContract->getOrderByPosition(); //Common
+        $pages =  $this->pageContract->getAllByLanguageId($this->languageId); //Common
+        return view('landlord.public-section.pages.payment.payment_success', compact('socials','pages','domain'));
+
     }
 
 
