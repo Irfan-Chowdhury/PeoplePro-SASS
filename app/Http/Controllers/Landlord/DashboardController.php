@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Landlord\Package;
 use App\Models\Landlord\Payment;
 use App\Models\Tenant;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {

@@ -11,7 +11,7 @@
         <li><a target="_blank" href="{{ route('landingPage.index') }}"> <i class="dripicons-monitor"></i><span>Frontend</span></a></li>
         <li><a href="{{ route('customer.index') }}"><i class="dripicons-list"></i> {{trans('file.Customers')}}</a></li>
 
-        <li><a href=""><i class="dripicons-card"></i> {{trans('file.Payments')}}</a></li>
+        <li><a href="{{ route('payment.index') }}"><i class="dripicons-card"></i> {{trans('file.Payments')}}</a></li>
         <li><a href="#package" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-archive"></i><span>{{trans('file.Package')}}</span><span></a>
             <ul id="package" class="collapse list-unstyled ">
                 <li id="package-list-menu"><a href="{{ route('package.index') }}">{{trans('file.Package List')}}</a></li>

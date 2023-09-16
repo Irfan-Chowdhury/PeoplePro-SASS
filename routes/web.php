@@ -90,6 +90,12 @@ Route::middleware(['web','auth','setLocale'])->group(function () {
                 Route::get('/destroy/{tenant}', 'destroy')->name('customer.destroy')->middleware('demoCheck');
             });
         });
+        Route::controller(PaymentController::class)->group(function () {
+            Route::prefix('payments')->group(function () {
+                Route::get('/', 'index')->name('payment.index');
+                Route::get('/datatable', 'datatable')->name('payment.datatable');
+            });
+        });
 
         Route::prefix('packages')->group(function () {
             Route::controller(PackageController::class)->group(function () {
