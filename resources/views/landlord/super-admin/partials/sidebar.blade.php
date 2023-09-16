@@ -7,9 +7,8 @@
         @endif --}}
     </span>
     <ul id="side-main-menu" class="side-menu list-unstyled">
-        <li><a href="#"> <i class="dripicons-meter"></i><span>{{ __('file.dashboard') }}</span></a></li>
+        <li><a href="{{ route('landlord.dashboard') }}"> <i class="dripicons-meter"></i><span>{{ __('file.Dashboard') }}</span></a></li>
         <li><a target="_blank" href="{{ route('landingPage.index') }}"> <i class="dripicons-monitor"></i><span>Frontend</span></a></li>
-
         <li><a href="{{ route('customer.index') }}"><i class="dripicons-list"></i> {{trans('file.Customers')}}</a></li>
 
         <li><a href=""><i class="dripicons-card"></i> {{trans('file.Payments')}}</a></li>
