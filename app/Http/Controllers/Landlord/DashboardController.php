@@ -7,11 +7,16 @@ use App\Models\Landlord\Package;
 use App\Models\Landlord\Payment;
 use App\Models\Tenant;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        // return Session::has('TempSuperAdminLocale') ? strtoupper(Session::get('TempSuperAdminLocale')) : strtoupper(Session::has('DefaultSuperAdminLocale'));
+        // return Session::has('DefaultSuperAdminLocale');
+
+
         $tenants = Tenant::with('package')->get();
         $totalTenantCount = $tenants->count();
         $totalActiveTenantCount = Tenant::totalActiveTenantCount();

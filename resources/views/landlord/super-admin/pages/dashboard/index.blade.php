@@ -17,8 +17,6 @@
 @endpush
 @section('landlord-content')
 
-        <h1>Working...</h1>
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3">
