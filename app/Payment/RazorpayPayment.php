@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Payment;
 
@@ -9,7 +10,7 @@ use Razorpay\Api\Api;
 
 class RazorpayPayment implements PaybleContract
 {
-    public function pay($tenantRequestData, $paymentRequestData)
+    public function pay($tenantRequestData, $paymentRequestData) : object
     {
         $input = $paymentRequestData;
         $api = new Api (env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));

@@ -44,29 +44,29 @@ Route::get('/get-host', function () {
 });
 
 Route::middleware(['setPublicLocale'])->group(function () {
+
     Route::controller(LandingPageController::class)->group(function () {
         Route::get('/', 'index')->name('landingPage.index');
         Route::get('/blogs', 'blog')->name('landingPage.blog');
         Route::get('/blogs/{slug}', 'blogDetail')->name('landingPage.blogDetail');
         Route::get('/pages/{slug}', 'pageDetails')->name('landingPage.pageDetail');
     });
-});
 
-// tenant.checkout
-Route::controller(TenantController::class)->group(function () {
-    Route::post('/customer-signup', 'customerSignUp')->name('customer.signup')->middleware('demoCheck');
-    Route::get('/contact-for-renewal', 'contactForRenewal')->name('contact_for_renewal');
-    Route::post('/contact-for-renewal', 'renewSubscription')->name('renew_subscription')->middleware('demoCheck');
-});
-//
+    Route::controller(TenantController::class)->group(function () {
+        Route::post('/customer-signup', 'customerSignUp')->name('customer.signup')->middleware('demoCheck');
+        Route::get('/contact-for-renewal', 'contactForRenewal')->name('contact_for_renewal');
+        Route::post('/contact-for-renewal', 'renewSubscription')->name('renew_subscription')->middleware('demoCheck');
+    });
 
-Route::controller(PaymentController::class)->group(function () {
-    Route::post('/payment/{paymentMethod}/pay', 'paymentPayPage')->name('payment.pay.page');
-    Route::post('payment/{paymentMethod}/pay/process', 'paymentProcessWithTenantAndLandlord')->name('payment.pay.process');
-    Route::post('payment/{paymentMethod}/pay/cancel', 'paymentPayCancel')->name('payment.pay.cancel');
-    Route::get('payment-success/{domain}', 'paymentSuccess')->name('payment.success');
-});
+    Route::controller(PaymentController::class)->group(function () {
+        Route::post('/payment/{paymentMethod}/pay', 'paymentPayPage')->name('payment.pay.page');
+        Route::post('payment/{paymentMethod}/pay/process', 'paymentProcessWithTenantAndLandlord')->name('payment.pay.process');
+        Route::post('payment/{paymentMethod}/pay/cancel', 'paymentPayCancel')->name('payment.pay.cancel');
+        Route::get('payment-success/{domain}', 'paymentSuccess')->name('payment.success');
 
+        Route::get('/payment/paystack/pay/callback', 'handleGatewayCallback')->name('payment.paystack.pay.callback');
+    });
+});
 
 
 Route::get('/super-admin', [AdminController::class, 'showLoginForm'])->name('landlord.login')->middleware('guest');
@@ -78,7 +78,6 @@ Route::middleware(['web','auth','setSuperAdminLocale'])->group(function () {
 
         Route::get('dashboard',[DashboardController::class, 'index'])->name('landlord.dashboard');
 
-
         Route::controller(TenantController::class)->group(function () {
             Route::prefix('customers')->group(function () {
                 Route::get('/', 'index')->name('customer.index');
@@ -89,6 +88,7 @@ Route::middleware(['web','auth','setSuperAdminLocale'])->group(function () {
                 Route::get('/destroy/{tenant}', 'destroy')->name('customer.destroy')->middleware('demoCheck');
             });
         });
+
         Route::controller(PaymentController::class)->group(function () {
             Route::prefix('payments')->group(function () {
                 Route::get('/', 'index')->name('payment.index');
@@ -223,7 +223,6 @@ Route::middleware(['web','auth','setSuperAdminLocale'])->group(function () {
                 Route::get('/destroy/{id}', 'destroy')->name('page.destroy')->middleware('demoCheck');
             });
         });
-
 
         Route::prefix('settings')->group(function () {
             Route::controller(SettingController::class)->group(function () {

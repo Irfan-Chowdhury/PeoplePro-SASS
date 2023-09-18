@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace App\Http\traits;
 
 trait PaymentTrait {
@@ -19,6 +22,11 @@ trait PaymentTrait {
                 'title' => 'Razorpay',
                 'payment_method' => 'razorpay',
             ],
+            (object)[
+                'title' => 'Paystack',
+                'payment_method' => 'paystack',
+            ],
+
             // (object)[
             //     'title' => 'Cash On Delivery',
             //     'payment_method' => 'cash_on_delivery',

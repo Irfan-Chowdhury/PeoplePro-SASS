@@ -19,8 +19,8 @@
 
                 <form action="{{ route('payment.pay.process','paypal') }}" method="post" id="paypalPaymentForm">
                     <input type="hidden" name="tenantRequestData" value="{{ $tenantRequestData }}">
-                    {{-- <input type="hidden" name="total_amount" value="{{ $totalAmount }}"> --}}
-                    <input type="hidden" name="total_amount" value="1">
+                    <input type="hidden" name="total_amount" value="{{ $totalAmount }}">
+                    {{-- <input type="hidden" name="total_amount" value="1"> --}}
 
                     <div id="paypal-button-container"></div>
 
