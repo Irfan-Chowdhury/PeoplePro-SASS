@@ -70,15 +70,6 @@
         $("#payCancelBtn").click(function(){
             if (confirm('Are you sure to cancel ?')) {
                 window.history.back();
-                // $.ajax({
-                //     url: cancelURL,
-                //     type: 'POST',
-                //     data: {},
-                //     dataType: 'JSON',
-                //     success: function (data) {
-                //         window.location.href = redirectURLAfterCancel;
-                //     }
-                // });
             }
         });
 

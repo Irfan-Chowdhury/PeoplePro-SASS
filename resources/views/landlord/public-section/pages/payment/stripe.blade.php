@@ -21,7 +21,7 @@
                 <form class="mb-3 require-validation" id="stripePaymentForm" data-cc-on-file="false" action="{{ route('payment.pay.process','stripe') }}" method="POST">
                     @csrf
                     <input type="hidden" name="tenantRequestData" value="{{ $tenantRequestData }}">
-                    <input type="hidden" id="stripeKey" value="{{env('STRIPE_KEY')}}">
+                    <input type="hidden" id="stripeKey" value="{{config('payment_gateway.stripe.key')}}">
                     <input type="hidden" name="stripeToken">
 
 
@@ -65,10 +65,18 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
 <script type="text/javascript">
+    let tenant = @json($tenantRequestData);
+    let centralDomain = @json(env('CENTRAL_DOMAIN'));
+    let data = JSON.parse(tenant);
+    let tenantId = data.tenant_id;
+    let domain = tenantId +'.'+ centralDomain;
+
     let targetURL = "{{ url('/payment/stripe/pay/process')}}";
     let cancelURL = "{{ url('/payment/stripe/pay/cancel')}}";
-    let redirectURL = "{{ url('/payment-success')}}";
+    let redirectURL = "{{ url('/payment-success')}}" + '/' + domain;
+
     let redirectURLAfterCancel = "{{ url('/payment_cancel')}}";
 </script>
 <script type="text/javascript" src="{{ asset('js/landlord/payment/stripe.js') }}"></script>

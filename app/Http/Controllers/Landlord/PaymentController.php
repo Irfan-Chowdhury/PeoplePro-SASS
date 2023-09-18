@@ -108,6 +108,7 @@ class PaymentController extends Controller
             $tenantRequestData = json_decode(str_replace('&quot;', '"', $request->tenantRequestData));
 
             $payment = self::paymentPayConfirm($paymentMethod, $tenantRequestData, $paymentRequestData);
+
             if(isset($tenantRequestData->is_new_tenant) && (int) $tenantRequestData->is_new_tenant ===1) {
                 $tenant = $this->tenantService->NewTenantGenerate($tenantRequestData);
             } else {
@@ -171,6 +172,7 @@ class PaymentController extends Controller
     {
         $socials = $this->socialContract->getOrderByPosition(); //Common
         $pages =  $this->pageContract->getAllByLanguageId($this->languageId); //Common
+
         return view('landlord.public-section.pages.payment.payment_success', compact('socials','pages','domain'));
     }
 
@@ -188,6 +190,5 @@ class PaymentController extends Controller
 
             return redirect()->back()->withErrors(['errors' => [$e->getMessage()]]);
         }
-
     }
 }

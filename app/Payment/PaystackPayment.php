@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+// declare(strict_types=1);
 
 namespace App\Payment;
 
@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Session;
 
 class PaystackPayment implements PaybleContract
 {
-    public function pay($tenantRequestData, $paymentRequestData)
+    public function pay($tenantRequestData, $paymentRequestData) : object
     {
         $totalAmount = request()->session()->get('price');
         $data= [
             'reference' => date('Ymdhis'),
             'amount' => $totalAmount * 100,
-            'currency' => 'NGN',
-            'email' => 'user@mail.com',
+            'currency' => config('payment_gateway.paystack.currency'),
+            'email' => config('payment_gateway.paystack.merchant_email'),
             'callback_url' => url("/payment/paystack/pay/callback"),
         ];
         $objectData = (object)$data;
@@ -56,7 +56,7 @@ class PaystackPayment implements PaybleContract
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            "Authorization: Bearer " . env('PAYSTACK_SECRET_KEY'),
+            "Authorization: Bearer " . config('payment_gateway.paystack.key'),
             "Cache-Control: no-cache",
         ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -79,7 +79,7 @@ class PaystackPayment implements PaybleContract
         } else {
             Payment::find(Session::get('paymentId'))->delete();
             Tenant::find(Session::get('tenantId'))->delete();
-            
+
             throw new Exception("Something Wrong ! Please try again later.");
         }
     }
@@ -99,7 +99,7 @@ class PaystackPayment implements PaybleContract
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer " . env('PAYSTACK_SECRET_KEY'),
+                "Authorization: Bearer " . config('payment_gateway.paystack.key'),
                 "Cache-Control: no-cache",
             ),
         ));
