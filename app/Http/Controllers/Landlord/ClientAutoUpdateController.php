@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Landlord;
 
 use App\Http\traits\AutoUpdateTrait;
 use App\Http\traits\ENVFilePutContent;
@@ -9,6 +9,7 @@ use Exception;
 use ZipArchive;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Controller;
 
 class ClientAutoUpdateController extends Controller
 {
@@ -83,9 +84,8 @@ class ClientAutoUpdateController extends Controller
                 }
 
                 if (($action_type =='version_upgrade' && $trackGeneralArr->latest_version_db_migrate_enable==true) || ($action_type == 'bug_update' && $trackGeneralArr->bug_db_migrate_enable==true) ){
-                    Artisan::call('migrate --path=database/migrations/primary');
-                    Artisan::call('migrate --path=database/migrations/modify');
-                    // Artisan::call('migrate');
+                    Artisan::call('migrate --path=database/migrations/landlord');
+                    Artisan::call('php artisan tenants:migrate');
                 }
                 Artisan::call('optimize:clear');
                 $this->setSuccessMessage($message);

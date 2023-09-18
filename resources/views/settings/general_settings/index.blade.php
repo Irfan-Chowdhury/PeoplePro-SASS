@@ -79,8 +79,8 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label><strong>{{__('Default Bank')}} *</strong></label>
-                                            <select name="account_id" id="account_id"  class="form-control selectpicker" required
+                                            <label><strong>{{__('Default Bank')}} </strong></label>
+                                            <select name="account_id" id="account_id"  class="form-control selectpicker"
                                                     data-live-search="true" data-live-search-style="contains"
                                                     title='{{__('Selecting',['key'=>trans('file.Account')])}}...'>
                                                 @foreach($accounts as $account)

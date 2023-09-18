@@ -71,14 +71,9 @@ class DashboardController extends Controller {
 
 	public function index()
 	{
-        // DB::table('permissions')->delete();
-        // $data= $this->testApiSAAS()->permissions;
-        // $permissions = json_decode($data, true);
-        // DB::table('permissions')->insert($permissions);
-
-        $autoUpdateData = $this->general();
-        $alertVersionUpgradeEnable = $autoUpdateData['alertVersionUpgradeEnable'];
-        $alertBugEnable =  $autoUpdateData['alertBugEnable'];
+        // $autoUpdateData = $this->general();
+        // $alertVersionUpgradeEnable = $autoUpdateData['alertVersionUpgradeEnable'];
+        // $alertBugEnable =  $autoUpdateData['alertBugEnable'];
 
 		$employees = Employee::with('department:id,department_name', 'designation:id,designation_name')
 			->select('id', 'department_id', 'designation_id', 'is_active')
@@ -226,8 +221,7 @@ class DashboardController extends Controller {
 			'payslips', 'companies', 'leave_types',
 			'training_types', 'trainers', 'travel_types', 'clients', 'projects',
 			'project_count_array', 'project_name_array', 'completed_projects',
-			'announcements', 'ticket_count', 'per_month', 'per_month_payment', 'months', 'this_month_payment', 'last_six_month_payment',
-            'alertBugEnable','alertVersionUpgradeEnable'
+			'announcements', 'ticket_count', 'per_month', 'per_month_payment', 'months', 'this_month_payment', 'last_six_month_payment'
         ));
 	}
 

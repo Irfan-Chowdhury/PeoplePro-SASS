@@ -32,11 +32,11 @@
 <body>
 <div id="documenter_sidebar">
     @if($general_settings->site_logo)
-        <img src="{{asset('/images/logo/'.$general_settings->site_logo)}}" style="border: none;margin: 0 0 0 0; " >
+        <img src="{{asset('../../images/logo/'.$general_settings->site_logo)}}" style="border: none;margin: 0 0 0 0; " >
         &nbsp; &nbsp;
     @endif
-    {{-- <h1 style="display: inline;margin-top: -10px"> {{ $general_settings->site_title }} </h1> --}}
 
+    {{-- <h1 style="display: inline;margin-top: -10px"> {{ $general_settings->site_title }} </h1> --}}
     <ul id="documenter_nav">
         <li><a class="current" href="#documenter_cover">Start</a></li>
         <li><a href="#server_requirement" title="SERVER REQUIREMENTS">Server Requirements</a></li>

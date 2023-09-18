@@ -98,15 +98,12 @@ class GeneralSettingController extends Controller
             $this->dataWriteInENVFile('ATTENDANCE_DEVICE_DATE_FORMAT',$request->Attendance_Device_date_format ? $request->Attendance_Device_date_format : 'm/d/Y');
 
 			$path = base_path('config/variable.php');
-
 			$searchArray = array(
 				config('variable.currency'),
 				config('variable.currency_format'), config('variable.account_id'));
-
 			$replaceArray = array($request->currency, $request->currency_format, $request->account_id);
-
 			file_put_contents($path, str_replace($searchArray, $replaceArray, file_get_contents($path)));
-
+            
 
 			$general_setting = GeneralSetting::findOrFail($id);
 			$general_setting->id = 1;

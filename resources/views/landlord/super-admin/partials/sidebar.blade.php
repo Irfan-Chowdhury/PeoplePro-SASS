@@ -43,5 +43,12 @@
         </li>
         <li><a href="{{ route('setting.general.index') }}"><i class="dripicons-gear"></i> {{trans('file.Settings')}}</a></li>
         <li><a target="_blank" href=""> <i class="dripicons-information"></i><span>{{trans('file.Documentation')}}</span></a></li>
+
+        @if (config('auto_update.product_mode') === "DEVELOPER")
+            <li class="{{ (request()->is('developer-section*')) ? 'active' : '' }}"><a
+                href="{{route('admin.developer-section.index')}}">
+                <i class="dripicons-calendar"></i><span> {{__('Auto Update Setting')}}</span></a>
+            </li>
+        @endif
     </ul>
   </nav>

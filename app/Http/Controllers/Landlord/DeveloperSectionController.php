@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Landlord;
 
 use App\Http\traits\ENVFilePutContent;
 use App\Http\traits\JSONFileTrait;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 
 class DeveloperSectionController extends Controller
 {
