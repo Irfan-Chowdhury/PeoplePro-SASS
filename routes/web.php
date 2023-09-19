@@ -78,6 +78,15 @@ Route::post('/super-admin/logout', [AdminController::class, 'logout'])->name('la
 Route::middleware(['web','auth','setSuperAdminLocale'])->group(function () {
     Route::prefix('super-admin')->group(function () {
 
+        Route::controller(AdminController::class)->group(function () {
+            Route::prefix('profile')->group(function () {
+                Route::get('/', 'profile')->name('admin.profile');
+                Route::post('/{user}', 'profileUpdate')->name('admin.profile_update');
+                Route::post('/{user}/password', 'passwordUpdate')->name('admin.password_update');
+            });
+        });
+
+
         Route::get('dashboard',[DashboardController::class, 'index'])->name('landlord.dashboard');
 
         Route::controller(TenantController::class)->group(function () {

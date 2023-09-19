@@ -49,22 +49,15 @@
 
                     <li class="nav-item">
                         <a rel="nofollow" href="#" class="nav-link dropdown-item">
-                            {{-- <img class="profile-photo sm mr-1" src="{{ asset('uploads/profile_photos/avatar.jpg')}}"> --}}
-
-                            {{-- @if(!empty(auth()->user()->profile_photo))
-                                <img class="profile-photo sm mr-1"
-                                     src="{{ asset('uploads/profile_photos/')}}/{{auth()->user()->profile_photo}}">
+                            @if(isset(auth()->user()->profile_photo))
+                                <img class="profile-photo sm mr-1" src="{{asset('landlord/images/profile/'.auth()->user()->profile_photo)}}">
                             @else
-                                <img class="profile-photo sm mr-1"
-                                     src="{{ asset('uploads/profile_photos/avatar.jpg')}}">
+                                <img class="profile-photo sm mr-1" src="{{ asset('uploads/profile_photos/avatar.jpg')}}"><span> Admin</span>
                             @endif
-                            <span> {{auth()->user()->username}}</span> --}}
-                            <img class="profile-photo sm mr-1" src="{{ asset('uploads/profile_photos/avatar.jpg')}}">
-                             <span> Admin</span>
                         </a>
                         <ul class="right-sidebar">
                             <li>
-                                <a href="#">
+                                <a href="{{ route('admin.profile') }}">
                                     <i class="dripicons-user"></i>
                                     {{trans('file.Profile')}}
                                 </a>
