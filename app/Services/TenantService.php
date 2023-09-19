@@ -10,13 +10,14 @@ use App\Models\Landlord\Package;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Spatie\Permission\Models\Role;
 
 class TenantService
 {
     // use TenantTrait;
 
-    public function NewTenantGenerate($request) : object
+    public function newTenantGenerate($request) : object
     {
         $customer = Customer::create(self::customerData($request));
         $package = Package::find($request->package_id);
@@ -69,7 +70,7 @@ class TenantService
         $tenant = Tenant::create($tenantData);
         $tenant->domains()->create(['domain' => $request->tenant.'.'.env('CENTRAL_DOMAIN')]); // This Line
 
-        $tenant->run(function () use ($request, $permissions, $allPermissionIds, $packageDetailsForTenant) {
+        $tenant->run(function ($tenant) use ($request, $permissions, $allPermissionIds, $packageDetailsForTenant) {
             DB::table('permissions')->insert($permissions);
             $user = self::tenantAdminCreate($request);
             $role = Role::findById(1);
@@ -77,9 +78,40 @@ class TenantService
 			$user->syncRoles(1);
 
             self::setDataInTenantGeneralSetting($packageDetailsForTenant);
+
+            $this->directoryCreate($tenant->id);
         });
 
         return $tenant;
+    }
+
+    protected function directoryCreate($tenantId) : void
+    {
+        $data = [
+            public_path('tenants/'.$tenantId.'/images/logo'),
+            public_path('tenants/'.$tenantId.'/logo'),
+            public_path('tenants/'.$tenantId.'/sample_file'),
+            public_path('tenants/'.$tenantId.'/uploads/asset_file'),
+            public_path('tenants/'.$tenantId.'/uploads/award_photos'),
+            public_path('tenants/'.$tenantId.'/uploads/candidate_cv'),
+            public_path('tenants/'.$tenantId.'/uploads/company_logo'),
+            public_path('tenants/'.$tenantId.'/uploads/document_documents'),
+            public_path('tenants/'.$tenantId.'/uploads/file_manager'),
+            public_path('tenants/'.$tenantId.'/uploads/immigration_documents'),
+            public_path('tenants/'.$tenantId.'/uploads/official_documents'),
+            public_path('tenants/'.$tenantId.'/uploads/profile_photos'),
+            public_path('tenants/'.$tenantId.'/uploads/project_bug_attachments'),
+            public_path('tenants/'.$tenantId.'/uploads/project_discussion_attachments'),
+            public_path('tenants/'.$tenantId.'/uploads/project_file_attachments'),
+            public_path('tenants/'.$tenantId.'/uploads/task_file_attachments'),
+            public_path('tenants/'.$tenantId.'/uploads/ticket_attachments')
+        ];
+
+        foreach($data as $item) {
+            if (!File::isDirectory($item)) {
+                File::makeDirectory($item, 0755, true, true);
+            }
+        }
     }
 
     protected function numberOfDaysToExpired($package, $generalSetting, $request)

@@ -64,12 +64,11 @@
                         </a>
                     </li>
                 @endif
-
                     <li class="nav-item">
                         <a rel="nofollow" href="#" class="nav-link dropdown-item">
                             @if(!empty(auth()->user()->profile_photo))
                                 <img class="profile-photo sm mr-1"
-                                     src="{{ asset('../../uploads/profile_photos/')}}/{{auth()->user()->profile_photo}}">
+                                     src="{{ asset('../../tenants/'.tenant('id').'/uploads/profile_photos/')}}/{{auth()->user()->profile_photo}}">
                             @else
                                 <img class="profile-photo sm mr-1"
                                      src="{{ asset('../../uploads/profile_photos/avatar.jpg')}}">

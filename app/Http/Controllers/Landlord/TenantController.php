@@ -109,7 +109,7 @@ class TenantController extends Controller
             }
 
             // $this->tenantGenerate($request);
-            $this->tenantService->NewTenantGenerate($request);
+            $this->tenantService->newTenantGenerate($request);
 
             DB::commit();
 
