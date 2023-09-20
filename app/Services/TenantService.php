@@ -147,7 +147,7 @@ class TenantService
             public_path('tenants/'.$tenantId.'/logo'), // no link found
             public_path('tenants/'.$tenantId.'/sample_file'), //Done
             public_path('tenants/'.$tenantId.'/uploads/asset_file'),
-            public_path('tenants/'.$tenantId.'/uploads/award_photos'),
+            public_path('tenants/'.$tenantId.'/uploads/award_photos'), // -> File Delete During Update, Delete
             public_path('tenants/'.$tenantId.'/uploads/candidate_cv'),
             public_path('tenants/'.$tenantId.'/uploads/company_logo'),
             public_path('tenants/'.$tenantId.'/uploads/document_documents'),
