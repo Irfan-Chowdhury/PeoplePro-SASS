@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Utility;
 use App\Models\Employee;
 use App\Http\traits\ENVFilePutContent;
 use App\Models\FinanceBankCash;
@@ -103,7 +104,7 @@ class GeneralSettingController extends Controller
 				config('variable.currency_format'), config('variable.account_id'));
 			$replaceArray = array($request->currency, $request->currency_format, $request->account_id);
 			file_put_contents($path, str_replace($searchArray, $replaceArray, file_get_contents($path)));
-            
+
 
 			$general_setting = GeneralSetting::findOrFail($id);
 			$general_setting->id = 1;
@@ -118,28 +119,30 @@ class GeneralSettingController extends Controller
 
 			$logo = $request->site_logo;
 
-
-			if ($logo)
-			{
-				$file_path = $general_setting->site_logo;
+            $general_setting->site_logo = Utility::directoryCleanAndImageStore($logo, tenantPath().'/images/logo/', 300, 300);
 
 
-				if ($file_path)
-				{
-					$file_path = public_path('images/logo/' . $file_path);
+			// if ($logo)
+			// {
+			// 	$file_path = $general_setting->site_logo;
 
-					if (file_exists($file_path))
-					{
-						unlink($file_path);
-					}
-				}
 
-				$ext = pathinfo($logo->getClientOriginalName(), PATHINFO_EXTENSION);
-				$logoName = 'logo.' . $ext;
-				$logo->move(public_path('images/logo'), $logoName);
-				$general_setting->site_logo = $logoName;
+			// 	if ($file_path)
+			// 	{
+			// 		$file_path = public_path('images/logo/' . $file_path);
 
-			}
+			// 		if (file_exists($file_path))
+			// 		{
+			// 			unlink($file_path);
+			// 		}
+			// 	}
+
+			// 	$ext = pathinfo($logo->getClientOriginalName(), PATHINFO_EXTENSION);
+			// 	$logoName = 'logo.' . $ext;
+			// 	$logo->move(public_path('images/logo'), $logoName);
+			// 	$general_setting->site_logo = $logoName;
+
+			// }
 			$general_setting->save();
 
             $this->setErrorMessage('Data updated successfully');

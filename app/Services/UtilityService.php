@@ -57,10 +57,6 @@ class UtilityService
                 File::cleanDirectory($imagesDirectory);
             }
 
-            // if ($isPrevImgFileDelete && File::isDirectory($imagesDirectory) && $prevImageName) {
-            //     $this->fileDelete($imagesDirectory, $prevImageName);
-            // }
-
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis") . 1;
             $imageName = $imageName . '.' . $ext;
@@ -74,6 +70,23 @@ class UtilityService
     {
         $imageName = null;
         if ($image) {
+            $imageName = Str::random(10). '.' .$image->getClientOriginalExtension();
+            $location  = public_path($directory.$imageName);
+            Image::make($image)->resize($width, $height)->save($location);
+        }
+
+        return $imageName;
+    }
+
+    public function directoryCleanAndImageStore($image, $directory, $width, $height) : string|null
+    {
+        $imageName = null;
+        if ($image) {
+
+            if (File::isDirectory($directory)) {
+                File::cleanDirectory($directory);
+            }
+
             $imageName = Str::random(10). '.' .$image->getClientOriginalExtension();
             $location  = public_path($directory.$imageName);
             Image::make($image)->resize($width, $height)->save($location);

@@ -24,6 +24,7 @@ use App\Models\User;
 use App\Services\TenantService;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
@@ -218,8 +219,10 @@ class TenantController extends Controller
 
     public function destroy(Tenant $tenant)
     {
+
         try {
             $tenant->domainInfo->delete();
+            self::tenantDirectoryDelete($tenant->id);
             $tenant->delete();
             $result =  Alert::successMessage('Data Created Successfully');
         }
@@ -228,6 +231,16 @@ class TenantController extends Controller
         }
         return response()->json($result['alertMsg'], $result['statusCode']);
     }
+
+
+    protected function tenantDirectoryDelete($tenantId) : void
+    {
+        $path = public_path('tenants/'.$tenantId);
+        if (File::isDirectory($path)) {
+            File::deleteDirectory($path);
+        }
+    }
+
 
     public function contactForRenewal(PackageContract $packageContract)
     {

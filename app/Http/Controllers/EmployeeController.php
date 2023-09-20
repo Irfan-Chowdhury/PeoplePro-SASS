@@ -688,12 +688,12 @@ class EmployeeController extends Controller
 
     public function importPost()
     {
-
         if (! env('USER_VERIFIED')) {
             $this->setErrorMessage('This feature is disabled for demo!');
 
             return redirect()->back();
         }
+
         try {
             Excel::queueImport(new UsersImport(), request()->file('file'));
         } catch (ValidationException $e) {
