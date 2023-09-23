@@ -95,7 +95,7 @@ class UtilityService
         return $imageName;
     }
 
-    public function fileUploadHandle($file, $directory, $name): string | null
+    public function fileUploadHandle(object|null $file, string $directory, string $name): string | null
     {
 		if (isset($file)) {
 			if ($file->isValid()) {
