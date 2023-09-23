@@ -139,8 +139,6 @@ class JobCategoryController extends Controller
 
 			$data['job_category'] = $request->get('job_category_edit');
 
-
-
 			JobCategory::whereId($id)->update($data);
 
 			return response()->json(['success' => __('Data is successfully updated')]);
