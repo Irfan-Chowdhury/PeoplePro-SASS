@@ -78,6 +78,19 @@ class UtilityService
         return $imageName;
     }
 
+    public function fileUploadHandle($file, $directory, $name): string | null
+    {
+		if (isset($file)) {
+			if ($file->isValid()) {
+				$fullFileName = preg_replace('/\s+/', '', $name) . '_' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($directory), $fullFileName);
+
+				return $fullFileName;
+			}
+		}
+        return null;
+    }
+
     public function directoryCleanAndImageStore($image, $directory, $width, $height) : string|null
     {
         $imageName = null;
@@ -95,13 +108,12 @@ class UtilityService
         return $imageName;
     }
 
-    public function fileDelete($filePath, $fileName) : void
+    public function fileDelete(string $filePath, string $fileName) : void
     {
         if ($fileName && !config('database.connections.peopleprosaas_landlord') && File::exists(public_path().$filePath.$fileName))
            File::delete(public_path().$filePath.$fileName);
         else if($fileName && File::exists($filePath.$fileName))
            File::delete($filePath.$fileName);
-
 
         // if($fileName && !config('database.connections.peopleprosaas_landlord') && file_exists('public/'.$filePath.$fileName))
         //     unlink('public/'.$filePath.$fileName);
