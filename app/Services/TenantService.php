@@ -159,7 +159,7 @@ class TenantService
             public_path('tenants/'.$tenantId.'/uploads/project_discussion_attachments'), //Done
             public_path('tenants/'.$tenantId.'/uploads/project_file_attachments'), //Done
             public_path('tenants/'.$tenantId.'/uploads/task_file_attachments'), //Done
-            public_path('tenants/'.$tenantId.'/uploads/ticket_attachments')
+            public_path('tenants/'.$tenantId.'/uploads/ticket_attachments') //Done
         ];
 
         foreach($data as $item) {
