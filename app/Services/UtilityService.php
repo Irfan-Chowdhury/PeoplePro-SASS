@@ -103,7 +103,7 @@ class UtilityService
                 $file->move(public_path($directory), $fullFileName);
 
 				return $fullFileName;
-			}
+			} 
 		}
         return null;
     }

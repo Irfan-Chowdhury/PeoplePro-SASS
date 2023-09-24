@@ -150,7 +150,7 @@ class TenantService
             public_path('tenants/'.$tenantId.'/uploads/award_photos'), // Done -> File Delete During Update, Delete
             public_path('tenants/'.$tenantId.'/uploads/candidate_cv'), // Done
             public_path('tenants/'.$tenantId.'/uploads/company_logo'), // Done
-            public_path('tenants/'.$tenantId.'/uploads/employee_documents'),
+            public_path('tenants/'.$tenantId.'/uploads/employee_documents'), // Done
             public_path('tenants/'.$tenantId.'/uploads/file_manager'),
             public_path('tenants/'.$tenantId.'/uploads/immigration_documents'),
             public_path('tenants/'.$tenantId.'/uploads/official_documents'),
