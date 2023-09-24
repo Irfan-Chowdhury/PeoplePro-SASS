@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Utility;
 use App\Models\Employee;
 use App\Models\EmployeeImmigration;
 use Illuminate\Http\Request;
@@ -106,20 +107,7 @@ class EmployeeImmigrationController extends Controller {
 			$data ['eligible_review_date'] = $request->eligible_review_date;
 			$data['country_id'] = $request->country;
 
-			$file = $request->document_file;
-
-			$file_name = null;
-
-			if (isset($file))
-			{
-				$file_name = $data['document_number'];
-				if ($file->isValid())
-				{
-					$file_name = 'immigration_' . $file_name . '.' . $file->getClientOriginalExtension();
-					$file->storeAs('immigration_documents', $file_name);
-					$data['document_file'] = $file_name;
-				}
-			}
+            $data['document_file'] = Utility::fileUploadHandle($request->document_file, tenantPath().'/uploads/immigration_documents', $request->document_number);
 
 			EmployeeImmigration::create($data);
 
@@ -180,23 +168,22 @@ class EmployeeImmigrationController extends Controller {
 			$data ['eligible_review_date'] = $request->eligible_review_date;
 			$data['country_id'] = $request->country;
 
+
 			$file = $request->document_file;
 
 			$file_name = null;
-
-			if (isset($file))
-			{
+			if (isset($file)) {
 				$this->unlink($id);
 				$file_name = $data['document_number'];
-				if ($file->isValid())
-				{
+				if ($file->isValid()) {
 					$file_name = 'immigration_' . $file_name . '.' . $file->getClientOriginalExtension();
-					$file->storeAs('immigration_documents', $file_name);
+                    $file->move(public_path(tenantPath().'/uploads/immigration_documents'), $file_name);
 					$data['document_file'] = $file_name;
 				}
 			}
 
 			EmployeeImmigration::whereId($id)->update($data);
+
 
 			return response()->json(['success' => __('Data is successfully updated')]);
 		} else
@@ -214,7 +201,7 @@ class EmployeeImmigrationController extends Controller {
 
 		if ($file_path)
 		{
-			$file_path = public_path('uploads/immigration_documents/' . $file_path);
+			$file_path = public_path(tenantPath().'/uploads/immigration_documents/' . $file_path);
 			if (file_exists($file_path))
 			{
 				unlink($file_path);
@@ -249,7 +236,7 @@ class EmployeeImmigrationController extends Controller {
 
 		$file_path = $file->document_file;
 
-		$download_path = public_path("uploads/immigration_documents/" . $file_path);
+		$download_path = public_path(tenantPath().'/uploads/immigration_documents/' . $file_path);
 
 		if (file_exists($download_path))
 		{
