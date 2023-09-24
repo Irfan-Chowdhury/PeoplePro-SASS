@@ -152,8 +152,8 @@ class TenantService
             public_path('tenants/'.$tenantId.'/uploads/company_logo'), // Done
             public_path('tenants/'.$tenantId.'/uploads/employee_documents'), // Done
             public_path('tenants/'.$tenantId.'/uploads/file_manager'), // Done
-            public_path('tenants/'.$tenantId.'/uploads/immigration_documents'),
-            public_path('tenants/'.$tenantId.'/uploads/official_documents'),
+            public_path('tenants/'.$tenantId.'/uploads/immigration_documents'), //Done
+            public_path('tenants/'.$tenantId.'/uploads/official_documents'), //Done
             public_path('tenants/'.$tenantId.'/uploads/profile_photos'), //Done
             public_path('tenants/'.$tenantId.'/uploads/project_bug_attachments'),
             public_path('tenants/'.$tenantId.'/uploads/project_discussion_attachments'),

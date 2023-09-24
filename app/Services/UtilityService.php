@@ -66,16 +66,18 @@ class UtilityService
         return $imageName;
     }
 
+    // public function imageFileStore(object|null $image, string $directory, int $width, int $height) : string|null
     public function imageFileStore($image, $directory, $width, $height) : string|null
     {
-        $imageName = null;
-        if ($image) {
+        if (isset($image)) {
             $imageName = Str::random(10). '.' .$image->getClientOriginalExtension();
             $location  = public_path($directory.$imageName);
             Image::make($image)->resize($width, $height)->save($location);
+
+            return $imageName;
         }
 
-        return $imageName;
+        return null;
     }
 
     public function directoryCleanAndImageStore($image, $directory, $width, $height) : string|null
@@ -103,7 +105,7 @@ class UtilityService
                 $file->move(public_path($directory), $fullFileName);
 
 				return $fullFileName;
-			} 
+			}
 		}
         return null;
     }
