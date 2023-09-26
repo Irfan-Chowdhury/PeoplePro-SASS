@@ -343,7 +343,7 @@
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>{{trans('file.Status')}}</label>
+                                                            <label>{{trans('file.Status')}}  <span class="text-danger">*</span></label>
                                                             <input type="hidden" name="status_id_hidden"
                                                                value="{{ $employee->status_id }}"/>
                                                             <select name="status_id" id="status_id"

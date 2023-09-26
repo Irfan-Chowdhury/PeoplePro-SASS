@@ -10,11 +10,14 @@ use App\Contracts\PaymentSettingContract;
 use App\Contracts\SeoSettingContract;
 use App\Facades\Alert;
 use App\Facades\Utility;
+use App\Http\traits\ENVFilePutContent;
 use Exception;
 use Illuminate\Support\Facades\File;
 
 class SettingService
 {
+
+    use ENVFilePutContent;
 
     private $siteLogoPath = "landlord/images/logo/";
     private $ogImagePath = "landlord/images/seo-setting/";
@@ -68,6 +71,9 @@ class SettingService
                 'footer_link' =>  $request->footer_link,
                 'developed_by' =>  $request->developed_by,
             ];
+
+            $this->dataWriteInENVFile('APP_TIMEZONE',$request->time_zone);
+
 
             $imageName = $this->imageHandle($request->site_logo, $this->siteLogoPath);
             if($imageName) {

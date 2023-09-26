@@ -39,8 +39,11 @@ class ConfirmationEmail extends Mailable
     {
         return new Content(
             view: 'landlord.public-section.emails.confirmation',
+            // with: [
+            //     'name' => $this->customerRequest->first_name,
+            // ],
             with: [
-                'name' => $this->customerRequest->first_name,
+                'name' => $this->customerRequest->from_name,
             ],
         );
     }

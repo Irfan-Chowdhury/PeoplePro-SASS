@@ -25,6 +25,11 @@ class CreateGeneralSettingsTable extends Migration
             $table->string('theme', 191)->nullable();
             $table->string('footer', 191)->nullable();
             $table->string('footer_link', 191)->nullable();
+            $table->string('date_format_js', 191)->nullable();
+            $table->string('rtl_layout', 191)->nullable();
+            $table->string('enable_clockin_clockout', 191)->nullable();
+            $table->string('enable_early_clockin', 191)->nullable();
+            $table->string('attendance_device_date_format', 191)->nullable();
             $table->json('package_details')->nullable();
             $table->timestamps();
         });
