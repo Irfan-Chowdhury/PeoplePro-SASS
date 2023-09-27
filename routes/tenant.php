@@ -187,7 +187,7 @@ Route::get('/get-host', function () {
 // });
 
 
-Route::middleware(['XSS', 'web', 'package.validity', 'tenantSetMailInfo' ,InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(function () {
+Route::middleware(['XSS', 'web', 'package.validity', 'setMailSetting', 'setGeneralSetting' ,InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(function () {
 
     Auth::routes(['register' => false]);
 

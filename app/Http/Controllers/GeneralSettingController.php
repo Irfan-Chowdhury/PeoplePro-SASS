@@ -40,6 +40,16 @@ class GeneralSettingController extends Controller
 
 	public function index()
 	{
+        //======== Test =========
+        // date_default_timezone_set('America/New_York'); // Replace with your desired time zone
+        // config()->set('app.timezone', $general_settings_data->time_zone);
+
+        $general_settings_data = GeneralSetting::latest()->first();
+        $currentDateTime = date('Y-m-d H:i:s');
+        return "Current Date and Time in $general_settings_data->time_zone :".  $currentDateTime;
+        //======== Test =========
+
+
 		if (auth()->user()->can('view-general-setting'))
 		{
 			$general_settings_data = GeneralSetting::latest()->first();
