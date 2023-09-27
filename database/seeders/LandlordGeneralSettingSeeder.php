@@ -42,6 +42,6 @@ class LandlordGeneralSettingSeeder extends Seeder
         $this->dataWriteInENVFile('Date_Format',$dateFormat);
         $js_format = config('date_format_conversion.' . $dateFormat);
         $this->dataWriteInENVFile('Date_Format_JS',$js_format);
-        $this->dataWriteInENVFile('ENABLE_EARLY_CLOCKIN',1);
+        // $this->dataWriteInENVFile('ENABLE_EARLY_CLOCKIN',1);
     }
 }

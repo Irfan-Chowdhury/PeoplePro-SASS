@@ -124,13 +124,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-4 form-check">
-                                            <input type="checkbox" name="rtl_layout" class="form-check-input" value="1" {{$general_settings_data->rtl_layout!==NULL ? 'checked':''}} />
+                                            <input type="checkbox" name="rtl_layout" class="form-check-input" value="1" {{isset($general_settings_data->rtl_layout) && $general_settings_data->rtl_layout ? 'checked':''}} />
                                             <label class="mr-4 form-check-label"><strong>{{trans('file.RTL Layout')}} </strong></label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-4 form-check">
-                                            <input type="checkbox" name="enable_clockin_clockout" class="form-check-input" value="1" {{$general_settings_data->enable_clockin_clockout!==NULL ? 'checked':''}}/>
+                                            <input type="checkbox" name="enable_clockin_clockout" class="form-check-input" value="1" {{$general_settings_data->enable_clockin_clockout ? 'checked':''}}/>
                                             <label class="mr-4 form-check-label"><strong>{{trans('file.Enable Clock In and Clock Out')}} </strong></label>
                                         </div>
                                     </div>

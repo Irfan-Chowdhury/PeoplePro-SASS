@@ -30,6 +30,9 @@ class GeneralSettingSeeder extends Seeder
             'theme' => "default.css",
             'footer' => "LionCoders",
             'footer_link' => "https://www.lion-coders.com",
+            'rtl_layout' => false,
+            'enable_clockin_clockout' => true,
+            'enable_early_clockin' => false,
         ];
 
 

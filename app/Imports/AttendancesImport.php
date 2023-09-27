@@ -69,12 +69,12 @@ class AttendancesImport implements ToCollection,WithHeadingRow,ShouldQueue,WithC
                 } // if employee is early or on time
                 else
                 {
-                    if(env('ENABLE_EARLY_CLOCKIN') == NULL) {
+                    if(session()->get('isEnableEarlyClockIn') == NULL) {
                         $clock_in = $shift_in;
                     }
                 }
 
-                if ($clock_out > $shift_in || env('ENABLE_EARLY_CLOCKIN')!=NULL) {
+                if ($clock_out > $shift_in || session()->get('isEnableEarlyClockIn')!=NULL) {
                     // if employee is early leaving
                     if ($clock_out < $shift_out) {
                         $timeDifference = $shift_out->diff($clock_out)->format('%H:%I');

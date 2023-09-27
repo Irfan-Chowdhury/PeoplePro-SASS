@@ -41,12 +41,14 @@ class GeneralSettingController extends Controller
 	public function index()
 	{
         //======== Test =========
+        // return session()->get('isEnableEarlyClockIn');
+
         // date_default_timezone_set('America/New_York'); // Replace with your desired time zone
         // config()->set('app.timezone', $general_settings_data->time_zone);
 
-        $general_settings_data = GeneralSetting::latest()->first();
-        $currentDateTime = date('Y-m-d H:i:s');
-        return "Current Date and Time in $general_settings_data->time_zone :".  $currentDateTime;
+        // $general_settings_data = GeneralSetting::latest()->first();
+        // $currentDateTime = date('Y-m-d H:i:s');
+        // return "Current Date and Time in $general_settings_data->time_zone :".  $currentDateTime;
         //======== Test =========
 
 
@@ -95,12 +97,12 @@ class GeneralSettingController extends Controller
 			$general_setting->currency = $data['currency'];
 			$general_setting->currency_format = $data['currency_format'];
 			$general_setting->date_format = $data['date_format'];
+            $general_setting->date_format_js = $request->date_format_js;
 			$general_setting->default_payment_bank = $data['account_id'];
 			$general_setting->footer = $request->footer;
 			$general_setting->footer_link = $request->footer_link;
-			$general_setting->date_format_js = $request->date_format_js;
-			$general_setting->rtl_layout = $request->rtl_layout ?? null;
-			$general_setting->enable_clockin_clockout = $request->enable_clockin_clockout ?? null;
+			$general_setting->rtl_layout = $request->rtl_layout ?? false;
+			$general_setting->enable_clockin_clockout = $request->enable_clockin_clockout ?? false;
 			$general_setting->enable_early_clockin = $request->enable_early_clockin ?? null;
 			$general_setting->attendance_device_date_format = $request->attendance_device_date_format;
             $general_setting->site_logo = Utility::directoryCleanAndImageStore($request->site_logo, tenantPath().'/images/logo/', 300, 300);

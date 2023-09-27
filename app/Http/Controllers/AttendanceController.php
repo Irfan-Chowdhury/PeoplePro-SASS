@@ -276,7 +276,7 @@ class AttendanceController extends Controller {
 			return view('timesheet.attendance.attendance');
 		// }
 
-		return response()->json(['success' => __('You are not authorized')]);
+		// return response()->json(['success' => __('You are not authorized')]);
 	}
 
 
@@ -322,7 +322,7 @@ class AttendanceController extends Controller {
 			} // if employee is early or on time
 			else
 			{
-                if(env('ENABLE_EARLY_CLOCKIN')!=NULL) {
+                if(session()->get('isEnableEarlyClockIn')!=NULL) {
                     $data['clock_in'] = $current_time->format('H:i');
                 }
                 else {
@@ -345,7 +345,7 @@ class AttendanceController extends Controller {
         else {
 			//checking if the employee is not both clocked in + out (1)
 			if ($employee_attendance_last->clock_in_out == 1) {
-                if ($current_time > $shift_in || env('ENABLE_EARLY_CLOCKIN')!=NULL) {
+                if ($current_time > $shift_in || session()->get('isEnableEarlyClockIn')!=NULL) {
 					$employee_last_clock_in = new DateTime($employee_attendance_last->clock_in);
                     $data['clock_out'] = $current_time->format('H:i');
                     // if employee is early leaving
@@ -1337,11 +1337,11 @@ class AttendanceController extends Controller {
             } // if employee is early or on time
             else
             {
-                if(env('ENABLE_EARLY_CLOCKIN') == NULL) {
+                if(session()->get('isEnableEarlyClockIn') == NULL) {
                     $clock_in = $shift_in;
                 }
             }
-            if ($clock_out > $shift_in || env('ENABLE_EARLY_CLOCKIN')!=NULL) {
+            if ($clock_out > $shift_in || session()->get('isEnableEarlyClockIn')!=NULL) {
                 // if employee is early leaving
                 if ($clock_out < $shift_out) {
                     $timeDifference = $shift_out->diff($clock_out)->format('%H:%I');
@@ -1471,11 +1471,11 @@ class AttendanceController extends Controller {
 				} // if employee is early or on time
 				else
 				{
-					if(env('ENABLE_EARLY_CLOCKIN') == NULL) {
+					if(session()->get('isEnableEarlyClockIn') == NULL) {
 						$clock_in = $shift_in;
 					}
 				}
-				if ($clock_out > $shift_in || env('ENABLE_EARLY_CLOCKIN')!=NULL) {
+				if ($clock_out > $shift_in || session()->get('isEnableEarlyClockIn')!=NULL) {
 					// if employee is early leaving
 					if ($clock_out < $shift_out) {
 						$timeDifference = $shift_out->diff($clock_out)->format('%H:%I');
