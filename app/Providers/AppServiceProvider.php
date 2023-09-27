@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
 			App::setLocale('en');
 		}
 
-//		if (!isset(env('Date_Format')) && !isset($_COOKIE['date_format_js'])){
+//		if (!isset(session()->get('dateFormat')) && !isset($_COOKIE['date_format_js'])){
 //
 //			setcookie('date_format', 'Y-m-d', time() + (86400 * 365),'/');
 //

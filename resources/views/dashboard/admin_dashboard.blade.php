@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="d-flex justify-content-between mb-30px">
                 <div><h1 class="thin-text">{{trans('file.Welcome')}} {{auth()->user()->username}}</h1></div>
-                <div><h4 class="thin-text">{{__('Today is')}} {{now()->englishDayOfWeek}} {{now()->format(env('Date_Format'))}}</h4></div>
+                <div><h4 class="thin-text">{{__('Today is')}} {{now()->englishDayOfWeek}} {{now()->format(session()->get('dateFormat'))}}</h4></div>
             </div>
             <div class="row">
                 <div class="col-sm-2">

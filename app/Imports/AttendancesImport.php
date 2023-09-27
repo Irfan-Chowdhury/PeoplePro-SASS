@@ -38,7 +38,7 @@ class AttendancesImport implements ToCollection,WithHeadingRow,ShouldQueue,WithC
                 ->select('id','office_shift_id')
                 ->where('staff_id',$row['staff_id'])->first();
 
-            $att_dt = Carbon::createFromFormat(env('Date_Format'), $row['attendance_date']);
+            $att_dt = Carbon::createFromFormat(session()->get('dateFormat'), $row['attendance_date']);
             $attendance_day_in =  strtolower($att_dt->format('l')).'_in';
             $attendance_day_out =  strtolower($att_dt->format('l')).'_out';
             try

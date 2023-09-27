@@ -43,7 +43,7 @@ class AttendancesImportDevice implements ToCollection, WithStartRow, ShouldQueue
                     ->where('employee_id', $employee_id)->orderBy('id', 'desc')->first() ?? null;
 
             $data['employee_id'] = $employee_id;
-            $data['attendance_date'] = $attendance_date_day->format(env('Date_Format'));
+            $data['attendance_date'] = $attendance_date_day->format(session()->get('dateFormat'));
 
             //if employee attendance record was not found
             // FOR CLOCK IN

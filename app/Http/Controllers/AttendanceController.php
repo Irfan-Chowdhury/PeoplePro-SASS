@@ -111,7 +111,7 @@ class AttendanceController extends Controller {
 						//if there is no employee attendance
 						if ($employee->employeeAttendance->isEmpty())
 						{
-							return Carbon::parse($selected_date)->format(env('Date_Format'));
+							return Carbon::parse($selected_date)->format(session()->get('dateFormat'));
 						} else
 						{
 							//if there are employee attendance,get the first record
@@ -286,7 +286,7 @@ class AttendanceController extends Controller {
 		$data = [];
 
 		//current day
-		$current_day = now()->format(env('Date_Format'));
+		$current_day = now()->format(session()->get('dateFormat'));
 
 		//getting the latest instance of employee_attendance
 		$employee_attendance_last = Attendance::where('attendance_date', now()->format('Y-m-d'))
@@ -435,7 +435,7 @@ class AttendanceController extends Controller {
         $period   = new DatePeriod($begin, $interval, $end);
         $date_range = [];
         foreach ($period as $dt) {
-            $date_range[] = $dt->format(env('Date_Format'));
+            $date_range[] = $dt->format(session()->get('dateFormat'));
         }
         $emp_attendance_date_range = [];
 
@@ -445,12 +445,12 @@ class AttendanceController extends Controller {
             $leaves = $emp->employeeLeave;
             $shift = $emp->officeShift->toArray();
             $holidays = $emp->company->companyHolidays;
-            $joining_date = Carbon::parse($emp->joining_date)->format(env('Date_Format'));
+            $joining_date = Carbon::parse($emp->joining_date)->format(session()->get('dateFormat'));
             foreach ($date_range as $key2 => $dt_r) {
                 $emp_attendance_date_range[$key1*count($date_range)+$key2]['id'] = $emp->id;
                 $emp_attendance_date_range[$key1*count($date_range)+$key2]['employee_name'] = ($key2==0) ? '<strong>'.$emp->full_name.'</strong>' : $emp->full_name;
                 $emp_attendance_date_range[$key1*count($date_range)+$key2]['company'] = $emp->company->company_name;
-                $emp_attendance_date_range[$key1*count($date_range)+$key2]['attendance_date'] = Carbon::parse($dt_r)->format(env('Date_Format'));
+                $emp_attendance_date_range[$key1*count($date_range)+$key2]['attendance_date'] = Carbon::parse($dt_r)->format(session()->get('dateFormat'));
 
                 //attendance status
                 $day = strtolower(Carbon::parse($dt_r)->format('l')) . '_in';
@@ -681,7 +681,7 @@ class AttendanceController extends Controller {
                 $period   = new DatePeriod($begin, $interval, $end);
                 $date_range = [];
                 foreach ($period as $dt) {
-                    $date_range[] = $dt->format(env('Date_Format'));
+                    $date_range[] = $dt->format(session()->get('dateFormat'));
                 }
                 $emp_attendance_date_range = [];
 
@@ -690,12 +690,12 @@ class AttendanceController extends Controller {
                     $leaves = $emp->employeeLeave;
                     $shift = $emp->officeShift->toArray();
                     $holidays = $emp->company->companyHolidays;
-                    $joining_date = Carbon::parse($emp->joining_date)->format(env('Date_Format'));
+                    $joining_date = Carbon::parse($emp->joining_date)->format(session()->get('dateFormat'));
                     foreach ($date_range as $key2 => $dt_r) {
                         $emp_attendance_date_range[$key1*count($date_range)+$key2]['id'] = $emp->id;
                         $emp_attendance_date_range[$key1*count($date_range)+$key2]['employee_name'] = ($key2==0) ? '<strong>'.$emp->full_name.'</strong>' : $emp->full_name;
                         $emp_attendance_date_range[$key1*count($date_range)+$key2]['company'] = $emp->company->company_name;
-                        $emp_attendance_date_range[$key1*count($date_range)+$key2]['attendance_date'] = Carbon::parse($dt_r)->format(env('Date_Format'));
+                        $emp_attendance_date_range[$key1*count($date_range)+$key2]['attendance_date'] = Carbon::parse($dt_r)->format(session()->get('dateFormat'));
 
                         //attendance status
                         $day = strtolower(Carbon::parse($dt_r)->format('l')) . '_in';
@@ -928,7 +928,7 @@ class AttendanceController extends Controller {
 		foreach ($period as $dt)
 		{
 			$this->date_range[] = $dt->format("d D");
-			$this->date_attendance[] = $dt->format(env('Date_Format'));
+			$this->date_attendance[] = $dt->format(session()->get('dateFormat'));
 		}
 
 
