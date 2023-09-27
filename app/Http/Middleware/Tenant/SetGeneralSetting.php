@@ -18,16 +18,17 @@ class SetGeneralSetting
             self::setRtlLayout($generalSetting);
             self::setClockInClockOut($generalSetting);
             self::setEarlyClockIn($generalSetting);
+            self::setAttendanceDeviceDateFormat($generalSetting);
         }
         return $next($request);
     }
 
-    private static function setTimeZone($generalSetting): void
+    private static function setTimeZone(object $generalSetting): void
     {
         date_default_timezone_set($generalSetting->time_zone);
     }
 
-    private static function setRtlLayout($generalSetting)
+    private static function setRtlLayout(object $generalSetting): void
     {
         $isEnableRtlLayout = $generalSetting->rtl_layout ? true : false;
 
@@ -38,7 +39,7 @@ class SetGeneralSetting
         });
     }
 
-    private static function setClockInClockOut($generalSetting)
+    private static function setClockInClockOut(object $generalSetting): void
     {
         $isEnableClockInClockOut = $generalSetting->enable_clockin_clockout ?? false;
 
@@ -49,10 +50,16 @@ class SetGeneralSetting
         });
     }
 
-    private static function setEarlyClockIn($generalSetting)
+    private static function setEarlyClockIn(object $generalSetting): void
     {
         $isEnableEarlyClockIn = $generalSetting->enable_early_clockin ? true : null;
         Session::put('isEnableEarlyClockIn', $isEnableEarlyClockIn);
+    }
+
+    private static function setAttendanceDeviceDateFormat(object $generalSetting): void
+    {
+        $attendanceDeviceDateFormat = $generalSetting->attendance_device_date_format ?? null;
+        Session::put('attendanceDeviceDateFormat', $attendanceDeviceDateFormat);
     }
 
 }

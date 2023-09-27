@@ -22,8 +22,7 @@ class AttendancesImportDevice implements ToCollection, WithStartRow, ShouldQueue
         {
             $staff_id = $row[0];
             $dt_time = explode(' ', $row[1], 2);
-
-            $attendance_date_day = Carbon::createFromFormat(env('ATTENDANCE_DEVICE_DATE_FORMAT'), $dt_time[0]);
+            $attendance_date_day = Carbon::createFromFormat(session()->get('attendanceDeviceDateFormat'), $dt_time[0]);
             $att_time = new DateTime(Carbon::parse($dt_time[1])->format('H:i'));
 
             $data = [];
