@@ -20,6 +20,7 @@ class SetGeneralSetting
             self::setEarlyClockIn($generalSetting);
             self::setAttendanceDeviceDateFormat($generalSetting);
             self::setDateFormat($generalSetting);
+            self::setDateFormatJs($generalSetting);
         }
         return $next($request);
     }
@@ -67,6 +68,11 @@ class SetGeneralSetting
     {
         $dateFormat = $generalSetting->date_format ?? null;
         Session::put('dateFormat', $dateFormat);
+    }
+    private static function setDateFormatJs(object $generalSetting): void
+    {
+        $dateFormatJs = $generalSetting->date_format_js ?? null;
+        Session::put('dateFormatJs', $dateFormatJs);
     }
 
 }

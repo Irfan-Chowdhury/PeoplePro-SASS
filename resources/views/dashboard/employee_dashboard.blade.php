@@ -523,12 +523,13 @@
                 let totalDaysInput = $('#total_days');
 
                 $(document).ready(function () {
+
                     let date = $('.date');
+                    let dateFormatJs = @json(session('dateFormatJs'));
                     date.datepicker({
-                        format: '{{ env('Date_Format_JS')}}',
+                        format: dateFormatJs,
                         autoclose: true,
-                        todayHighlight: true,
-                        startDate: new Date(),
+                        todayHighlight: true
                     });
 
                     // const startDateInput = $('#start_date');
@@ -575,8 +576,9 @@
                 });
 
                 // let date = $('.date');
+                // let dateFormatJs = @json(session('dateFormatJs'));
                 // date.datepicker({
-                //     format: '{{ env('Date_Format_JS')}}',
+                //     format: dateFormatJs,
                 //     autoclose: true,
                 //     todayHighlight: true
                 // });

@@ -97,7 +97,10 @@ class GeneralSettingController extends Controller
 			$general_setting->currency = $data['currency'];
 			$general_setting->currency_format = $data['currency_format'];
 			$general_setting->date_format = $data['date_format'];
-            $general_setting->date_format_js = $request->date_format_js;
+
+            $js_format = config('date_format_conversion.' .$request->date_format);
+            $general_setting->date_format_js = $js_format;
+
 			$general_setting->default_payment_bank = $data['account_id'];
 			$general_setting->footer = $request->footer;
 			$general_setting->footer_link = $request->footer_link;

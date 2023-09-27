@@ -27,6 +27,7 @@ class GeneralSettingSeeder extends Seeder
             'currency_format' => "prefix",
             'default_payment_bank' => 1,
             'date_format' => $dateFormat,
+            'date_format_js' => config('date_format_conversion.' .$dateFormat),
             'theme' => "default.css",
             'footer' => "LionCoders",
             'footer_link' => "https://www.lion-coders.com",
