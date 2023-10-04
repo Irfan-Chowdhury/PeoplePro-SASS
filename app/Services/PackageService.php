@@ -239,47 +239,6 @@ class PackageService
         }
     }
 
-    // public function featureAndPermissionManage($features) : array
-    // {
-    //     $selectedparentSlugs = explode(',',$features);
-
-    //     $skipSlug = $this->skipParentSlug;
-    //     $matchedSlugs = [];
-    //     foreach ($skipSlug as $element) {
-    //         if (in_array($element, $selectedparentSlugs)) {
-    //             $matchedSlugs[] = $element;
-    //         }
-    //     }
-
-    //     $selectedparentSlugs = array_values(array_diff($selectedparentSlugs, $matchedSlugs));
-
-    //     $data1 = $this->permissionContract->getAllByParent($selectedparentSlugs);
-
-    //     $parentSlug = array_merge($selectedparentSlugs, $matchedSlugs);
-
-    //     $data2 = $this->permissionContract->getAllByName($parentSlug);
-
-    //     $resultOfPermissions = array_merge($data1, $data2);
-    //     usort($resultOfPermissions, function ($a, $b) {
-    //         return $a['id'] - $b['id'];
-    //     });
-
-    //     return $resultOfPermissions;
-    // }
-
-    // public $skipParentSlug = [
-    //     'customize-setting',
-    //     'core_hr',
-    //     'timesheet',
-    //     'recruitment',
-    //     'project-management',
-    //     'file_module',
-    //     'event-meeting',
-    //     'finance',
-    //     'training_module',
-    //     'performance',
-    // ];
-
     private function requestHandle($request, $resultOfPermissions, $permission_names, $permission_ids)
     {
         return [

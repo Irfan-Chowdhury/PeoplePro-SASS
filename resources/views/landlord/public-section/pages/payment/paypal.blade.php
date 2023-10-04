@@ -1,5 +1,7 @@
 @extends('landlord.public-section.layouts.master')
+@section('public-title', config('app.name').' | '.'Paypal')
 @section('public-content')
+
 <div class="row">
     <div class="col-12">
         <h1 class="page-title h2 text-center uppercase mt-1 mb-5">@lang('file.Paypal')

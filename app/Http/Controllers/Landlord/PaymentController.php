@@ -35,9 +35,6 @@ class PaymentController extends Controller
 
     public function index()
     {
-        // $payments = Payment::with('tenant','domainInfo')->get();
-        // return $payments;
-
         return view('landlord.super-admin.pages.payments.index');
     }
 

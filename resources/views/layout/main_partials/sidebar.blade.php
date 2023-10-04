@@ -151,6 +151,10 @@
                         <i
                                 class="dripicons-view-thumb"></i><span>{{trans('file.Organization')}}</span></a>
                     <ul id="Organization" class="collapse list-unstyled ">
+
+                        @can('view-location')
+                            <li id="location"><a href="{{route('locations.index')}}">{{trans('file.Location')}}</a></li>
+                        @endcan
                         @can('view-company')
                             <li id="company"><a href="{{route('companies.index')}}">{{trans('file.Company')}}</a></li>
                         @endcan
@@ -160,9 +164,6 @@
                             </li>
                         @endcan
 
-                        @can('view-location')
-                            <li id="location"><a href="{{route('locations.index')}}">{{trans('file.Location')}}</a></li>
-                        @endcan
                         @can('view-designation')
                             <li id="designation"><a
                                         href="{{route('designations.index')}}">{{trans('file.Designation')}}</a>

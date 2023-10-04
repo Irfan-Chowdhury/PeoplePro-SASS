@@ -20,6 +20,9 @@ class PackageController extends Controller
 
     public function index()
     {
+        // return count(json_decode(Package::find(19)->permissions));
+        // return json_decode(Package::find(4)->permissions, true);
+
         return view('landlord.super-admin.pages.packages.index');
     }
 

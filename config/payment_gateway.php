@@ -20,7 +20,7 @@ return [
         'key' => env("PAYSTACK_PUBLIC_KEY"),
         'secret' => env("PAYSTACK_SECRET_KEY"),
         'payment_url' => env("PAYSTACK_PAYMENT_URL"),
-        'merchant_email' => env("MAIL_FROM_ADDRESS"),
+        'merchant_email' => env("MERCHANT_EMAIL"),
         'currency' => env("PAYSTACK_CURRENCY"),
     ],
 ];

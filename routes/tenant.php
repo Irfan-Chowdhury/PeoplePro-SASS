@@ -189,20 +189,7 @@ Route::get('/get-host', function () {
 
 Route::middleware(['XSS', 'web', 'package.validity', 'setMailSetting', 'setGeneralSetting' ,InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(function () {
 
-    Auth::routes(['register' => false]);
-
-    // Route::get('/', function () {
-        // return Auth::user();
-        // return company::latest()->first();
-        // return view('auth.login');
-    // });
-
-    //     // return GeneralSetting::latest()->first();
-    //     // return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-    //
-    // Route::get('/tenant-saas', [GeneralSettingController::class, 'testGeneral']);
-    // Route::group(['middleware' => ['XSS']], function () {
-
+        Auth::routes(['register' => false]);
 
         Route::get('/pdf', function () {
             return view('pdf');

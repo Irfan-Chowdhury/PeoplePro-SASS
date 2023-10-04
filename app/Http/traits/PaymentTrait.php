@@ -5,11 +5,16 @@ declare(strict_types=1);
 
 namespace App\Http\traits;
 
+use App\Models\Landlord\PaymentSetting;
+
 trait PaymentTrait {
 
-    public function paymentMethods() : array
+    public function paymentMethods() : array |object|string
     {
-        return [
+        $paymentSetting = PaymentSetting::latest()->first();
+        $activePaymentMethods = explode("," ,$paymentSetting->active_payment_gateway);
+
+        $paymentMethods = [
             (object)[
                 'title' => 'Stripe',
                 'payment_method' => 'stripe',
@@ -26,15 +31,13 @@ trait PaymentTrait {
                 'title' => 'Paystack',
                 'payment_method' => 'paystack',
             ],
-
-            // (object)[
-            //     'title' => 'Cash On Delivery',
-            //     'payment_method' => 'cash_on_delivery',
-            // ],
-            // (object)[
-            //     'title' => 'Other',
-            //     'payment_method' => 'other',
-            // ]
         ];
+
+        foreach ($paymentMethods as $key => $value) {
+            if(!in_array($value->payment_method, $activePaymentMethods)){
+                unset($paymentMethods[$key]);
+            }
+        }
+        return $paymentMethods;
     }
 }

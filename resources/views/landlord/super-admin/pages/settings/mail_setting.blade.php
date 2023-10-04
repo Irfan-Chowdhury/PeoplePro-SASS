@@ -68,7 +68,7 @@
                     'nameData' => 'password',
                     'placeholderData' => '123456789',
                     'isRequired' => false,
-                    'valueData'=> isset($mailSetting->password) ? $mailSetting->password : null
+                    'valueData'=> config('mail.password')
                 ])
 
                 <div class="col-md-6 form-group">

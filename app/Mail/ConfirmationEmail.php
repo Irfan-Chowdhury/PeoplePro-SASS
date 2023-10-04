@@ -14,17 +14,11 @@ class ConfirmationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct(public $customerRequest)
     {
         //
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -39,9 +33,6 @@ class ConfirmationEmail extends Mailable
     {
         return new Content(
             view: 'landlord.public-section.emails.confirmation',
-            // with: [
-            //     'name' => $this->customerRequest->first_name,
-            // ],
             with: [
                 'name' => $this->customerRequest->from_name,
             ],

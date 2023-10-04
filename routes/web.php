@@ -52,6 +52,7 @@ Route::middleware(['setPublicLocale'])->group(function () {
         Route::get('/blogs', 'blog')->name('landingPage.blog');
         Route::get('/blogs/{slug}', 'blogDetail')->name('landingPage.blogDetail');
         Route::get('/pages/{slug}', 'pageDetails')->name('landingPage.pageDetail');
+        Route::post('/contact-us', 'contactUsSubmit')->name('landingPage.contactUsSubmit');
     });
 
     Route::controller(TenantController::class)->group(function () {
@@ -65,9 +66,12 @@ Route::middleware(['setPublicLocale'])->group(function () {
         Route::post('payment/{paymentMethod}/pay/process', 'paymentProcessWithTenantAndLandlord')->name('payment.pay.process');
         Route::post('payment/{paymentMethod}/pay/cancel', 'paymentPayCancel')->name('payment.pay.cancel');
         Route::get('payment-success/{domain}', 'paymentSuccess')->name('payment.success');
-
         Route::get('/payment/paystack/pay/callback', 'handleGatewayCallback')->name('payment.paystack.pay.callback');
     });
+
+    // Route::get('/language-switch-public/{locale}', 'languageSwitchByPublic')->name('lang.switch.byPublic');
+    Route::get('/language-switch-public/{locale}', [TranslationController::class, 'languageSwitchByPublic'])->name('lang.switch.byPublic');
+
 });
 
 

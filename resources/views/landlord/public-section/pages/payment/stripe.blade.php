@@ -1,4 +1,6 @@
 @extends('landlord.public-section.layouts.master')
+@section('public-title', config('app.name').' | '.'Stripe')
+
 @section('public-content')
 <div class="row">
     <div class="col-12">

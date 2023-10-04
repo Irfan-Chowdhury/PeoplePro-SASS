@@ -207,14 +207,11 @@ class CompanyController extends Controller {
 
             $company = company::whereId($id);
 
-			if (isset($company_logo))
-			{
+			if (isset($company_logo)) {
                 $companyExistingData = $company->first();
-
                 $directory = tenantPath().'/uploads/company_logo/';
                 $companyPrevLogo = $companyExistingData->company_logo;
                 Utility::fileDelete($directory, $companyPrevLogo);
-
                 $data['company_logo'] = Utility::imageFileStore($company_logo, $directory, 300, 300);
 			}
 			$company->update($data);

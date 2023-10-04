@@ -156,7 +156,7 @@ class AwardTypeController extends Controller {
 		}
 		$logged_user = auth()->user();
 
-		if ($logged_user->can('user-delete'))
+		if ($logged_user->can('access-variable_type'))
 		{
 			AwardType::whereId($id)->delete();
 			return response()->json(['success' => __('Data is successfully deleted')]);
