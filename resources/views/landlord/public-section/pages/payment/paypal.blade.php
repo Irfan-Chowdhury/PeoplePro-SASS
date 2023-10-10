@@ -51,3 +51,4 @@
 <script type="text/javascript" src="{{ asset('js/landlord/common-js/alertMessages.js') }}"></script>
 
 @endpush
+

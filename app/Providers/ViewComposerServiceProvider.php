@@ -30,6 +30,9 @@ class ViewComposerServiceProvider extends ServiceProvider
                 'landlord.public-section.pages.landing-page.index',
                 'landlord.public-section.pages.renew.contact_for_renewal',
                 'landlord.super-admin.pages.dashboard.index',
+                'landlord.super-admin.partials.header',
+                'landlord.super-admin.auth.login',
+                'documentation-landlord.index',
             ], function ($view) use ($generalSetting) {
                 $view->with('generalSetting', $generalSetting);
             });

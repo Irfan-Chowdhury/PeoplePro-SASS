@@ -7,11 +7,10 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
                 <a id="toggle-btn" href="#" class="menu-btn"><i class="dripicons-menu"> </i></a>
                 <span class="brand-big" id="site_logo_main">
-                    {{-- @if($general_settings->site_logo) --}}
-						{{-- <img src="{{asset('/images/logo/'.$general_settings->site_logo)}}" width="140" height="70"> --}}
-                        <img src="{{asset('/images/logo/logo.png')}}" width="140" height="70">
+                    @if($generalSetting->site_logo)
+						<img src="{{asset('landlord/images/logo/'.$generalSetting->site_logo)}}" width="140" height="70">
                         &nbsp; &nbsp;
-                    {{-- @endif --}}
+                    @endif
                 </span>
 
 

@@ -82,7 +82,7 @@ class SettingService
             }
             $this->generalSettingContract->updateOrCreate([], $data);
 
-            Utility::setEnv('APP_NAME', $data['site_title']);
+            Utility::setEnv('APP_NAME','"'.$data['site_title'].'"');
 
             return Alert::successMessage('Data Submitted Successfully');
         }
@@ -107,7 +107,7 @@ class SettingService
             ];
 
             $this->mailSettingContract->updateOrCreate([], $data);
-            
+
             $this->dataWriteInENVFile('MAIL_PASSWORD', $request->password ?? null);
 
             return Alert::successMessage('Data Submitted Successfully');

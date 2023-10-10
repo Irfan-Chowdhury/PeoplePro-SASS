@@ -38,6 +38,10 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+Route::get('/landlord-documentation', function() {
+    return view('documentation-landlord.index');
+});
+
 Route::get('/lang', function () {
     // return Session::has('DefaultSuperAdminLocale') ?? 'en';
 });
