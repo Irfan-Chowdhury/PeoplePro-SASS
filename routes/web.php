@@ -38,6 +38,9 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+// Route::get('/test-saas', [LandingPageController::class, 'testSaas']);
+
+
 Route::get('/landlord-documentation', function() {
     return view('documentation-landlord.index');
 });

@@ -104,20 +104,20 @@
     @endisset
 
     @if(count($features) > 0)
-    <section class="grey-bg">
-        <div class="container">
-            <div class="row">
-                @foreach($features as $feature)
-                <div class="col-md-3 feature2">
-                    <div class="icon">
-                        <i class="{{$feature->icon}}"></i>
+        <section class="grey-bg">
+            <div class="container">
+                <div class="row">
+                    @foreach($features as $feature)
+                    <div class="col-md-3 feature2">
+                        <div class="icon">
+                            <i class="{{$feature->icon}}"></i>
+                        </div>
+                        <h4 class="h6">{{$feature->name}}</h4>
                     </div>
-                    <h4 class="h6">{{$feature->name}}</h4>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
-    </section>
+        </section>
     @endif
 
     @if(isset($faq))

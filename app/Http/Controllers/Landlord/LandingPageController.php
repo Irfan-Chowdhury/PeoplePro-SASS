@@ -57,6 +57,18 @@ class LandingPageController extends Controller
         $tenant->domains()->create(['domain' => 'bar'.'.'.env('CENTRAL_DOMAIN')]); // This Line
     }
 
+    // public function testSaas()
+    // {
+    //     // return response()->json('test');
+
+    //     try {
+    //         // return response()->json(['message' => 'Login successful'], 200);
+    //         throw new Exception("Error Processing Request", 1);
+    //     } catch (Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()], 500);
+    //     }
+    // }
+
 
     public function index(
         ModuleContract $moduleContract,

@@ -1,4 +1,4 @@
-@php $general_settings = DB::table('general_settings')->latest()->first(); @endphp
+{{-- @php $general_settings = DB::table('general_settings')->latest()->first(); @endphp --}}
 
 <!doctype html>
 <!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
@@ -11,17 +11,15 @@
 <head>
     <meta charset="utf-8">
     <title>
-        {{-- {{ $general_settings->site_title ?? null}} --}}
+        {{ $generalSetting->site_title ?? null}} | Documentation
     </title>
 
     <meta name="description" content="PeoplePro offers a comprehensive HR & payroll solution to manage all of your business HR needs which can also be customized according to your requirements." />
     <meta name="author" content="LionCoders">
     <meta name="copyright" content="LionCoders">
-    <!-- Google fonts - Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700">
     <link rel="stylesheet" href="{{ asset('docs-landlord/assets/css/documenter_style.css')}}" media="all">
     <link rel="stylesheet" href="{{ asset('docs-landlord/assets/css/jquery.mCustomScrollbar.css')}}" media="all">
-
     <script src="{{ asset('docs-landlord/assets/js/jquery.js')}}"></script>
     <script src="{{ asset('docs-landlord/assets/js/jquery.mCustomScrollbar.js')}}"></script>
     <script src="{{ asset('docs-landlord/assets/js/smooth-scroll.min.js')}}"></script>
@@ -36,9 +34,7 @@
         &nbsp; &nbsp;
     @endif
 
-    {{-- <h1 style="display: inline;margin-top: -10px"> {{ $general_settings->site_title }} </h1> --}}
     <ul id="documenter_nav">
-        {{-- <li><a class="current" href="#document_cover">Start</a></li> --}}
         <li><a href="#document_cover" title="Document Cover">Start</a></li>
         <li><a href="#server_requirement" title="SERVER REQUIREMENTS">Server Requirements</a></li>
         <li><a href="#install" title="INSTALL">Install</a></li>
@@ -53,15 +49,23 @@
         <li><a href="#mailSetting" title="Mail Setting">Mail Setting</a></li>
         <li><a href="#analyticSetting" title="Analytics Setting">Analytics Setting</a></li>
         <li><a href="#seoSetting" title="SEO Setting">SEO Setting</a></li>
+        <li><a href="#languageSetting" title="Language Setting">Language Setting</a></li>
+        <li><a href="#translation" title="Translation">Translation</a></li>
+        <li><a href="#heroSection" title="Hero Section">Hero Section</a></li>
+        <li><a href="#moduleSection" title="Module Section">Module Section</a></li>
 
-        <li><a href="#company" title="Company">Company</a></li>
+
+
+
+
+        {{-- <li><a href="#company" title="Company">Company</a></li>
         <li><a href="#department" title="Department">Department</a></li>
         <li><a href="#designation" title="Designation">Designation</a></li>
         <li><a href="#office_shift" title="Office Shift">Office Shift</a></li>
         <li><a href="#account_list" title="Account List">Account List</a></li>
         <li><a href="#roles_access" title="Role & Access">Role & Access</a></li>
         <li><a href="#designation" title="Designation">Designation</a></li>
-        {{-- <li><a href="#general_setting" title="General Setting">General Setting</a></li> --}}
+        <li><a href="#general_setting" title="General Setting">General Setting</a></li>
         <li><a href="#mail_server" title="SETUP MAIL SERVER">Setup Mail Server</a></li>
         <li><a href="#language_setting" title="Language Setting">Language Setting</a></li>
         <li><a href="#variable_type" title="Variable Type">Variable Type</a></li>
@@ -105,16 +109,21 @@
         <li><a href="#cms" title="CMS">CMS</a></li>
         <li><a href="#new_payment" title="New Payment">New Payment</a></li>
         <li><a href="#payment_history" title="payslip History">Payslip History</a></li>
+
         <!-- Performance -->
         <li><a href="#goal_type" title="Goal Type">Goal Type</a></li>
         <li><a href="#goal_tracking" title="Goal Tracking">Goal Tracking</a></li>
         <li><a href="#indicator" title="Indicator">Indicator</a></li>
         <li><a href="#appraisal" title="Appraisal">Appraisal</a></li>
-        <!--/ Performance -->
-        <li><a href="#hr_calendar" title="HR Calendar">HR Calendar</a></li>
+        <!--/ Performance --> --}}
+
+
+
+        {{-- <li><a href="#hr_calendar" title="HR Calendar">HR Calendar</a></li>
         <li><a href="#event" title="Event">Event</a></li>
         <li><a href="#meeting" title="Meeting">Meeting</a></li>
         <li><a href="#client" title="Client">Client</a></li>
+
         <li><a href="#tax_type" title="Tax Type">Tax Type</a></li>
         <li><a href="#project" title="Project">Project</a></li>
         <li><a href="#task" title="Task">Task</a></li>
@@ -129,9 +138,11 @@
         <li><a href="#transfer" title="Transfer">Transfer</a></li>
         <li><a href="#asset_category" title="Asset Category">Asset Category</a></li>
         <li><a href="#asset" title="Asset">Asset</a></li>
+
         <li><a href="#file_configuration" title="File Configuration">File Configuration</a></li>
         <li><a href="#file_manager" title="File Manage">File Manager</a></li>
         <li><a href="#official_document" title="Official Document">Official Document</a></li>
+
         <li><a href="#client_dashboard" title="Client Dashboard">Client Dashboard</a></li>
         <li><a href="#client_project" title="Client Project">Client Project</a></li>
         <li><a href="#client_task" title="Client Task">Client Task</a></li>
@@ -142,7 +153,7 @@
         <li><a href="#video_tutorial" title="Video Tutorial">Video Tutorial</a></li>
         <li><a id="attendanceDeviceAddon" title="Attendance Device Addon">Attendance Device Addon</a></li>
         <li><a href="#autoUpdateFeature" title="Auto Update Feature">Auto Update Feature</a></li>
-        <li><a href="#support" title="SUPPORT">Support</a></li>
+        <li><a href="#support" title="SUPPORT">Support</a></li> --}}
     </ul>
 </div>
 
@@ -326,63 +337,6 @@
         <img alt="" src="{{ asset('docs-landlord/assets/images/app_debug_true.png')}}">
     </section>
 
-    {{-- <section id="software_update">
-        <div class="page-header">
-            <h3>SOFTWARE UPDATE</h3>
-            <hr class="notop">
-        </div>
-        <h2><strong>UPDATE with Existing Data</strong></h2>
-        <p>You can update the software very easily by following 4 steps:</p>
-        <ul>
-            <li>Rename your previous database like peoplepro-backup.sql.</li>
-            <li>Delete the project folder and reinstall it</li>
-            <li>Merge your present database with previous one with
-                <a href="https://www.red-gate.com/products/mysql/mysql-compare/index">MySQL Compare</a>. If you are
-                // a linux user you can use <a href="https://www.navicat.com/en/">Navicat</a> to merge database.
-            </li>
-            <li>After that delete the new database and rename the previous one with present database name like
-                peoplepro-backup.sql to peoplepro.sql.
-            </li>
-        </ul>
-        <p><strong>Please follow the following spanshots carefully to merge database:</strong></p>
-        <p>Open the software.</p>
-        <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update1.png')}}">
-        </p>
-        <p>Select your source and target database and click compare now.</p>
-        <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update2.png')}}">
-        </p>
-        <p>After comparing successfully two database click ok.</p>
-        <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update3.png')}}">
-        </p>
-        <p>Then select the checkbox and click Deployment Wizard.</p>
-        <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update4.png')}}">
-        </p>
-        <p>Uncheck the Recompare after deployment checkbox and click next.</p>
-        <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update5.png')}}">
-        </p>
-        <p>Click Deploy now.</p>
-        <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update6.png')}}">
-        </p>
-        <p>Click Ok.</p>
-        <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update7.png')}}">
-        </p>
-        <p>Thats all! You have just updated the database. Now follow step 4 as we described earlier.</p>
-        <h2><strong>UPDATE without Existing Data</strong></h2>
-        <p>You can update the software very easily by following 2 steps:</p>
-        <ul>
-            <li>Delete your previous database.</li>
-            <li>Delete the project folder and reinstall it</li>
-        </ul>
-        <p><strong>Still facing problem? Don't worry! We can update your software for USD 15. Please contact us at
-            <a href="mailto:support@lion-coders.com">support@lion-coders.com</a>.</strong></p>
-    </section> --}}
 
     <section id="log_in">
         <div class="page-header">
@@ -540,25 +494,67 @@
         </p>
     </section>
 
+    <section id="languageSetting">
+        <div class="page-header">
+            <h3>Language Setting</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>Localizations</strong> --> <strong>Language Setting</strong>.<br></p>
+        <p> You can data create, edit and Delete in Language. </p>
+        <p>By the way you can not delete default English.</p>
+        <p><img alt="" src="{{ asset('docs-landlord/assets/images/landlord/languageSetting.png')}}"></p>
 
+        <p>Add Language</p>
+        <hr>
+        <img alt="" src="{{ asset('docs-landlord/assets/images/landlord/addLanguageSetting.png')}}" />
 
+        <p>Edit Language</p>
+        <hr>
+        <img alt="" src="{{ asset('docs-landlord/assets/images/landlord/editLanguageSetting.png')}}" />
+    </section>
 
+    <section id="translation">
+        <div class="page-header">
+            <h3>Translation</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>Localizations</strong> --> <strong>Translation</strong>.<br></p>
+        <p><img src="{{ asset('docs-landlord/assets/images/landlord/translation.png')}}"></p>
 
+        <p>Edit Translation</p>
+        <hr>
+        <p>First you have to change locale top middle (but not the top-right corner). Click in text field and click update icon button</p>
+        <p><img src="{{ asset('docs-landlord/assets/images/landlord/editTranslation.png')}}"></p>
 
+    </section>
 
+    <section id="heroSection">
+        <div class="page-header">
+            <h3>Hero Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Hero Section.</strong></p>
+        <p>You can add Heading, Button Text, Image, Sub-Heading</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/heroSection.png')}}" />
 
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/heroLandingPage.png')}}" />
 
+    </section>
 
+    <section id="moduleSection">
+        <div class="page-header">
+            <h3>Module Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Module Section.</strong></p>
+        <p>You can add Heading, Button Text, Image, Sub-Heading</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/heroSection.png')}}" />
 
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/heroLandingPage.png')}}" />
 
-
-
-
-
-
-
-
-
+    </section>
 
 
 
@@ -582,7 +578,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/location1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/location1.png')}}">
         </p>
     </section>
 
@@ -598,7 +594,7 @@
             update or delete any company information.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/company1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/company1.png')}}">
         </p>
     </section>
 
@@ -613,7 +609,7 @@
             update or delete any department information.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/department1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/department1.png')}}">
         </p>
     </section>
 
@@ -628,7 +624,7 @@
             update or delete any designation information.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/designation1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/designation1.png')}}">
         </p>
     </section>
 
@@ -643,11 +639,11 @@
             office timing under this module.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/office_shift.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/office_shift.png')}}">
         </p>
         <p>
             <strong>Add Office Shift</strong><br>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/office_shift_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/office_shift_add.png')}}">
         </p>
     </section>
 
@@ -661,7 +657,7 @@
             You can view/add/edit/delete account details using this module .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/account_list.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/account_list.png')}}">
         </p>
         <p>
             <strong>Add Account</strong><br>
@@ -669,7 +665,7 @@
             <strong>This is mandatory for using payroll and finance module.</strong>
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/add_account.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/add_account.png')}}">
         </p>
     </section>
 
@@ -683,7 +679,7 @@
             under <strong>Customize Setting</strong> module.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/roles_access.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/roles_access.png')}}">
         </p>
         <p>
             <strong>Add Role(1)</strong><br>
@@ -691,14 +687,14 @@
             permissions that the role can access .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/add_role.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/add_role.png')}}">
         </p>
         <p>
             <strong>Permission(2)</strong><br>
             Set up permissions for the selected role.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/permission.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/permission.png')}}">
         </p>
         <p>
             <strong>Assign Role</strong><br>
@@ -707,10 +703,10 @@
             resources or permissions you can add new role and assign that role to that particular user.<br>
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/assign_role1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/assign_role1.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/assign_role2.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/assign_role2.png')}}">
         </p>
 
         <ol>
@@ -718,14 +714,14 @@
             <li><strong>Assign Role :</strong>Assign Role to a user</li>
         </ol>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/assign_role.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/assign_role.png')}}">
         </p>
 
         <p>
             Select multiple user using checkbox and then assign a role to them.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/multi_assign.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/multi_assign.png')}}">
         </p>
 
 
@@ -746,7 +742,7 @@
             </strong>
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/general_setting.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/general_setting.png')}}">
         </p>
     </section>
 
@@ -761,7 +757,7 @@
             information.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/mail1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/mail1.png')}}">
         </p>
 
         <h3>SETUP cron job </h3>
@@ -771,13 +767,13 @@
             like document expiry remainder and many more. Please follow the below steps to do so :
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/cron_job1.jpg')}}">
+            <img alt="" src="{{ asset('docs/assets/images/cron_job1.jpg')}}">
         </p>
         <p>On your hosting c-panel go to the advance section and click on the cron jobs.
         </p>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/cron_job2.jpg')}}">
+            <img alt="" src="{{ asset('docs/assets/images/cron_job2.jpg')}}">
         </p>
         <p>
             Then under common settings section select the option of- Once Per Minute
@@ -804,19 +800,19 @@
             and then can create word or phrase of that language .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/language_setting.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/language_setting.png')}}">
         </p>
         <ul>
             <li><strong>Add (2)::</strong>You can add a new language<br>
                 You have to fill the language name and language short key to add the new language.
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/language_add.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/language_add.png')}}">
                 </p>
             </li>
             <li><strong>Language Selector (3)::</strong>You can select the language that you want to change/update
                 from the dropdown<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/language_select.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/language_select.png')}}">
                 </p>
             </li>
 
@@ -835,50 +831,50 @@
             add leave record for an employee leave type is needed.You have to create the leave type first.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/variable_type.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/variable_type.png')}}">
         </p>
         <ul>
             <li><strong>Leave Type :</strong>You can add/update new leave type<br>
                 You have to fill the leave name and allocated day/s for that leave per year.
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/leave_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/leave_type.png')}}">
                 </p>
             </li>
             <li><strong>Award Type :</strong>You can add/update award type for rewarding an employee.<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/award_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/award_type.png')}}">
                 </p>
             </li>
             <li><strong>Warning Type :</strong>You can add/update warning type.<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/warning_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/warning_type.png')}}">
                 </p>
             </li>
             <li><strong>Termination Type :</strong>You can add/update termination type here.<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/termination_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/termination_type.png')}}">
                 </p>
             </li>
             <li><strong>Termination Type :</strong>You can add/update termination type here.<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/termination_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/termination_type.png')}}">
                 </p>
             </li>
             <li><strong>Expense Type :</strong>You can add/update expense type here that will be needed for
                 <strong>Finance</strong>-><strong>Expense</strong><br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/expense_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/expense_type.png')}}">
                 </p>
             </li>
             <li><strong>Emplyee Status :</strong>You can add/update employee status here<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/employee_status.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/employee_status.png')}}">
                 </p>
             </li>
             <li><strong>Document Type :</strong>Different types of document can be added/updated here . This is
                 necessary for adding/updating document record<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/document_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/document_type.png')}}">
                 </p>
             </li>
         </ul>
@@ -897,31 +893,31 @@
             post record.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/variable_method.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/variable_method.png')}}">
         </p>
         <ul>
             <li><strong>Arrangement Method :</strong>You can add/update new arrangement method. In order to add
                 travel record arrangement record is required<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/arrangement_method.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/arrangement_method.png')}}">
                 </p>
             </li>
             <li><strong>Payment Type :</strong>You can add/update payment method with their associated payment
                 percentage and account number here.<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/payment_type.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/payment_type.png')}}">
                 </p>
             </li>
             <li><strong>Qualification :</strong>You can add/update different types qualification of an employee,e.g.
                 education levels, language skills, other skills <br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/qualification.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/qualification.png')}}">
                 </p>
             </li>
             <li><strong>Job Category :</strong>Different types of job category for job post record can added/updated
                 here.<br>
                 <p>
-                    <img alt="" src="{{ asset('docs-landlord/assets/images/job_category.png')}}">
+                    <img alt="" src="{{ asset('docs/assets/images/job_category.png')}}">
                 </p>
             </li>
 
@@ -942,10 +938,10 @@
             If any employee is connect with these IP, then he can give the attendance by Clock-IN and Clock Out.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/what_is_my_ip.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/what_is_my_ip.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/ip_setting.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/ip_setting.png')}}">
         </p>
     </section>
 
@@ -961,8 +957,8 @@
             on the details page and update if needed.
         </p>
         <p>
-            <!-- <img alt="" src="{{ asset('docs-landlord/assets/images/employee_list1.png')}}"> -->
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_list.png')}}">
+            <!-- <img alt="" src="{{ asset('docs/assets/images/employee_list1.png')}}"> -->
+            <img alt="" src="{{ asset('docs/assets/images/employee_list.png')}}">
         </p>
 
         <p>
@@ -973,7 +969,7 @@
             permissions can be manually set on Customize Setting -> Roles and Access Page
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_add.png')}}">
         </p>
 
         <p>
@@ -981,42 +977,42 @@
             You can filter employess .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_filter.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_filter.png')}}">
         </p>
         <p>
             <strong>Details(4)</strong>.<br>
             Employee Details can be seen using this button .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_details1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_details1.png')}}">
         </p>
         <p>
             <strong>Basic</strong>.<br>
             Administrator can see and manage Basic info of an employee.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_basic1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_basic1.png')}}">
         </p>
         <p>
             <strong>Immigration</strong>.<br>
             Administrator can see and manage Immigration info of an employee. If you need to use corn job, please check <b>SETUP Mail Server --> SETUP corn Job</b>.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_immigration1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_immigration1.png')}}">
         </p>
         <p>
             <strong>Emergency contact</strong>.<br>
             Emergency Contact of an employee can be added here .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_emergency1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_emergency1.png')}}">
         </p>
         <p>
             <strong>Socail Profile</strong>.<br>
             Social Profile details of an employee .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_social1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_social1.png')}}">
         </p>
         <p>
             <strong>Document</strong>.<br>
@@ -1024,35 +1020,35 @@
             A notification will be sent to the employee three days before the document expires.If you need to use corn job, please check <b>SETUP Mail Server --> SETUP corn Job</b>.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_document1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_document1.png')}}">
         </p>
         <p>
             <strong>Qualification</strong>.<br>
             Qualification details of an employee.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_qualification1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_qualification1.png')}}">
         </p>
         <p>
             <strong>Work Experience</strong>.<br>
             Previous work Experience of the employee can be added here.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_work1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_work1.png')}}">
         </p>
         <p>
             <strong>Bank Account</strong>.<br>
             Bank account details of an employee.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_bank1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_bank1.png')}}">
         </p>
         <p>
             <strong>Profile</strong>.<br>
             Add/Update profile image of an employee.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_profile1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_profile1.png')}}">
         </p>
 
         <p>
@@ -1061,7 +1057,7 @@
             salary,allowances,commissions,loans etc.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_salary1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_salary1.png')}}">
         </p>
 
         <p>
@@ -1069,7 +1065,7 @@
             Multiple allowances of an employee can be set under this module .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_allowance1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_allowance1.png')}}">
         </p>
 
         <p>
@@ -1077,7 +1073,7 @@
             Multiple commissions of an employee can be set under this module .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_commision1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_commision1.png')}}">
         </p>
 
         <p>
@@ -1085,7 +1081,7 @@
             Loan records of an employee can be set under this module .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_loan1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_loan1.png')}}">
         </p>
 
         <p>
@@ -1093,7 +1089,7 @@
             You can find the Deductions records of an employee here.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_deduction1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_deduction1.png')}}">
         </p>
 
         <p>
@@ -1101,7 +1097,7 @@
             Other payment related information can be added here.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_other_payment1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_other_payment1.png')}}">
         </p>
 
         <p>
@@ -1111,7 +1107,7 @@
             employee.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_overtime1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_overtime1.png')}}">
         </p>
 
         <p>
@@ -1120,7 +1116,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_leave1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_leave1.png')}}">
         </p>
 
         <p>
@@ -1130,7 +1126,7 @@
             can be viewed here.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_core_hr1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_core_hr1.png')}}">
         </p>
 
         <p>
@@ -1138,10 +1134,10 @@
             Detailed information about the projects and tasks that have been assigned to the employee
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_project.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_project.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_task.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_task.png')}}">
         </p>
 
         <p>
@@ -1150,13 +1146,13 @@
         </p>
         <p>
             Payslip
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_payslip1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_payslip1.png')}}">
         </p>
 
         <strong>View</strong>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payslip_view.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payslip_view.png')}}">
         </p>
 
 
@@ -1174,7 +1170,7 @@
             employee record .
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/import_employee.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/import_employee.png')}}">
         </p>
         <ul>
             <li><strong>Note :</strong>Before uploading a csv you must download the sample file(1) . Do not alter or
@@ -1193,7 +1189,7 @@
             error and try to upload again.<br>
             <strong>Note :</strong> This is a batch process, so the action will need some time, please wait
             patiently.<br>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/import_employee1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/import_employee1.png')}}">
         </p>
     </section>
 
@@ -1211,7 +1207,7 @@
             <strong>Roles and Access</strong> under <strong>Customize Setting</strong>
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/user_list2.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/user_list2.png')}}">
         </p>
 
     </section>
@@ -1229,10 +1225,10 @@
             resources or permissions you can add new role and assign that role to that particular user.<br>
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/assign_role1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/assign_role1.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/assign_role2.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/assign_role2.png')}}">
         </p>
 
         <ol>
@@ -1240,14 +1236,14 @@
             <li><strong>Assign Role :</strong>Assign Role to a user</li>
         </ol>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/assign_role.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/assign_role.png')}}">
         </p>
 
         <p>
             Select multiple user using checkbox and then assign a role to them.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/multi_assign.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/multi_assign.png')}}">
         </p>
 
     </section>
@@ -1263,7 +1259,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/user_last_login.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/user_last_login.png')}}">
         </p>
     </section>
 
@@ -1279,7 +1275,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/promotion.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/promotion.png')}}">
         </p>
     </section>
 
@@ -1295,7 +1291,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/award.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/award.png')}}">
         </p>
     </section>
 
@@ -1312,7 +1308,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/travel.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/travel.png')}}">
         </p>
     </section>
 
@@ -1328,7 +1324,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/transfer.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/transfer.png')}}">
         </p>
     </section>
 
@@ -1344,7 +1340,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/resignation.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/resignation.png')}}">
         </p>
     </section>
 
@@ -1360,7 +1356,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/complaint.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/complaint.png')}}">
         </p>
     </section>
 
@@ -1376,7 +1372,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/warning.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/warning.png')}}">
         </p>
     </section>
 
@@ -1392,7 +1388,7 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/termination.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/termination.png')}}">
         </p>
     </section>
 
@@ -1410,10 +1406,10 @@
 
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/announcement.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/announcement.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/announcement1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/announcement1.png')}}">
         </p>
     </section>
 
@@ -1428,10 +1424,10 @@
             adding or updating company policy will notify all the user.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/policy.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/policy.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/policy1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/policy1.png')}}">
         </p>
     </section>
 
@@ -1447,7 +1443,7 @@
             attendance of all the employees on that particular date.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/attendance.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/attendance.png')}}">
         </p>
         <p>
             Detailed attendance info of the employee. The employee can clock in from their respective employee
@@ -1466,7 +1462,7 @@
             Similarly, the total amount of time the employee remain clocked in will be counted as total work.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/attendance_info.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/attendance_info.png')}}">
         </p>
     </section>
 
@@ -1482,13 +1478,13 @@
             attendances of the employees on that date range.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/datewise_attendance.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/datewise_attendance.png')}}">
         </p>
         <p>
             Datewise attendance table
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/datewise_attendance_table.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/datewise_attendance_table.png')}}">
         </p>
     </section>
 
@@ -1504,13 +1500,13 @@
             There is also search/filter option.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/monthly_attendance_table.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/monthly_attendance_table.png')}}">
         </p>
         <p>
             Admin can select month,company or employee to filter out for the desired result.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/monthly_attendance.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/monthly_attendance.png')}}">
         </p>
     </section>
 
@@ -1528,18 +1524,18 @@
         </p>
         <p>
             Search or Get (1)
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update_attendance_get.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/update_attendance_get.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update_attendance_get_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/update_attendance_get_add.png')}}">
         </p>
         <p>
             Add (2)
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update_attendance_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/update_attendance_add.png')}}">
         </p>
         <p>
             Edit (3)
-            <img alt="" src="{{ asset('docs-landlord/assets/images/update_attendance_edit.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/update_attendance_edit.png')}}">
         </p>
 
     </section>
@@ -1571,7 +1567,7 @@
         <p>
             <strong>Note :</strong> If there is any error,the page will show you the error line, please fix that
             error and try to upload again.
-            <img alt="" src="{{ asset('docs-landlord/assets/images/import_attendance.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/import_attendance.png')}}">
         </p>
     </section>
 
@@ -1588,10 +1584,10 @@
             on their dashboard.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/holiday.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/holiday.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/holiday_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/holiday_add.png')}}">
         </p>
     </section>
 
@@ -1607,10 +1603,10 @@
             an employee . Employee will get a notification upon admin approval or rejection.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/leave.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/leave.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/leave_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/leave_add.png')}}">
         </p>
     </section>
 
@@ -1626,10 +1622,10 @@
             But admin can filter result using the search button.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payslip_report_table.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payslip_report_table.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payslip_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payslip_report.png')}}">
         </p>
     </section>
 
@@ -1646,10 +1642,10 @@
             of that date range.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/datewise_attendance_table.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/datewise_attendance_table.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/datewise_attendance.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/datewise_attendance.png')}}">
         </p>
     </section>
 
@@ -1666,7 +1662,7 @@
             of that date range.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/training_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/training_report.png')}}">
         </p>
     </section>
 
@@ -1680,10 +1676,10 @@
             Admin can view the project report here . Admin can select a project or status and search for the result.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/project_report_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/project_report_search.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/project_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/project_report.png')}}">
         </p>
     </section>
 
@@ -1698,10 +1694,10 @@
             Admin can view the task report here . Admin can select a task or status and search for the result.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/task_report_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/task_report_search.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/task_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/task_report.png')}}">
         </p>
     </section>
 
@@ -1716,10 +1712,10 @@
             search button.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_report.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_report_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_report_search.png')}}">
         </p>
     </section>
 
@@ -1736,10 +1732,10 @@
             start and end date to get detailed account information on that date range.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/account_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/account_report.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/account_report_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/account_report_search.png')}}">
         </p>
     </section>
 
@@ -1754,10 +1750,10 @@
             start and end date to get detailed expense information on that date range.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/expense_report_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/expense_report_search.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/expense_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/expense_report.png')}}">
         </p>
     </section>
 
@@ -1772,10 +1768,10 @@
             start and end date to get detailed deposit information on that date range.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/deposit_report_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/deposit_report_search.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/deposit_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/deposit_report.png')}}">
         </p>
     </section>
 
@@ -1790,10 +1786,10 @@
             start and end date to get detailed transaction information on that date range.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/transaction_report_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/transaction_report_search.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/transaction_report.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/transaction_report.png')}}">
         </p>
     </section>
 
@@ -1810,16 +1806,16 @@
             page . You can view the front job page by clicking on the details(3) button.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/job_post.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/job_post.png')}}">
         </p>
         <p>
             (1)
-            <img alt="" src="{{ asset('docs-landlord/assets/images/job_post_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/job_post_add.png')}}">
         </p>
         <p>
             (3)
-            <img alt="" src="{{ asset('docs-landlord/assets/images/job_post_details1.png')}}">
-            <img alt="" src="{{ asset('docs-landlord/assets/images/job_post_details2.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/job_post_details1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/job_post_details2.png')}}">
         </p>
     </section>
 
@@ -1833,11 +1829,11 @@
             Admin can view the details of the applied Candidates here.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/job_candidate.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/job_candidate.png')}}">
         </p>
         <strong>Details</strong>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/job_candidate_details.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/job_candidate_details.png')}}">
         </p>
 
     </section>
@@ -1854,7 +1850,7 @@
             The selected candidates will be notified through an email.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/job_interview.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/job_interview.png')}}">
         </p>
 
     </section>
@@ -1872,7 +1868,7 @@
             These pages can be viewed on the url your_url/home, your_url/about and your_url/contact responsively.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/cms.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/cms.png')}}">
         </p>
 
     </section>
@@ -1889,7 +1885,7 @@
             as training information depends on training type.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/training_type.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/training_type.png')}}">
         </p>
 
     </section>
@@ -1906,10 +1902,10 @@
             as training information depends on trainer.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/trainer.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/trainer.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/trainer_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/trainer_add.png')}}">
         </p>
 
     </section>
@@ -1925,10 +1921,10 @@
             training program.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/training_list.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/training_list.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/training_list_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/training_list_add.png')}}">
         </p>
 
     </section>
@@ -1945,13 +1941,13 @@
             Authorized user can view and pay employee.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/new_payment.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/new_payment.png')}}">
         </p>
         <p>
             The search filter can be used to search to get payroll information of the selected employees.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/new_payment_search.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/new_payment_search.png')}}">
         </p>
 
         <p>
@@ -1959,7 +1955,7 @@
             You can pay employee or view their payment details.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payroll_table.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payroll_table.png')}}">
         </p>
         <p>
             <strong>View(1)</strong><br>
@@ -1969,7 +1965,7 @@
             of that employee.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payslip_view.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payslip_view.png')}}">
         </p>
 
         <p>
@@ -1977,7 +1973,7 @@
             Paid info of an employee can be seen here.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/paid_payslip.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/paid_payslip.png')}}">
         </p>
 
 
@@ -2000,7 +1996,7 @@
             The paid amount will be deducted from the main account balance.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/pay_payslip.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/pay_payslip.png')}}">
         </p>
 
         <p>
@@ -2014,7 +2010,7 @@
             The paid amounts will be deducted from the main account balance.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/new_payment_bulk.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/new_payment_bulk.png')}}">
         </p>
 
     </section>
@@ -2032,7 +2028,7 @@
             here.s
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payment_history.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payment_history.png')}}">
         </p>
     </section>
 
@@ -2046,7 +2042,7 @@
             You can see performance goal type list for the employees.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/goal_type_list.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/goal_type_list.png')}}">
         </p>
 
         <p>
@@ -2054,7 +2050,7 @@
             You can add new goal type.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/add_goal_type.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/add_goal_type.png')}}">
         </p>
     </section>
 
@@ -2069,7 +2065,7 @@
             You can see performance goal tracking list for the employees.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/goal_tracking_list.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/goal_tracking_list.png')}}">
         </p>
 
         <p>
@@ -2077,7 +2073,7 @@
             You can add new goal tracking.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/add_new_goal_tracking.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/add_new_goal_tracking.png')}}">
         </p>
 
         <p>
@@ -2085,7 +2081,7 @@
             You can edit goal tracking.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/edit_goal_tracking.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/edit_goal_tracking.png')}}">
         </p>
     </section>
 
@@ -2100,7 +2096,7 @@
             You can see indicator list of peroformance.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/indicator_list.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/indicator_list.png')}}">
         </p>
 
         <p>
@@ -2108,7 +2104,7 @@
             You can add new indicator info.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/add_indicator.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/add_indicator.png')}}">
         </p>
     </section>
 
@@ -2123,7 +2119,7 @@
             You can see apprisal list of peroformance.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/appraisal_list.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/appraisal_list.png')}}">
         </p>
 
         <p>
@@ -2131,7 +2127,7 @@
             You can add new appraisal info of employee performance.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/add_appraisal.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/add_appraisal.png')}}">
         </p>
     </section>
 
@@ -2146,7 +2142,7 @@
             Admin can also add events/occurance here using the option(2) section.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/calendar.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/calendar.png')}}">
         </p>
 
     </section>
@@ -2162,10 +2158,10 @@
             The related employees will get a notification for the approved event.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/event.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/event.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/event_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/event_add.png')}}">
         </p>
 
     </section>
@@ -2182,10 +2178,10 @@
             If you set your meeting status <b>Ongoing</b>, then it will display in Calender.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/meeting.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/meeting.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/meeting_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/meeting_add.png')}}">
         </p>
 
     </section>
@@ -2204,12 +2200,12 @@
             project update.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client.png')}}">
         </p>
         <strong>Add Client</strong>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_add.png')}}">
         </p>
     </section>
 
@@ -2225,11 +2221,11 @@
             invoice total is dependent on tax rate.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/tax_type.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/tax_type.png')}}">
         </p>
         <strong>Add tax Type</strong>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/tax_type_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/tax_type_add.png')}}">
         </p>
     </section>
 
@@ -2248,23 +2244,23 @@
             will be notified about the assigned projects.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/project.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/project.png')}}">
         </p>
         <strong>Add Project</strong>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/project_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/project_add.png')}}">
         </p>
         <strong>Project Details</strong>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/project_details1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/project_details1.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/project_details2.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/project_details2.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/project_details3.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/project_details3.png')}}">
         </p>
 
 
@@ -2285,16 +2281,16 @@
             to a specific task,the employees will be notified about the assigned task.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/task.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/task.png')}}">
         </p>
         <strong>Add Task</strong>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/task_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/task_add.png')}}">
         </p>
         <p>
             <strong>Task Details</strong>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/task_details.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/task_details.png')}}">
         </p>
 
 
@@ -2321,7 +2317,7 @@
             that the payment has been receievd.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/invoice.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/invoice.png')}}">
         </p>
         <strong>Add Invoice</strong><br>
 
@@ -2333,13 +2329,13 @@
             <strong>Grand Total=</strong>Total sub total - discount amount <br>
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/invoice_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/invoice_add.png')}}">
         </p>
         <p>
             <strong>Details of Invoice</strong><br>
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/invoice_details.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/invoice_details.png')}}">
         </p>
 
 
@@ -2359,15 +2355,15 @@
             ticket.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/support_ticket.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/support_ticket.png')}}">
         </p>
         <strong>Add Ticket</strong>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/support_ticket_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/support_ticket_add.png')}}">
         </p>
         <p>
             <strong>Ticket Details</strong>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/support_ticket_details.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/support_ticket_details.png')}}">
         </p>
 
     </section>
@@ -2383,7 +2379,7 @@
             The current available balance of the bank. For each deposit or expense the available balance of the
             respected bank will update.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/available_balance.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/available_balance.png')}}">
         </p>
 
     </section>
@@ -2398,7 +2394,7 @@
             You can view/add payee information . Basically a payee is a person to whom money is paid or is to be
             paid.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payee.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payee.png')}}">
         </p>
 
     </section>
@@ -2412,7 +2408,7 @@
             <strong>Finance</strong> -> <strong>Payer</strong>.<br>
             You can view/add payer information . Basically a payer is a person who pays money.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/payer.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/payer.png')}}">
         </p>
 
     </section>
@@ -2426,11 +2422,11 @@
             <strong>Finance</strong> -> <strong>Deposit</strong>.<br>
             You can view/add deposit information . You can deposit money to the selected bank account.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/deposit.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/deposit.png')}}">
         </p>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/deposit_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/deposit_add.png')}}">
         </p>
 
     </section>
@@ -2444,11 +2440,11 @@
             <strong>Finance</strong> -> <strong>Expense</strong>.<br>
             All of the finance expenses can be seen here . Employee payment expenses will also appear here.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/expense.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/expense.png')}}">
         </p>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/expense_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/expense_add.png')}}">
         </p>
 
     </section>
@@ -2462,7 +2458,7 @@
             <strong>Finance</strong> -> <strong>Transaction</strong>.<br>
             Detailed transaction history till date is shown here.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/transaction.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/transaction.png')}}">
         </p>
 
 
@@ -2477,10 +2473,10 @@
             <strong>Finance</strong> -> <strong>Transfer</strong>.<br>
             You can transfer balance from one account to another.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/finance_transfer.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/finance_transfer.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/add_transfer.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/add_transfer.png')}}">
         </p>
 
 
@@ -2496,7 +2492,7 @@
             Asset Category can be added/updated here.<br>
             <strong>Note :</strong> This is mandatory before adding asset record.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/asset_category.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/asset_category.png')}}">
         </p>
 
 
@@ -2511,10 +2507,10 @@
             <strong>Assets</strong> -> <strong>Assets</strong>.<br>
             Asset info can be added/updated here and that asset can be assigned to an employee.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/asset.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/asset.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/asset_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/asset_add.png')}}">
         </p>
 
 
@@ -2531,7 +2527,7 @@
             Allowed file types/extensions can be added here. Moreover, the maximum file size can also be defined
             here.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/file_configuration.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/file_configuration.png')}}">
         </p>
 
     </section>
@@ -2548,10 +2544,10 @@
             You can add/update file for a certain department. You can also add external link e.g google drive,imagur
             etc.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/file_manager.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/file_manager.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/file_manager_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/file_manager_add.png')}}">
         </p>
 
 
@@ -2569,10 +2565,10 @@
             You can add/update Official Documents here. You can also select the date when to send mail notification
             before the document expires. If you need to use corn job, please check <b>SETUP Mail Server --> SETUP corn Job</b>.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/official_document.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/official_document.png')}}">
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/official_document_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/official_document_add.png')}}">
         </p>
 
 
@@ -2589,7 +2585,7 @@
             client can view all the project and invoice related information at a glance in the dashboard.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_dashboard.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_dashboard.png')}}">
         </p>
 
         <ul>
@@ -2622,12 +2618,12 @@
             request.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_project.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_project.png')}}">
         </p>
 
         <strong>Add Project</strong>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_project_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_project_add.png')}}">
         </p>
 
 
@@ -2643,12 +2639,12 @@
             details.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_task.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_task.png')}}">
         </p>
 
         <strong>Add Task</strong>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_task_add.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_task_add.png')}}">
         </p>
 
 
@@ -2664,12 +2660,12 @@
             The due/unpaid invoices can be seen here. Click(1) to see details.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_invoice.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_invoice.png')}}">
         </p>
 
         <strong>Details</strong>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_invoice_details.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_invoice_details.png')}}">
         </p>
     </section>
 
@@ -2683,12 +2679,12 @@
             Paid invoice and their details(1).
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_invoice_paid.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_invoice_paid.png')}}">
         </p>
 
         <strong>Details</strong>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/client_invoice_paid_details.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/client_invoice_paid_details.png')}}">
         </p>
     </section>
 
@@ -2704,17 +2700,17 @@
             The sidebar will only show the module that the employee is permitted to access or us by the admin.
         </p>
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_dashboard.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_dashboard.png')}}">
         </p>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_dashboard1.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_dashboard1.png')}}">
         </p>
         <ol>
             <li><strong>Profile:</strong> Employee can go the profile page and update profile info if needed</li>
             <p>
             <p>
-                <img alt="" src="{{ asset('docs-landlord/assets/images/employee_profile_self.png')}}">
+                <img alt="" src="{{ asset('docs/assets/images/employee_profile_self.png')}}">
             </p>
             </p>
             <li><strong>Clock In: </strong> Employee can clock in to mark his/her attendance. As soon as s/he
@@ -2724,7 +2720,7 @@
         </ol>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_dashboard2.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_dashboard2.png')}}">
         </p>
         <p>
             Employee can view their payslips, awards and if their is any recent announcements or holidays.
@@ -2733,7 +2729,7 @@
 
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_dashboard3.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_dashboard3.png')}}">
         </p>
         <p>
             Employee can view their leave info, travel info and ticket info till date by clicking on the link. They
@@ -2742,7 +2738,7 @@
         </p>
 
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/employee_dashboard4.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/employee_dashboard4.png')}}">
         </p>
         <p>
             Assigned projects, tasks and tickets of to the employee will be listed here.
@@ -2761,7 +2757,7 @@
             If You face any error like- 500 server error or 403 server error, please first go to your project root folder and open the .env file and set APP_DEBUG=true. Then go to the page where you faced the error and reload the page.
             Now you should  take a screenshot and send it to us at Support : <a href="mailto:support@lion-coders.com">support@lion-coders.com</a>, It will us to quickly resolve the error.
         <p>
-            <img alt="" src="{{ asset('docs-landlord/assets/images/general_error.png')}}">
+            <img alt="" src="{{ asset('docs/assets/images/general_error.png')}}">
         </p>
     </section>
 
@@ -2785,40 +2781,40 @@
         <h4><b>1.New version release</b></h4>
         <h5><b>Notification -</b></h5>
         <p>When a new version is prepared for releasing, a notification message in dashboard will be shown.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/1.Notification-Version-Upgrade.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/1.Notification-Version-Upgrade.png')}}"></p>
 
 
         <h5><b>Procedure -</b></h5>
 
         <p>After clicking, it'll redirect to this page you will see the change log details & update button. Click the Upgrade button.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/3.Version-Upgrade-Page.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/3.Version-Upgrade-Page.png')}}"></p>
 
         <p>After upgrading, it'll redirect to you here.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/4.success-version-upgrade.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/4.success-version-upgrade.png')}}"></p>
 
         <h5><b>Error -</b></h5>
         <p>If you see this notification during upgrade, please contact at <a href="lion-coders.com/support">Support Panel</a>.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/8.Error.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/8.Error.png')}}"></p>
 
 
 
         <h4><b>2.Bug Update</b></h4>
         <h5><b>Notification -</b></h5>
         <p>If any bug found, a notification message in dashboard will be shown.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/2.Notification-Bug-Update.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/2.Notification-Bug-Update.png')}}"></p>
 
         <h5><b>Procedure -</b></h5>
 
         <p>After clicking, it'll redirect to this page you will see the change log details & update button. Click the Update button.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/5.Bug-Update-page.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/5.Bug-Update-page.png')}}"></p>
 
         <p>After updating, it'll redirect to you here.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/6.success-bug-update.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/6.success-bug-update.png')}}"></p>
 
 
         <h5><b>Error -</b></h5>
         <p>If you see this notification during update, please contact at <a href="lion-coders.com/support">Support Panel</a>.</p>
-        <p><img src="{{ asset('docs-landlord/assets/images/auto_update/7.Error.png')}}"></p>
+        <p><img src="{{ asset('docs/assets/images/auto_update/7.Error.png')}}"></p>
     </section>
 
     <section id="support">
@@ -2879,19 +2875,14 @@
         };
     };
 
-    var states = [
-        'Document Cover',
-        'SERVER REQUIREMENTS',
-        'INSTALL',
-        // 'Software Update',
+    var states = ['Start',
+        'Server Requirements',
+        'Install',
+        'Software Update',
         'Log In',
         'Admin Dashboard',
-        // 'Empty Database',
+        'Empty Database',
         'Datatable Options',
-        'General Setting',
-        'Payment Setting'
-        'Analytics Setting',
-        'SEO Setting',
         'Location',
         'Company',
         'Department',
@@ -2899,6 +2890,7 @@
         'Office Shift',
         'Account List',
         'Roles Access',
+        'General Setting',
         'Mail Server',
         'Language Setting',
         'Variable Type',

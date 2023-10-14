@@ -21,7 +21,6 @@ Route::get('/documentation', function() {
 });
 
 Route::get('/documentation-attendance-device-addon', function() {
-    // return view('documentation/attendance_device_addon/index');
     return view('documentation.attendance_device_addon.index');
 });
 
