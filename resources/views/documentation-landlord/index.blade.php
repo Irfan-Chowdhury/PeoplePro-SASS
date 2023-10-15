@@ -53,6 +53,14 @@
         <li><a href="#translation" title="Translation">Translation</a></li>
         <li><a href="#heroSection" title="Hero Section">Hero Section</a></li>
         <li><a href="#moduleSection" title="Module Section">Module Section</a></li>
+        <li><a href="#featureSection" title="Feature Section">Feature Section</a></li>
+        <li><a href="#faqSection" title="FAQ Section">FAQ Section</a></li>
+        <li><a href="#testimonialSection" title="Testimonial Section">Testimonial Section</a></li>
+        <li><a href="#tenantSignUp" title="Tenant SignUp Section">Tenant SignUp Section</a></li>
+        <li><a href="#blogSection" title="Blog Section">Blog Section</a></li>
+        <li><a href="#pageSection" title="Page Section">Page Section</a></li>
+        <li><a href="#socialSection" title="Social Section">Social Section</a></li>
+        <li><a href="#package" title="Package">Package</a></li>
 
 
 
@@ -557,6 +565,124 @@
     </section>
 
 
+    <section id="featureSection">
+        <div class="page-header">
+            <h3>Feature Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Feature Section</strong></p>
+        <p>You can add Icon, Name</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/featureSection.png')}}" />
+
+        <p>You can edit by selection icon</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/EditFeatureSection.png')}}" />
+
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/LandingPagefeatureIcon.png')}}" />
+    </section>
+
+
+    <section id="faqSection">
+        <div class="page-header">
+            <h3>FAQ Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>FAQ Section</strong></p>
+        <p>You can Manage Heading, Sub-Heading, Question, Answer</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/19.FAQSection.png')}}" />
+
+        <p>You can edit the FAQ</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/20.EditFAQ.png')}}" />
+
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/21.LandingFAQ.png')}}" />
+    </section>
+
+    <section id="testimonialSection">
+        <div class="page-header">
+            <h3>Testimonial Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Testimonial Section</strong></p>
+        <p>You can add Name, Business Name, Image, Description</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/22.TestimonialSection.png')}}" />
+
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/23.LandlordTestimonial.png')}}" />
+    </section>
+
+    <section id="tenantSignUp">
+        <div class="page-header">
+            <h3>Tenant Signup Description</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Tenant Signup Description</strong></p>
+        <p>You can Manage Heading, Sub-Heading</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/24.TenantSignUp.png')}}" />
+
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/25.LandlordTenantSignUp.png')}}" />
+    </section>
+
+    <section id="blogSection">
+        <div class="page-header">
+            <h3>Blog Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Blog Section</strong></p>
+        <p>You can Manage Title, Description, Image, Meta Title, OG Title, Meta Title, OG Description</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/30.Blog.png')}}" />
+        <img src="{{ asset('docs-landlord/assets/images/landlord/31.AddBlog.png')}}" />
+    </section>
+
+    <section id="pageSection">
+        <div class="page-header">
+            <h3>Page Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Page Section</strong></p>
+        <p>You can Manage Title, Description, Meta Title, Meta Description</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/26.page.png')}}" />
+
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/27.landlordPage.png')}}" />
+    </section>
+
+    <section id="socialSection">
+        <div class="page-header">
+            <h3>Social Section</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>CMS</strong> --> <strong>Social Section</strong></p>
+        <p>You can Manage Icon, Name, Link</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/28.Socials.png')}}" />
+
+        <p>In main Landing page you will see the result</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/29.LandingSocial.png')}}" />
+    </section>
+
+    <section id="package">
+        <div class="page-header">
+            <h3>Package</h3>
+            <hr class="notop">
+        </div>
+        <p><strong>Package</strong> --> <strong>Package List</strong></p>
+        <p>You can Manage Package for the SAAS</p>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/32.PackageList.png')}}" />
+
+
+        <p>Add Package</p>
+        <ul>
+            <li><b>Free Trial :</b> Client can use the package for free but for a certain time.</li>
+            <li><b>Number of User Account : </b> How many user you can add.</li>
+            <li><b>Number of Employees : </b> How many Employee you can add.</li>
+            <li><b> Select Features : </b> <br>
+                    The checkbox - User, Employee Details, Role, General Setting, Mail Setting, Access Variable Type, Access Variable Method,
+                    Access Language, Company, Department, Designation, Location, Office Shift - are will be default setup for running the application smoothly.
+             </li>
+        </ul>
+        <img src="{{ asset('docs-landlord/assets/images/landlord/33.addPackage.png')}}" />
+    </section>
 
 
 
@@ -564,6 +690,8 @@
 
 
 
+
+    <!-- Old -->
     <section id="location">
         <div class="page-header">
             <h3>Location</h3>

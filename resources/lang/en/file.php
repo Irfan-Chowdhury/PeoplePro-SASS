@@ -34,6 +34,7 @@ return array (
   'Analytics Setting' => 'Analytics Setting',
   'Announcement' => 'Announcement',
   'Announcements' => 'Announcements',
+  'Answer' => 'Answer',
   'Apply' => 'Apply',
   'Appraisal Date' => 'Appraisal Date',
   'Approved' => 'Approved',
@@ -62,6 +63,7 @@ return array (
   'Bug Update URL' => 'Bug Update URL',
   'Bugs' => 'Bugs',
   'Bulk Delete' => 'Bulk Delete',
+  'Business Name' => 'Business Name',
   'Button Text' => 'Button Text',
   'By' => 'By',
   'CMS' => 'CMS',
@@ -109,11 +111,11 @@ return array (
   'Default' => 'Default',
   'Deferred' => 'Deferred',
   'Delete' => 'Delete',
-  'Deleting' => 
+  'Deleting' =>
   array (
-    '' => 
+    '' =>
     array (
-      '' => 
+      '' =>
       array (
         '' => 'Deleting...',
       ),
@@ -139,11 +141,14 @@ return array (
   'Edit' => 'Edit',
   'Edit Appraisal' => 'Edit Appraisal',
   'Edit Blog' => 'Edit Blog',
+  'Edit Feature' => 'Edit Feature',
   'Edit Goal Tracking' => 'Edit Goal Tracking',
   'Edit Goal Type' => 'Edit Goal Type',
   'Edit Indicator' => 'Edit Indicator',
   'Edit Language' => 'Edit Language',
   'Edit Package' => 'Edit Package',
+  'Edit Page' => 'Edit Page',
+  'Edit Social' => 'Edit Social',
   'Email' => 'Email',
   'Employee' => 'Employee',
   'Employees' => 'Employees',
@@ -440,6 +445,7 @@ return array (
   'Terminations' => 'Terminations',
   'Testimonial Section' => 'Testimonial Section',
   'Testimonials' => 'Testimonials',
+  'The field labels marked with * are required input fields' => 'The field labels marked with * are required input fields.',
   'Theme' => 'Theme',
   'Thursday' => 'Thursday',
   'Ticket' => 'Ticket',
