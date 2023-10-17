@@ -37,7 +37,9 @@ class ViewComposerServiceProvider extends ServiceProvider
                 $view->with('generalSetting', $generalSetting);
             });
         }
-        else {
+        // else {
+        else if(Schema::hasTable('general_settings')) {
+
             $general_settings = TenantGeneralSetting::latest()->first();
 
             view()->composer([

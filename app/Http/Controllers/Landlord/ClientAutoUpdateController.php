@@ -134,7 +134,7 @@ class ClientAutoUpdateController extends Controller
                     $zip->close();
 
                     // ****** Delete Zip File ******
-                    File::delete($remote_file_name);
+                    File::delete($file);
                 }
             }
         }
