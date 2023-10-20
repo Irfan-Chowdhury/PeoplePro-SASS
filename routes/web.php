@@ -25,6 +25,7 @@ use App\Http\Controllers\LanguageSettingController;
 use App\Http\Controllers\Landlord\TenantController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\AddonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,10 +39,22 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-// Route::get('/test-saas', [LandingPageController::class, 'testSaas']);
+Route::prefix('addons')->group(function () {
+    Route::controller(AddonController::class)->group(function () {
+        Route::get('/', 'index')->name('saas');
+
+        Route::prefix('saas')->group(function () {
+            Route::get('install/step-1', 'saasInstallStep1')->name('saas-install-step-1');
+            Route::get('install/step-2', 'saasInstallStep2')->name('saas-install-step-2');
+            Route::get('install/step-3', 'saasInstallStep3')->name('saas-install-step-3');
+            Route::post('install/process', 'saasInstallProcess')->name('saas-install-process');
+            Route::get('install/step-4', 'saasInstallStep4')->name('saas-install-step-4');
+        });
+    });
+});
 
 
-Route::get('/landlord-documentation', function() {
+Route::get('/central-documentation', function() {
     return view('documentation-landlord.index');
 });
 

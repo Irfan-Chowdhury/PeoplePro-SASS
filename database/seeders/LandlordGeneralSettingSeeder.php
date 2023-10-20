@@ -21,7 +21,7 @@ class LandlordGeneralSettingSeeder extends Seeder
 
         $data = [
             'site_title' => $siteTitle,
-            'site_logo'  => "logo.png",
+            'site_logo'  => "202310100928261.png",
             'time_zone' => $timeZone,
             'phone' => '01829498634',
             'email' => 'support@lion-coders.com',

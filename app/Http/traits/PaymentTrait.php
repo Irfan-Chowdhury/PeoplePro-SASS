@@ -12,7 +12,10 @@ trait PaymentTrait {
     public function paymentMethods() : array |object|string
     {
         $paymentSetting = PaymentSetting::latest()->first();
-        $activePaymentMethods = explode("," ,$paymentSetting->active_payment_gateway);
+        $activePaymentMethods = [];
+        if(isset($paymentSetting->active_payment_gateway)) {
+            $activePaymentMethods = explode("," ,$paymentSetting->active_payment_gateway);
+        }
 
         $paymentMethods = [
             (object)[
