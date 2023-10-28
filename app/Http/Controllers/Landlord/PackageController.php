@@ -20,9 +20,6 @@ class PackageController extends Controller
 
     public function index()
     {
-        // return count(json_decode(Package::find(19)->permissions));
-        // return json_decode(Package::find(4)->permissions, true);
-
         return view('landlord.super-admin.pages.packages.index');
     }
 
@@ -55,8 +52,6 @@ class PackageController extends Controller
 
     public function update(UpdatePackageRequest $request, $packageId)
     {
-        // return $this->featureAndPermissionManage($request->features[0]);
-
         $result = $this->packageService->updateInfo($request, $packageId);
 
         return response()->json($result['alertMsg'], $result['statusCode']);

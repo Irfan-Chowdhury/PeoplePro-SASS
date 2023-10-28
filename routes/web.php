@@ -58,9 +58,7 @@ Route::get('/central-documentation', function() {
     return view('documentation-landlord.index');
 });
 
-Route::get('/lang', function () {
-    // return Session::has('DefaultSuperAdminLocale') ?? 'en';
-});
+
 Route::get('/get-host', function () {
     return request()->getHost();
 });
@@ -89,7 +87,6 @@ Route::middleware(['setPublicLocale'])->group(function () {
         Route::get('/payment/paystack/pay/callback', 'handleGatewayCallback')->name('payment.paystack.pay.callback');
     });
 
-    // Route::get('/language-switch-public/{locale}', 'languageSwitchByPublic')->name('lang.switch.byPublic');
     Route::get('/language-switch-public/{locale}', [TranslationController::class, 'languageSwitchByPublic'])->name('lang.switch.byPublic');
 
 });

@@ -16,15 +16,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // $dataToEncrypt = 'This is sensitive data.';
-        // $encryptedData = Crypt::encrypt($dataToEncrypt);
-        // return $decryptedData = Crypt::decrypt($encryptedData);
-
-        // protected $encryptable = [
-        //     'sensitive_data',
-        // ];
-        // Then, when you set the sensitive_data attribute on the model, it will automatically be encrypted when saved to the database and decrypted when retrieved.
-
         $autoUpdateData = $this->general();
         $alertVersionUpgradeEnable = $autoUpdateData['alertVersionUpgradeEnable'];
         $alertBugEnable =  $autoUpdateData['alertBugEnable'];

@@ -103,6 +103,7 @@ class TenantController extends Controller
     public function customerSignUp(CustomerSignUpRequest $request)
     {
         DB::beginTransaction();
+        $request->session()->put('price', $request->price);
         try {
             $paymentMethodList = array_column($this->paymentMethods(), 'payment_method');
             if(!$request->is_free_trail && in_array($request->payment_method ,$paymentMethodList)) {
@@ -219,7 +220,6 @@ class TenantController extends Controller
 
     public function destroy(Tenant $tenant)
     {
-
         try {
             $tenant->domainInfo->delete();
             self::tenantDirectoryDelete($tenant->id);
@@ -309,102 +309,6 @@ class TenantController extends Controller
             $role = Role::findById(1);
             $role->syncPermissions($latestPermissionsIds);
         });
-    }
-
-
-
-    public function test($tenant, $package)
-    {
-        // Update --
-        // $tenant = Tenant::find('saastest24');
-        // $tenant->run(function ($tenant) {
-        //     $user = User::find(3);
-        //     $user->first_name = 'irfan';
-        //     $user->update();
-        // });
-
-        // Delete --
-        // $tenant = Tenant::find('saastest1');
-        // $tenant->domainInfo->delete();
-        // $tenant->delete();
-        // return 'ok';
-
-        // ========== Test ============
-        // $prevPermissionIds = [1,2,3,4,5];
-        // $latestPermissionsIds = [1,2,3,6,7,8];
-
-        // $skipIds = [];
-        // foreach ($prevPermissionIds as $element) {
-        //     if (!in_array($element, $latestPermissionsIds)) {
-        //         $skipIds[] = $element;
-        //     }
-        // }
-        // return $skipIds;
-
-        // $newIds = [];
-        // foreach ($array2 as $element) {
-        //     if (!in_array($element, $array1)) {
-        //         $newIds[] = $element;
-        //     }
-        // }
-        // return $newIds;
-        // return $expectedResult = array_merge($expectedResult, $array2);
-        // $expectedResult = [1,2,3,6,7,8];
-
-        $prevPermissions = json_decode($tenant->package->permissions, true);
-        $prevPermissionIds = array_column($prevPermissions, 'id');
-
-        $latestPermissions = json_decode($package->permissions, true);
-        $latestPermissionsIds = array_column($latestPermissions, 'id');
-
-        $skipIds = [];
-        foreach ($prevPermissionIds as $element) {
-            if (!in_array($element, $latestPermissionsIds)) {
-                $skipIds[] = $element;
-            }
-        }
-
-        $newPermissions = [];
-        foreach ($latestPermissions as $element) {
-            if (!in_array($element["id"], $prevPermissionIds)) {
-                $newPermissions[] = $element;
-            }
-        }
-
-        // $permissions = DB::table('permissions')->get()->toArray();
-        // $permissionsIds = array_column($permissions, 'id');
-        // return count($latestPermissionsIds);
-
-
-        // return count($latestPermissions).' | '.count($latestPermissionsIds);
-
-        $test = null;
-        $tenant->run(function () use ($skipIds, $newPermissions, $latestPermissions, $latestPermissionsIds, &$test) {
-            if(!empty($newPermissions)) {
-                DB::table('permissions')->whereIn('id', $skipIds)->delete();
-                $test = DB::table('permissions')->insert($newPermissions);
-                $role = Role::findById(1);
-                $role->syncPermissions($latestPermissionsIds);
-            }
-            // DB::table('permissions')->insert($latestPermissions);
-            // $test =  $role = Role::findById(1);
-            // $role->syncPermissions($latestPermissionsIds);
-            // $role->syncPermissions($latestPermissionsIds);
-            // $test = DB::table('permissions')->whereIn('id', $skipIds)->pluck('id','name');
-            // $test = DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->pluck('id','name');
-        });
-        return $test;
-
-        return DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->pluck('id','name');
-
-
-
-        if (empty(array_diff($prevPermissionIds, $latestPermissionsIds)) && empty(array_diff($latestPermissionsIds, $prevPermissionIds))) {
-            return "Arrays are equal.";
-        } else {
-            return "Arrays are not equal.";
-        }
-        // ========== Test ============
     }
 
     // sudo php artisan cache:clear

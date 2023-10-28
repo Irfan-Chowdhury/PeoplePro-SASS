@@ -9,7 +9,7 @@ use App\Models\Landlord\PaymentSetting;
 
 trait PaymentTrait {
 
-    public function paymentMethods() : array |object|string
+    public function paymentMethods() : array|object|string
     {
         $paymentSetting = PaymentSetting::latest()->first();
         $activePaymentMethods = [];

@@ -32,9 +32,7 @@
                                 <th>{{__('Photo')}}</th>
                                 @if ($user['profile_photo']!==null)
 
-                                    <td>
-                                        <img src="{{asset('../../'.tenantPath().'/uploads/profile_photos/' . $user['profile_photo'])}}" height="50" width="60">
-                                    </td>
+                                    <td><img src="{{asset('../../'.tenantPath().'/uploads/profile_photos/' . $user['profile_photo'])}}" height="50" width="60"></td>
 
 
                                         {{-- <td>

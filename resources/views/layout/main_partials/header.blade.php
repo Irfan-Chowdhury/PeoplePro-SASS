@@ -11,7 +11,6 @@
 						<img src="{{asset('../../'.tenantPath().'/images/logo/'.$general_settings->site_logo)}}" width="140" height="70">
                         &nbsp; &nbsp;
                     @endif
-                         {{-- <h1 class="d-inline" id="site_title_main">{{$general_settings->site_title ?? "No title"}}</h1> --}}
                 </span>
 
 
@@ -82,22 +81,6 @@
                                     {{trans('file.Profile')}}
                                 </a>
                             </li>
-                            @if(auth()->user()->role_users_id == 1)
-                                <li id="empty_database">
-                                    <a href="#">
-                                        <i class="dripicons-stack"></i>
-                                        {{__('Empty Database')}}
-                                    </a>
-                                </li>
-                            @endif
-                            @if(auth()->user()->role_users_id == 1)
-                                <li id="export_database">
-                                    <a href="{{route('export_database')}}">
-                                        <i class="dripicons-cloud-download"></i>
-                                        {{__('Export Database')}}
-                                    </a>
-                                </li>
-                            @endif
                             <li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                     @csrf

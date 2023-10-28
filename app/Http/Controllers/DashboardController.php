@@ -56,27 +56,9 @@ class DashboardController extends Controller {
 		$this->middleware(['auth']);
 	}
 
-    // protected function testApiSAAS()
-    // {
-    //     // $demoURL = config('auto_update.demo_url');
-    //     $demoURL = "http://peopleprosaas.test/api/";
-    //     $curl = curl_init();
-    //     curl_setopt_array($curl, [
-    //         CURLOPT_RETURNTRANSFER => 1,
-    //         CURLOPT_URL => $demoURL.'saas-api-test',
-    //     ]);
-    //     $response = curl_exec($curl);
-    //     curl_close($curl);
-    //     return json_decode($response, false);
-    // }
-
 
 	public function index()
 	{
-        // $autoUpdateData = $this->general();
-        // $alertVersionUpgradeEnable = $autoUpdateData['alertVersionUpgradeEnable'];
-        // $alertBugEnable =  $autoUpdateData['alertBugEnable'];
-
 		$employees = Employee::with('department:id,department_name', 'designation:id,designation_name')
 			->select('id', 'department_id', 'designation_id', 'is_active')
 			->where('is_active', '=', 1)->where('is_active',1)
@@ -445,6 +427,7 @@ class DashboardController extends Controller {
 	{
 		$user = auth()->user();
         $employee = Employee::with('department:id,department_name', 'officeShift')->findOrFail($user->id);
+
         $current_day_in = strtolower(Carbon::now()->format('l')) . '_in';
 		$current_day_out = strtolower(Carbon::now()->format('l')) . '_out';
 		$shift_in = $employee->officeShift->$current_day_in;
@@ -463,7 +446,6 @@ class DashboardController extends Controller {
 
 		$leave_types = LeaveType::select('id', 'leave_type', 'allocated_day')->get();
 		$travel_types = TravelType::select('id', 'arrangement_type')->get();
-
 
 		$assigned_projects = EmployeeProject::with(['assignedProjects' => function ($query) use ($employee)
 		{

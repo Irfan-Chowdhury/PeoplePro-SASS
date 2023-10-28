@@ -27,7 +27,7 @@ class PackageService
 
     public function yajraDataTable()
     {
-        $packages = $this->getAll();
+        $packages = $this->packageContract->getOrderByPosition();
 
         return datatables()->of($packages)
         ->setRowId(function ($row) {
@@ -160,7 +160,9 @@ class PackageService
             $permission_names = array_column($resultOfPermissions,'name');
             $permission_ids = array_column($resultOfPermissions,'id');
 
-            $data = $this->requestHandle($request, $resultOfPermissions, $permission_names, $permission_ids);
+            $maxPosition = $this->packageContract->getMaxPosition() + 1;
+
+            $data = $this->requestHandle($request, $resultOfPermissions, $permission_names, $permission_ids, $maxPosition);
             $this->packageContract->create($data);
 
             return Alert::successMessage('Data Saved Successfully');
@@ -178,20 +180,6 @@ class PackageService
             $permission_ids = array_column($resultOfPermissions,'id');
 
             $this->existingTenantsUpdate($request, $id, $resultOfPermissions, $permission_ids);
-            // =====================  ============================
-            // if($request->is_update_existing) {
-            //     $tenants = $this->tenantContract->getDataByCondition(['package_id' => $id]);
-            //     foreach ($tenants as $tenant) {
-            //         $tenant->run(function ($tenant) use ($resultOfPermissions, $permission_ids) {
-            //             DB::table('permissions')->delete();
-            //             DB::table('permissions')->insert($resultOfPermissions);
-            //             $role = Role::find(1);
-            //             $role->syncPermissions($permission_ids);
-            //         });
-            //     }
-            // }
-            // =================================================
-
             $data = $this->requestHandle($request, $resultOfPermissions, $permission_names, $permission_ids);
             $this->packageContract->update($id, $data);
 
@@ -239,9 +227,9 @@ class PackageService
         }
     }
 
-    private function requestHandle($request, $resultOfPermissions, $permission_names, $permission_ids)
+    private function requestHandle($request, $resultOfPermissions, $permission_names, $permission_ids, $maxPosition = null)
     {
-        return [
+        $data = [
             'name' => $request->name,
             'is_free_trial' => $request->is_free_trial ? true : false,
             'monthly_fee' => $request->monthly_fee,
@@ -254,6 +242,10 @@ class PackageService
             'permission_ids' => implode(',', $permission_ids),
             'is_active' => $request->is_active ? true : false,
         ];
+        if ($maxPosition) {
+            $data['position'] = $maxPosition;
+        }
+        return $data;
     }
 
 }

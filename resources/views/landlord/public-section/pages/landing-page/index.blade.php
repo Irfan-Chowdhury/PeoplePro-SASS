@@ -21,6 +21,19 @@
         font-size: 40px;
         color: #333;
     }
+
+    .rounded-image {
+        width: 50px; /* Set the width of the container */
+        height: 50px; /* Set the height of the container */
+        border-radius: 50%; /* Make it a circle */
+         /* Clip the image to the rounded shape */
+    }
+
+    .rounded-image img {
+        width: 100%; /* Make the image fill the container */
+        height: 100%; /* Make the image fill the container */
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+    }
 </style>
 @endpush
 
@@ -66,7 +79,14 @@
                             <div class="review-text">
                                 {!!$testimonial->description!!}
                             </div>
-                            <div class="reviewer"><img src="{{asset('landlord/images/testimonial')}}/{{$testimonial->image}}" alt="{{$testimonial->name}}" /> {{$testimonial->name}}@if($testimonial->business_name), {{$testimonial->business_name}}@endif</div>
+                            <div class="d-flex justify-content-start mt-3">
+                                <div class="reviewer rounded-image p-2" style="margin-top: 0px">
+                                    <img src="{{asset('landlord/images/testimonial')}}/{{$testimonial->image}}" alt="{{$testimonial->name}}" />
+                                </div>
+                                <div class="p-2">
+                                    <span>{{$testimonial->name}}@if($testimonial->business_name), {{$testimonial->business_name}}@endif</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach

@@ -27,6 +27,7 @@ return array (
   'Administration' => 'Administration',
   'All' => 'All',
   'All Blog Posts' => 'All Blog Posts',
+  'All Blogs' => 'All Blogs',
   'All_Department' => 'All Department',
   'Allocated Day' => 'Allocated Day',
   'Allowances' => 'Allowances',
@@ -90,6 +91,7 @@ return array (
   'Confirmation' => 'Confirmation',
   'Connect with Us' => 'Connect with Us',
   'Contact' => 'Contact',
+  'Contact No' => 'Contact No',
   'Contact Us' => 'Contact Us',
   'Corporation' => 'Corporation',
   'Cost' => 'Cost',
@@ -111,11 +113,11 @@ return array (
   'Default' => 'Default',
   'Deferred' => 'Deferred',
   'Delete' => 'Delete',
-  'Deleting' =>
+  'Deleting' => 
   array (
-    '' =>
+    '' => 
     array (
-      '' =>
+      '' => 
       array (
         '' => 'Deleting...',
       ),
@@ -180,6 +182,7 @@ return array (
   'File Name' => 'File Name',
   'Files' => 'Files',
   'Finance' => 'Finance',
+  'First Name' => 'First Name',
   'Fixed' => 'Fixed',
   'Flat' => 'Flat',
   'Footer' => 'Footer',
@@ -230,6 +233,7 @@ return array (
   'Language' => 'Language',
   'Language Setting' => 'Language Setting',
   'Languages' => 'Languages',
+  'Last Name' => 'Last Name',
   'Late' => 'Late',
   'Latest Version DB Migrate' => 'Latest Version DB Migrate',
   'Latest Version Upgrade' => 'Latest Version Upgrade',

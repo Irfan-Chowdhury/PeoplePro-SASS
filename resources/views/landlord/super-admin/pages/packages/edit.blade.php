@@ -369,7 +369,7 @@
                             {
                                 id: 'client',
                                 text: "{{trans('Client')}}",
-                                checked: ($.inArray('client', permissionNames) >= 0) ? true : false,
+                                checked: true,
                             },
                             {
                                 id: 'invoice',

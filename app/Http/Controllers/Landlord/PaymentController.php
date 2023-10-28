@@ -167,6 +167,10 @@ class PaymentController extends Controller
 
     public function paymentSuccess($domain)
     {
+        if(!$domain) {
+            $domain = Session::get('domain');
+        }
+
         $socials = $this->socialContract->getOrderByPosition(); //Common
         $pages =  $this->pageContract->getAllByLanguageId($this->languageId); //Common
 

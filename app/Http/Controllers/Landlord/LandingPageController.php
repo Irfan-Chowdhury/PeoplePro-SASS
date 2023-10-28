@@ -91,7 +91,7 @@ class LandingPageController extends Controller
         $pages =  $this->pageContract->getAllByLanguageId($this->languageId); //Common
 
         $saasFeatures =  $this->features();
-        $packages = $packageContract->all();
+        $packages = $packageContract->getOrderByPosition();
         $paymentMethods = $this->paymentMethods();
 
         return view('landlord.public-section.pages.landing-page.index',compact([
@@ -132,8 +132,5 @@ class LandingPageController extends Controller
         Mail::to(config('mail.from.address'))->send(new ContactUs($request));
 
         return redirect()->back()->with(['success' => 'Mail Sent Successfully']);
-
-
-        // return $request->all();
     }
 }

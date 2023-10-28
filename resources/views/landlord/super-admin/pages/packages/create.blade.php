@@ -335,6 +335,7 @@
                             {
                                 id: 'client',
                                 text: "{{trans('Client')}}",
+                                checked: true,
                             },
                             {
                                 id: 'invoice',

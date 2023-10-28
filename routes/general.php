@@ -49,4 +49,10 @@ Route::get('/maintainance-up', function() {
     return redirect()->back();
 });
 
+Route::get('/optimize-spatie-permission', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('cache:forget spatie.permission.cache');
+    return redirect()->back();
+});
+
 

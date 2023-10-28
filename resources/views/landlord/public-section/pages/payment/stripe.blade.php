@@ -72,9 +72,8 @@
     let tenant = @json($tenantRequestData);
     let centralDomain = @json(env('CENTRAL_DOMAIN'));
     let data = JSON.parse(tenant);
-    let tenantId = data.tenant_id;
+    let tenantId = data.tenant;
     let domain = tenantId +'.'+ centralDomain;
-
     let targetURL = "{{ url('/payment/stripe/pay/process')}}";
     let cancelURL = "{{ url('/payment/stripe/pay/cancel')}}";
     let redirectURL = "{{ url('/payment-success')}}" + '/' + domain;

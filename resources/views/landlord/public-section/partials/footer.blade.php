@@ -10,7 +10,7 @@
         <div class="d-flex justify-content-between mt-5">
             <div class="footer-links">
                 @foreach($pages as $page)
-                    <a href="{{url('page/'.$page->slug)}}">{{$page->title}}</a>
+                    <a href="{{url('pages/'.$page->slug)}}">{{$page->title}}</a>
                 @endforeach
             </div>
             <div class="footer-bottom">

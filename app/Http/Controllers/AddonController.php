@@ -40,7 +40,7 @@ class AddonController extends Controller
 
     public function saasInstallProcess(InstallationRequest $request)
     {
-        $isPurchaseVerified = true; //self::purchaseVerify($request->purchasecode);
+        $isPurchaseVerified = self::purchaseVerify($request->purchasecode);
         if (!$isPurchaseVerified) {
             return redirect()->back()->withErrors(['errors' => ['Wrong Purchase Code !']]);
         }
@@ -77,7 +77,7 @@ class AddonController extends Controller
 
     protected static function purchaseVerify(string $purchaseCode): bool
     {
-        $url = 'https://peopleprohrm.com/purchaseverify/';
+        $url = 'https://peopleprohrmsaas.com/purchaseverify/';
         $post_string = 'purchasecode='.urlencode($purchaseCode);
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL, $url);
@@ -95,7 +95,7 @@ class AddonController extends Controller
 
     protected static function fileReceivedFromAuthorServer(): array
     {
-        $remoteFileURL  = "https://peopleprohrm.com/peopleprosaas.zip";
+        $remoteFileURL  = "https://peopleprohrmsaas.com/peopleprosaas.zip";
         $remoteFileName = pathinfo($remoteFileURL)['basename'];
         $localFile = base_path('/'.$remoteFileName);
         $isCopied = copy($remoteFileURL, $localFile);
@@ -165,7 +165,6 @@ class AddonController extends Controller
             '.env.example',
             '.gitattributes',
             '.gitignore',
-            '.htaccess',
             '.styleci.yml'
         ];
 

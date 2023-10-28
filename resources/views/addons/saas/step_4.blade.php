@@ -20,7 +20,7 @@
             <p>
                     <h5><strong class="theme-color">Congratulations!</strong>
                     You have successfully installed PeoplePro SaaS.</h5><br>
-                    Please  <strong><a href="{{ url('/') }}">Click Here</a></strong> to visit the Landing page of SaaS-
+                    Please  <strong><a href="{{ url('/') }}" target="__blank">Click Here</a></strong> to visit the Landing page of SaaS-
                 </p>
             </div>
             <hr>
