@@ -21,9 +21,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Peplepro SaaS</h5>
                     <p class="card-text">Take care of all your products, sales, purchases, stores related tasks from an easy-to-use platform, from anywhere you want, anytime you want.</p>
-                    <a href="#" class="btn btn-danger p-2" target="_blank">Demo</a>
-                    <a href="#" class="btn btn-info p-2" target="_blank">Buy Now</a>
-                    <a href="#" class="btn btn-warning p-2" target="_blank">Documentation</a>
+                    <a href="https://peopleprohrmsaas.com/" class="btn btn-danger p-2" target="_blank">Demo</a>
+                    <a href="https://codecanyon.net/user/lioncoders/portfolio" class="btn btn-info p-2" target="_blank">Buy Now</a>
+                    <a href="https://peopleprohrmsaas.com/central-documentation" class="btn btn-warning p-2" target="_blank">Documentation</a>
                     <a href="{{ route('saas-install-step-1') }}" class="btn btn-primary p-2">Go to Install</a>
                 </div>
             </div>

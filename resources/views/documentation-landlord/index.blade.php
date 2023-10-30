@@ -1,11 +1,4 @@
-{{-- @php $general_settings = DB::table('general_settings')->latest()->first(); @endphp --}}
-
 <!doctype html>
-<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
-<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
-<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
-<!--[if (gt IE 7)|!(IE)]><!-->
-<!--<![endif]-->
 
 <html lang="en-us">
 <head>
@@ -37,8 +30,8 @@
     <ul id="documenter_nav">
         <li><a href="#document_cover" title="Document Cover">Start</a></li>
         <li><a href="#server_requirement" title="SERVER REQUIREMENTS">Server Requirements</a></li>
-        <li><a href="#install" title="INSTALL">Install</a></li>
-        <li><a href="#integratePeopleproDB" title="Integrate Peoplepro DB">Integrate Peoplepro DB</a></li>
+        <li><a href="#integratePeopleproSaaS" title="Integrate Peoplepro SaaS">Integrate SaaS</a></li>
+        <li><a href="#integratePeopleproDB" title="Integrate Peoplepro DB">Integrate Existing DB</a></li>
         <li><a href="#common_error" title="Common Error">Common Error</a></li>
         {{-- <li><a href="#software_update" title="SOFTWARE UPDATE">Software Update</a></li> --}}
         <li><a href="#log_in" title="Log In">Log In</a></li>
@@ -63,107 +56,6 @@
         <li><a href="#socialSection" title="Social Section">Social Section</a></li>
         <li><a href="#package" title="Package">Package</a></li>
         <li><a href="#support" title="SUPPORT">Support</a></li>
-
-
-
-
-
-        {{-- <li><a href="#company" title="Company">Company</a></li>
-        <li><a href="#department" title="Department">Department</a></li>
-        <li><a href="#designation" title="Designation">Designation</a></li>
-        <li><a href="#office_shift" title="Office Shift">Office Shift</a></li>
-        <li><a href="#account_list" title="Account List">Account List</a></li>
-        <li><a href="#roles_access" title="Role & Access">Role & Access</a></li>
-        <li><a href="#designation" title="Designation">Designation</a></li>
-        <li><a href="#general_setting" title="General Setting">General Setting</a></li>
-        <li><a href="#mail_server" title="SETUP MAIL SERVER">Setup Mail Server</a></li>
-        <li><a href="#language_setting" title="Language Setting">Language Setting</a></li>
-        <li><a href="#variable_type" title="Variable Type">Variable Type</a></li>
-        <li><a href="#variable_method" title="Variable Method">Variable Method</a></li>
-        <li><a href="#ip_setting" title="IP Settings">IP Settings</a></li> <!-- New-->
-        <li><a href="#employee_list" title="Employee List">Employee List</a></li>
-        <li><a href="#import_employee" title="Import Employee">Import Employee</a></li>
-        <li><a href="#user_list" title="User List">User List</a></li>
-        <li><a href="#assign_role" title="User Role and Access">User Role and Access</a></li>
-        <li><a href="#user_last_login" title="User Last Login">User Last Login</a></li>
-        <li><a href="#promotion" title="Location">Location</a></li>
-        <li><a href="#award" title="Award">Award</a></li>
-        <li><a href="#travel" title="Travel">Travel</a></li>
-        <li><a href="#transfer" title="Transfer">Transfer</a></li>
-        <li><a href="#resignation" title="Resignation">Resignation</a></li>
-        <li><a href="#complaint" title="Complaint">Complaint</a></li>
-        <li><a href="#warning" title="Warning">Warning</a></li>
-        <li><a href="#termination" title="Termination">Termination</a></li>
-        <li><a href="#announcement" title="Announcement">Announcement</a></li>
-        <li><a href="#policy" title="Company Policy">Company Policy</a></li>
-        <li><a href="#attendance" title="Attendance">Attendance</a></li>
-        <li><a href="#datewise_attendance" title="Datewise Attendance">Datewise Attendance</a></li>
-        <li><a href="#monthly_attendance" title="Monthly Attendance">Monthly Attendance</a></li>
-        <li><a href="#update_attendance" title="Update Attendance">Update Attendance</a></li>
-        <li><a href="#import_attendance" title="Import Attendance">Import Attendance</a></li>
-        <li><a href="#manage_holiday" title="Manage Holiday">Manage Holiday</a></li>
-        <li><a href="#manage_leave" title="Manage Leave">Manage Leave</a></li>
-        <li><a href="#payslip_report" title="Payslip Report">Payslip Report</a></li>
-        <li><a href="#attendance_report" title="Attendance Report">Attendance Report</a></li>
-        <li><a href="#training_report" title="Training Report">Training Report</a></li>
-        <li><a href="#project_report" title="Project Report">Project Report</a></li>
-        <li><a href="#task_report" title="Task Report">Task Report</a></li>
-        <li><a href="#employee_report" title="Employee Report">Employee Report</a></li>
-        <li><a href="#account_report" title="Account Report">Account Report</a></li>
-        <li><a href="#expense_report" title="Expense Report">Expense Report</a></li>
-        <li><a href="#deposit_report" title="Deposit Report">Deposit Report</a></li>
-        <li><a href="#transaction_report" title="Transaction Report">Transaction Report</a></li>
-        <li><a href="#job_post" title="Job Post">Job Post</a></li>
-        <li><a href="#job_candidate" title="Job Candidate">Job Candidate</a></li>
-        <li><a href="#job_interview" title="Job Interview">Job Interview</a></li>
-        <li><a href="#cms" title="CMS">CMS</a></li>
-        <li><a href="#new_payment" title="New Payment">New Payment</a></li>
-        <li><a href="#payment_history" title="payslip History">Payslip History</a></li>
-
-        <!-- Performance -->
-        <li><a href="#goal_type" title="Goal Type">Goal Type</a></li>
-        <li><a href="#goal_tracking" title="Goal Tracking">Goal Tracking</a></li>
-        <li><a href="#indicator" title="Indicator">Indicator</a></li>
-        <li><a href="#appraisal" title="Appraisal">Appraisal</a></li>
-        <!--/ Performance --> --}}
-
-
-
-        {{-- <li><a href="#hr_calendar" title="HR Calendar">HR Calendar</a></li>
-        <li><a href="#event" title="Event">Event</a></li>
-        <li><a href="#meeting" title="Meeting">Meeting</a></li>
-        <li><a href="#client" title="Client">Client</a></li>
-
-        <li><a href="#tax_type" title="Tax Type">Tax Type</a></li>
-        <li><a href="#project" title="Project">Project</a></li>
-        <li><a href="#task" title="Task">Task</a></li>
-        <li><a href="#invoice" title="Invoice">Invoice</a></li>
-        <li><a href="#support_ticket" title="Support Ticket">Support Ticket</a></li>
-        <li><a href="#account_balance" title="Account Balance">Account Balance</a></li>
-        <li><a href="#payee" title="payee">Payee</a></li>
-        <li><a href="#payer" title="payer">Payer</a></li>
-        <li><a href="#deposit" title="Deposit">Deposit</a></li>
-        <li><a href="#Expense" title="expense">Expense</a></li>
-        <li><a href="#transaction" title="Transaction">Transaction</a></li>
-        <li><a href="#transfer" title="Transfer">Transfer</a></li>
-        <li><a href="#asset_category" title="Asset Category">Asset Category</a></li>
-        <li><a href="#asset" title="Asset">Asset</a></li>
-
-        <li><a href="#file_configuration" title="File Configuration">File Configuration</a></li>
-        <li><a href="#file_manager" title="File Manage">File Manager</a></li>
-        <li><a href="#official_document" title="Official Document">Official Document</a></li>
-
-        <li><a href="#client_dashboard" title="Client Dashboard">Client Dashboard</a></li>
-        <li><a href="#client_project" title="Client Project">Client Project</a></li>
-        <li><a href="#client_task" title="Client Task">Client Task</a></li>
-        <li><a href="#client_invoice" title="Client Invoice">Client Invoice</a></li>
-        <li><a href="#client_invoice_paid" title="Client Invoice Paid">Client Invoice Paid</a></li>
-        <li><a href="#employee_dashboard" title="Employee Dashboard">Employee Dashboard</a></li>
-        <li><a href="#general_error" title="General Error">General Error</a></li>
-        <li><a href="#video_tutorial" title="Video Tutorial">Video Tutorial</a></li>
-        <li><a id="attendanceDeviceAddon" title="Attendance Device Addon">Attendance Device Addon</a></li>
-        <li><a href="#autoUpdateFeature" title="Auto Update Feature">Auto Update Feature</a></li>
-        <li><a href="#support" title="SUPPORT">Support</a></li> --}}
     </ul>
 </div>
 
@@ -247,35 +139,32 @@
         </p>
     </section>
 
-    <section id="install">
+    <section id="integratePeopleproSaaS">
         <div class="page-header">
-            <h1>INSTALL</h1>
+            <h1>Integrate Peoplepro SaaS</h1>
             <hr class="notop">
         </div>
 
-        <p>Before using the SAAS you have to purchase the <a href="https://codecanyon.net/item/peoplepro-hrm-payroll-project-management/29169229?s_rank=5">PeoplePro</a> first.<p>
+        <p>Before using the SAAS you have to purchase the <a href="https://codecanyon.net/item/peoplepro-hrm-payroll-project-management/29169229?s_rank=5">PeoplePro</a> first and then have to install it.<p>
+        <p><b>Warning :</b> Your peoplepro app should be exists in root directory I mean <b>"public_html"</b>  if you want to use SaaS. Because the SaaS run on <b><i>public_html</i></b>. Not in any sub-directory or sub-domain.</p>
+
+        <h2><strong>Step 1 : Backup </strong></h2>
+        <p>
+            We assume that you already purchased the <b>PeoplePro SaaS</b> app.
+            When you try to integrate the SaaS with your existing peoplepro, your previous data will be lost/changed.
         <br>
-        Upload the zip folder of SAAS you downloaded from Codecanyon to your hosting and unzip it.
-        <br>
-        <b>Note:</b> Please backup your previous <b>PeoplePro's</b>
+        So, Please backup your previous <b>PeoplePro's</b> data.
         <ul>
             <li><b>.env</b> file</li>
             <li><b>public</b> directory</li>
             <li>Your <b>Database</b></li>
         </ul>
+        </p>
+        <p>Now follow the next process.</p>
 
-        <p> Now follow the installation process below.</p>
+        <h2><strong>Step 2 : cPanel API & Sub Domain Setup </strong></h2>
 
-
-        <h2><strong>Step 1 : cPanel Setup </strong></h2>
-        <h5><strong>(i) General Setup</strong></h5>
-        <ul>
-            <li>
-                Goto your cPanel and upload your app in <b>public_html</b>. Remember your project's files should be exists in root directory I mean <b>"public_html"</b>.
-            </li>
-        </ul>
-
-        <h5><strong>(ii) API Setup</strong></h5>
+        <h5><strong>(i) API Setup</strong></h5>
         <ul>
             <li>Search or goto  <b>Manage API Tokens</b> </li>
 
@@ -291,11 +180,11 @@
             <li>If you go back <b>Manage API Token</b> page, you will see the tokens detail which you created.</li>
             <img src="https://snipboard.io/i0IE84.jpg" alt="" >
 
-            <li>Put the credentials in the <b>.env</b> file.</li>
+            <li>Keep the credentials anywhere. You need to put these data in the <b>.env</b> file later.</li>
             <img src="https://snipboard.io/J3EcUF.jpg" alt="" >
         </ul>
 
-        <h5><strong>(iii) Wildcard Sub Domain</strong></h5>
+        <h5><strong>(ii) Wildcard Sub Domain</strong></h5>
         <p>You can not create sub-domain through the SaaS App but you can create a <b>Wild Card Sub Domain</b>. Follow the instruction -</p>
         <ul>
             <li>Search and goto <b>Domains</b>. And create a new domain by clicking on <b>Create A New Domain</b> button. </li>
@@ -306,8 +195,17 @@
             <img src="https://snipboard.io/WV5rpz.jpg" alt="" srcset="">
             <li>A new domain will be created.</li>
             <img src="https://snipboard.io/vyzCMm.jpg" alt="" srcset="">
+        </ul>
+        <p><b>Note:</b> You cannot create a wildcard addon domain. You must create a subdomain on an existing domain instead.</p>
 
-            <li>Now go to main PeoplePro and go Addons tab and click on "Go to Install" button of Peoplepro SaaS</li>
+        <br><br>
+        <h2><strong>Step 3 : Integrate the SaaS with your existing PeoplePro</strong></h2>
+        <p> Goto your cPanel and upload your SaaS app in <b>public_html</b>.
+            <br>
+            <b>NB:</b> Remember your existing peoplepro app should be exists in root directory I mean <b>"public_html"</b>. Because SaaS run on <b><i>public_html</i></b>. Not in any sub-directory or sub-domain.
+        </p>
+        <ul>
+            <li>Now go to main PeoplePro and go Addons tab and click on <b><i>Go to Install</i></b> button of Peoplepro SaaS</li>
             <img src="https://snipboard.io/AGsvRF.jpg" alt="" srcset="">
 
             <li>You will get a Install page of step-1. Then click next.</li>
@@ -324,19 +222,17 @@
             <img src="https://snipboard.io/xgS1WP.jpg" alt="" srcset="">
 
 
-
             <li>Your value in <b>.env</b> file will be look like this - </li>
             <img src="https://snipboard.io/Oft10q.jpg" alt="" srcset="">
         </ul>
-        <p><b>Note:</b> You cannot create a wildcard addon domain. You must create a subdomain on an existing domain instead.</p>
 
-        <p>Please make sure your configure your web hosting’s settings, so that it shows hidden files and folders. This is to ensure that if you copy/move the contents from the unzipped folder to any other location, you copy all the files including ‘.htaccess’, ‘.env’ files which are necessary for the proper functioning of the software.
-        Now you can access the folder where you have PeoplePro from your browser.
+        <p>
+            Please make sure your configure your web hosting’s settings, so that it shows hidden files and folders. This is to ensure that if you copy/move the contents from the unzipped folder to any other location, you copy all the files including ‘.htaccess’, ‘.env’ files which are necessary for the proper functioning of the software. <br>
+            Now you can access the folder where you have PeoplePro from your browser.
         </p>
 
         <h2><strong>Help with installation</strong></h2>
-        <p>We can help you install on any cpanel based hosting for as little as $30. You can send the money via paypal to tarik_17@yahoo.co.uk. Contact us at support@lion-coders.com with you hosting details and payment proof and we'll take care of the rest.</p>
-        <br>
+        <p>We can help you install on any cpanel based hosting for as little as $30. You can send the money via paypal to tarik_17@yahoo.co.uk. Contact us at support@lion-coders.com with you hosting details and payment proof and we'll take care of the rest.</p><br>
 
         <h2><strong>Error</strong></h2>
         <ul>
@@ -356,7 +252,7 @@
 
     <section id="integratePeopleproDB">
         <div class="page-header">
-            <h3>Integrate Peoplepro DB</h3>
+            <h3>Integrate Existing Peoplepro DB</h3>
             <hr class="notop">
         </div>
         <p>
@@ -432,6 +328,13 @@
             The system offers an informative,interactive and user friendly admin dashboard.
             The dashboard shows summarized information about the organization in a nutshell.
         </p>
+        <ul>
+            <li>Oversee the Comprehensive Operations of the Organization.</li>
+            <li>Visible Subscription Value</li>
+            <li>Total Received amount</li>
+            <li>Total Clients</li>
+            <li>Total Packages</li>
+        </ul>
         <p>
             <img alt="" src="{{ asset('docs-landlord/assets/images/landlord/1.admin_dashboard.png')}}">
         </p>
@@ -798,7 +701,7 @@
 
     var states = ['Start',
         'Server Requirements',
-        'Install',
+        'Integrate Peoplepro SaaS',
         'Software Update',
         'Log In',
         'Admin Dashboard',

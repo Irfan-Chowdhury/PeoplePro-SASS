@@ -222,6 +222,7 @@ class TenantController extends Controller
     {
         try {
             $tenant->domainInfo->delete();
+            $tenant->customer->delete();
             self::tenantDirectoryDelete($tenant->id);
             $tenant->delete();
             $result =  Alert::successMessage('Data Created Successfully');

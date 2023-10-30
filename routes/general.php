@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
 
-
-
-
 // Route::get('/documentation-attendance-device-addon', function() {
 //     return File::get(public_path() . '/documentation/attendance_device_addon/index.php');
 // });

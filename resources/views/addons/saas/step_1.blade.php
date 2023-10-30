@@ -31,7 +31,7 @@
                     </p>
                     <p> <strong>N.B: </strong> If you want to use your peoplepro existing database as a tenant after install then you have to follow the points given below -</p>
                     <ul>
-                        <li>You have to backup your existing database according the instruction. Please read the <a href="#">documentation</a> first.</li>
+                        <li>You have to backup your existing database according the instruction. Please read the <a href="https://peopleprohrmsaas.com/central-documentation#integratePeopleproDB" target="__blank">documentation</a> first.</li>
                         <li>You have to reassign the role-permissin for the employees</li>
                         <li>You have to backup your root <b>public</b> directory's data</li>
                     </ul>

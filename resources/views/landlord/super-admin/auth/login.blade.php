@@ -76,7 +76,7 @@
                 </form>
                 <!-- This three buttons for demo only-->
 
-                @if (env('APP_ENV')=="local")
+                @if (env('PRODUCT_MODE')==="DEMO" || env('PRODUCT_MODE')==="DEVELOPER")
                     <button type="submit" class="btn btn-success btn-sm default admin-btn">LogIn as Admin</button>
                 @endif
 

@@ -63,7 +63,7 @@ Route::get('/get-host', function () {
     return request()->getHost();
 });
 
-Route::middleware(['setPublicLocale'])->group(function () {
+Route::middleware(['setPublicLocale','XSS'])->group(function () {
 
     Route::controller(LandingPageController::class)->group(function () {
         Route::get('/', 'index')->name('landingPage.index');
@@ -96,7 +96,7 @@ Route::get('/super-admin', [AdminController::class, 'showLoginForm'])->name('lan
 Route::post('/super-admin', [AdminController::class, 'login'])->name('landlord.login.proccess');
 Route::post('/super-admin/logout', [AdminController::class, 'logout'])->name('landlord.logout');
 
-Route::middleware(['web','auth','setSuperAdminLocale'])->group(function () {
+Route::middleware(['web','auth','setSuperAdminLocale','XSS'])->group(function () {
     Route::prefix('super-admin')->group(function () {
 
         Route::controller(AdminController::class)->group(function () {
