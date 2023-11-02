@@ -146,7 +146,7 @@
         </div>
 
         <p>Before using the SAAS you have to purchase the <a href="https://codecanyon.net/item/peoplepro-hrm-payroll-project-management/29169229?s_rank=5">PeoplePro</a> first and then have to install it.<p>
-        <p><b>Warning :</b> Your peoplepro app should be exists in root directory I mean <b>"public_html"</b>  if you want to use SaaS. Because the SaaS run on <b><i>public_html</i></b>. Not in any sub-directory or sub-domain.</p>
+        <p><b>Warning :</b> If you want to use SaaS, your main Peoplepro should maintain minimum require version : 1.2.2. Your peoplepro app should be exists in root directory I mean <b>"public_html"</b>  if you want to use SaaS. Because the SaaS run on <b><i>public_html</i></b>. Not in any sub-directory or sub-domain.</p>
 
         <h2><strong>Step 1 : Backup </strong></h2>
         <p>

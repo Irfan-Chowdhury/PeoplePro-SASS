@@ -5,14 +5,12 @@ namespace App\Payment;
 use App\Contracts\PaybleContract;
 use App\Models\Landlord\Payment;
 
-
 class PaypalPayment implements PaybleContract
 {
-    public function pay($tenantRequestData, $paymentRequestData) : object 
+    public function pay($tenantRequestData, $paymentRequestData) : object
     {
         $totalAmount = request()->session()->get('price');
-
-        $payment = Payment::create([
+        return Payment::create([
             'package_id' => $tenantRequestData->package_id,
             'amount' => $totalAmount,
             'payment_method' => $tenantRequestData->payment_method,
@@ -20,12 +18,5 @@ class PaypalPayment implements PaybleContract
             'subscription_type' => $tenantRequestData->subscription_type,
             'data' => json_encode($paymentRequestData)
         ]);
-
-        return $payment;
-    }
-
-    public function cancel()
-    {
-
     }
 }

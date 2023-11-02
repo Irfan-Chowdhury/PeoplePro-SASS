@@ -13,7 +13,7 @@
                             title='{{__('Selecting',['key'=>trans('file.No Payment Gateway')])}}...'>
                             <option value="stripe" {{ in_array('stripe', $paymentGateWays) ? 'selected' : null }}>@lang('file.Stripe')</option>
                             <option value="paystack" {{ in_array('paystack', $paymentGateWays) ? 'selected' : null }}>@lang('file.Paystack')</option>
-                            {{-- <option value="paypal" {{ in_array('paypal', $paymentGateWays) ? 'selected' : null }}>@lang('file.Paypal')</option> --}}
+                            <option value="paypal" {{ in_array('paypal', $paymentGateWays) ? 'selected' : null }}>@lang('file.Paypal')</option>
                             <option value="razorpay" {{ in_array('razorpay', $paymentGateWays) ? 'selected' : null }}>@lang('file.Razorpay')</option>
                     </select>
                 </div>
@@ -53,7 +53,7 @@
                 ])
 
                 <!-- Paypal -->
-                {{-- <div class="col-md-12 mt-4">
+                <div class="col-md-12 mt-4">
                     <h5 class="font-weight-bold">@lang('file.Paypal Credentials')</h5>
                     <hr>
                 </div>
@@ -83,7 +83,7 @@
                     'placeholderData' => 'pk_test_ITN7XXXXXXXXXXXXXXXXXXXX',
                     'isRequired' => false,
                     'valueData'=> config('payment_gateway.paypal.client_secret')
-                ]) --}}
+                ])
 
 
                 <!-- Paystack -->

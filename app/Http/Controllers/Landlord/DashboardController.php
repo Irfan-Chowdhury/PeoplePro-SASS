@@ -16,9 +16,9 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $autoUpdateData = $this->general();
-        $alertVersionUpgradeEnable = $autoUpdateData['alertVersionUpgradeEnable'];
-        $alertBugEnable =  $autoUpdateData['alertBugEnable'];
+        // $autoUpdateData = $this->general();
+        $alertVersionUpgradeEnable = null; //$autoUpdateData['alertVersionUpgradeEnable'];
+        $alertBugEnable =  null; //$autoUpdateData['alertBugEnable'];
 
 
         $tenants = Tenant::with('package')->get();

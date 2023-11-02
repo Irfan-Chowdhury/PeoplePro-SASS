@@ -54,6 +54,10 @@ Route::prefix('addons')->group(function () {
 });
 
 
+Route::get('/paypaltest', function() {
+    return view('landlord.public-section.pages.payment.paypal_new');
+});
+
 Route::get('/central-documentation', function() {
     return view('documentation-landlord.index');
 });
