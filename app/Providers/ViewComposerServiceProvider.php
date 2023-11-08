@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Models\GeneralSetting as TenantGeneralSetting;
-use App\Models\Landlord\GeneralSetting as LandlordGeneralSetting;
-use Carbon\Carbon;
-use Illuminate\Support\ServiceProvider;
+use App\Services\PageService;
+use App\Services\SettingService;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
+
 class ViewComposerServiceProvider extends ServiceProvider
 {
     /**
@@ -20,11 +22,12 @@ class ViewComposerServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      */
-    // public function boot(): void
     public function boot(): void
     {
         if (Schema::hasTable('general_settings') && in_array(request()->getHost(), config('tenancy.central_domains'))) {
-            $generalSetting = LandlordGeneralSetting::latest()->first();
+            $settingService = app()->make(SettingService::class);
+            $pages = app()->make(PageService::class);
+
             view()->composer([
                 'landlord.public-section.layouts.master',
                 'landlord.public-section.pages.landing-page.index',
@@ -33,23 +36,39 @@ class ViewComposerServiceProvider extends ServiceProvider
                 'landlord.super-admin.partials.header',
                 'landlord.super-admin.auth.login',
                 'documentation-landlord.index',
-            ], function ($view) use ($generalSetting) {
-                $view->with('generalSetting', $generalSetting);
+            ], function ($view) use ($settingService) {
+                $view->with('generalSetting',
+                    Cache::remember('generalSetting', config('cache.duration'), function () use ($settingService) {
+                        return $settingService->getLatestGeneralSettingData();
+                    }));
+            });
+
+            view()->composer('landlord.public-section.layouts.master', function ($view) use ($settingService) {
+                $view->with('seoSetting',
+                    Cache::remember('seoSetting', config('cache.duration'), function () use ($settingService) {
+                        return $settingService->getLatestSeoSettingData();
+                    }));
+            });
+
+            view()->composer('landlord.public-section.partials.footer', function ($view) use ($pages) {
+                $view->with('pages',
+                    Cache::remember('pages', config('cache.duration'), function () use ($pages) {
+                        return $pages->getAllByLanguageId(view()->shared('languageId'));
+                    }));
             });
         }
         // else {
-        else if(Schema::hasTable('general_settings')) {
+        elseif (Schema::hasTable('general_settings')) {
 
             $general_settings = TenantGeneralSetting::latest()->first();
 
             view()->composer([
                 'layout.main',
+                'layout.client',
+                'documentation.index',
             ], function ($view) use ($general_settings) {
                 $view->with('general_settings', $general_settings);
             });
         }
     }
 }
-
-
-

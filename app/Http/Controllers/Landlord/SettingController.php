@@ -30,12 +30,12 @@ class SettingController extends Controller
         $generalSetting =  $this->settingService->getLatestGeneralSettingData();
 
         $paymentSetting =  $this->settingService->getLatestPaymentSettingData();
-        
+
         $paymentGateWays = [];
         if(isset($paymentSetting->active_payment_gateway)) {
             $paymentGateWays = explode(",",$paymentSetting->active_payment_gateway);
         }
-        
+
         $mailSetting =  $this->settingService->getLatestMailSettingData();
 
         $analyticSetting =  $this->settingService->getLatestAnalyticSettingData();

@@ -19,8 +19,8 @@ class SeoSettingRequest extends FormRequest
         return [
             'meta_title' => 'required|string|min:3|max:60',
             'meta_description' => 'required|string|min:3|max:160',
-            'og_title' => 'required|string|min:3|max:60',
-            'og_description' => 'required|string|min:3|max:160',
+            'og_title' => 'required|string|min:3|max:90',
+            'og_description' => 'required|string|min:3|max:300',
             'og_image' => 'required|image|mimes:jpg,jpeg,png,gif|max:100000',
         ];
     }

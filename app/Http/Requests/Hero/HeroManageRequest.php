@@ -17,7 +17,7 @@ class HeroManageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'heading' => 'required|string|min:3|max:50',
+            'heading' => 'required|string|min:3|max:100',
             'button_text' => 'required|string|min:3|max:50',
             'sub_heading' => 'required|string',
             'image' => 'image|mimes:jpg,jpeg,png,gif|max:100000',

@@ -27,7 +27,7 @@
                 ])
                 @include('landlord.super-admin.partials.input-field',[
                     'colSize' => 12,
-                    'labelName' => 'OG Title',
+                    'labelName' => 'OG Title (60-90 characters)',
                     'fieldType' => 'text',
                     'nameData' => 'og_title',
                     'placeholderData' => 'Peoplepro SAAS HRM',
@@ -36,7 +36,7 @@
                 ])
                 @include('landlord.super-admin.partials.input-field',[
                     'colSize' => 12,
-                    'labelName' => 'OG Description',
+                    'labelName' => 'OG Description (200-300)',
                     'fieldType' => 'textarea',
                     'nameData' => 'og_description',
                     'placeholderData' => 'Peoplepro SAAS lets your customers subscribe to Peoplepro HRM solution',

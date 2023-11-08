@@ -1,10 +1,3 @@
-@php
-    $generalSetting = DB::table('general_settings')
-        ->latest()
-        ->first();
-@endphp
-
-
 @extends('landlord.public-section.layouts.master')
 @section('public-title', config('app.name').' | '.'Blog Details')
 

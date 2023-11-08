@@ -22,6 +22,8 @@ class SetPublicLocale
         }
         $locale = Language::find($languageId)->locale;
         App::setLocale($locale);
+
+        view()->share('languageId', $languageId);
         return $next($request);
     }
 }

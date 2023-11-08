@@ -1,4 +1,4 @@
-@php $general_settings = DB::table('general_settings')->latest()->first(); @endphp
+{{-- @php $general_settings = DB::table('general_settings')->latest()->first(); @endphp --}}
 
 <!doctype html>
 <!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->

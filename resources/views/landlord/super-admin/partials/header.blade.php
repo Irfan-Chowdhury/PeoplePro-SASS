@@ -1,4 +1,3 @@
-{{-- @php $general_settings = DB::table('general_settings')->latest()->first(); @endphp --}}
 
 <!-- navbar-->
 <header class="header">
@@ -16,7 +15,7 @@
 
                 <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                     <li class="nav-item">
-                        <a class="dropdown-header-name" style="padding-right: 10px" href="" data-toggle="tooltip" title="Clear all cache with refresh"><i class="fa fa-refresh"></i></a>
+                        <a class="dropdown-header-name" style="padding-right: 10px" href="{{ url('/optimize') }}" data-toggle="tooltip" title="Clear all cache with refresh"><i class="fa fa-refresh"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="dropdown-header-name" style="padding-right: 10px" href="{{ route('landingPage.index') }}" target="_blank" title="View Website"><i class="dripicons-preview"></i></a>

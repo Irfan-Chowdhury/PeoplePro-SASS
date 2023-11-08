@@ -11,6 +11,12 @@ class PageService
 {
     public function __construct(public PageContract $pageContract){}
 
+
+    public function getAllByLanguageId($languageId)
+    {
+        return $this->pageContract->getAllByLanguageId($languageId);
+    }
+
     public function yajraDataTable($languageId)
     {
         if (request()->ajax()) {
@@ -83,4 +89,5 @@ class PageService
             'meta_description' => $request->meta_description,
         ];
     }
+
 }

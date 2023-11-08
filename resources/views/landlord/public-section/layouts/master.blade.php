@@ -9,15 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="LionCoders" />
     <meta name="csrf-token" content="CmSeExxpkZmScDB9ArBZKMGKAyzPqnxEriplXWrS">
-    {{-- <link rel="icon" type="image/png" href="{{aseet('landlord/images/logo', $general_setting->site_logo)}}" /> --}}
-    <!-- Document Title -->
-    {{-- <title>{{$general_setting->meta_title ?? 'SalePro SAAS'}}</title> --}}
-    <!-- Links -->
-    {{-- <meta name="description" content="{{$general_setting->meta_description ?? 'Buy SalePro inventory management & POS SAAS php script'}}" />
-    <meta property="og:url" content="{{url()->full()}}" />
-    <meta property="og:title" content="{{$general_setting->og_title ?? 'SalePro SAAS'}}" />
-    <meta property="og:description" content="{{$general_setting->og_description ?? 'Buy SalePro inventory management & POS SAAS php script'}}" />
-    <meta property="og:image" content="{{url('/public/landlord/images/og-image')}}/{{$general_setting->og_image ?? 'saleprosaas.jpg'}}" /> --}}
+    <title>@yield('public-title')</title>
+    <link rel="icon" type="image/png" href="{{asset('landlord/images/logo', $generalSetting->site_logo)}}" />
+    <!-- Meta -->
+    @isset($seoSetting)
+        <meta name="title" content="{{$seoSetting->meta_title}}" />
+        <meta name="description" content="{{$seoSetting->meta_description}}" />
+        <meta property="og:url" content="{{url()->full()}}" />
+        <meta property="og:title" content="{{$seoSetting->og_title}}" />
+        <meta property="og:description" content="{{$seoSetting->og_description}}" />
+        <meta property="og:image" content="{{asset('landlord/images/seo-setting')}}/{{$seoSetting->og_image}}" />
+    @endisset
 
     <!-- Bootstrap CSS -->
     <link href="{{asset('landlord/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -42,7 +44,6 @@
     {!!$general_setting->fb_pixel_script!!}
     @endif --}}
 
-    <title>@yield('public-title')</title>
     @stack('css')
 
 </head>
