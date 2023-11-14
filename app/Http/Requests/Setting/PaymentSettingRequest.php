@@ -37,7 +37,8 @@ class PaymentSettingRequest extends FormRequest
                 $rules['paystack_currency'] = 'required|string';
             }
 
-            if(in_array("paypal", $this->active_payment_gateway) || ($this->paypal_client_id || $this->paypal_client_secret)) {
+            if(in_array("paypal", $this->active_payment_gateway) || ($this->paypal_client_id || $this->paypal_client_secret) || $this->paypal_currency) {
+                $rules['paypal_currency'] = 'required|string|min:3';
                 $rules['paypal_client_id'] = 'required|string|min:3';
                 $rules['paypal_client_secret'] = 'required|string|min:3';
             }

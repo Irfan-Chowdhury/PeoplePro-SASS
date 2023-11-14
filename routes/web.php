@@ -90,9 +90,7 @@ Route::middleware(['setPublicLocale','XSS'])->group(function () {
         Route::get('payment-success/{domain}', 'paymentSuccess')->name('payment.success');
         Route::get('/payment/paystack/pay/callback', 'handleGatewayCallback')->name('payment.paystack.pay.callback');
     });
-
     Route::get('/language-switch-public/{locale}', [TranslationController::class, 'languageSwitchByPublic'])->name('lang.switch.byPublic');
-
 });
 
 

@@ -1,7 +1,6 @@
 @extends('landlord.super-admin.layouts.master')
 @section('landlord-content')
 
-
     <div class="container-fluid mb-3">
         <div class="row">
             <div class="col-3">

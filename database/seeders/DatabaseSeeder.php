@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             LandlordPermissionsSeeder::class,
             PackageSeeder::class,
+            FeatureSeeder::class,
+            BlogSeeder::class,
+            SeoSeeder::class,
         ]);
     }
 }

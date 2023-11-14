@@ -7,9 +7,21 @@ return [
         'currency' => env("STRIPE_CURRENCY"),
     ],
     'paypal' => [
+        // 'mode' => env("PAYPAL_MODE"),
+        // 'client_id' => env("PAYPAL_SANDBOX_CLIENT_ID"),
+        // 'client_secret' => env("PAYPAL_SANDBOX_CLIENT_SECRET"),
+        // 'client_app_id' => env("PAYPAL_LIVE_APP_ID"),
         'mode' => env("PAYPAL_MODE"),
-        'client_id' => env("PAYPAL_SANDBOX_CLIENT_ID"),
-        'client_secret' => env("PAYPAL_SANDBOX_CLIENT_SECRET"),
+        'currency' => env("PAYPAL_CURRENCY"),
+        'sandbox' => [
+            'client_id' => env("PAYPAL_SANDBOX_CLIENT_ID"),
+            'client_secret' => env("PAYPAL_SANDBOX_CLIENT_SECRET"),
+        ],
+        'live' => [
+            'client_id'         => env('PAYPAL_LIVE_CLIENT_ID', ''),
+            'client_secret'     => env('PAYPAL_LIVE_CLIENT_SECRET', ''),
+            'app_id'            => env('PAYPAL_LIVE_APP_ID', ''),
+        ],
     ],
     'razorpay' => [
         'status' => env("RAZORPAY_STATUS"),

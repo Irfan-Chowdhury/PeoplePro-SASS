@@ -23,7 +23,7 @@ class LandlordGeneralSettingSeeder extends Seeder
             'site_title' => $siteTitle,
             'site_logo'  => "202310100928261.png",
             'time_zone' => $timeZone,
-            'phone' => '01829498634',
+            'phone' => '123456789',
             'email' => 'support@lion-coders.com',
             'free_trial_limit' => 5,
             'currency_code' => "USD",

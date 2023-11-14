@@ -27,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // dd(phpinfo());
+
 		if(isset($_COOKIE['language'])) {
 			App::setLocale($_COOKIE['language']);
 		} else {

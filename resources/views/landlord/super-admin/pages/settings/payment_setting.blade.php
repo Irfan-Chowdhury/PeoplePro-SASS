@@ -57,7 +57,7 @@
                     <h5 class="font-weight-bold">@lang('file.Paypal Credentials')</h5>
                     <hr>
                 </div>
-                @include('landlord.super-admin.partials.input-field',[
+                {{-- @include('landlord.super-admin.partials.input-field',[
                     'colSize' => 4,
                     'labelName' => 'Paypal Mode',
                     'fieldType' => 'text',
@@ -65,6 +65,22 @@
                     'placeholderData' => 'sandbox',
                     'isRequired' => false,
                     'valueData'=> config('payment_gateway.paypal.mode')
+                ]) --}}
+                <div class="col-md-4">
+                    <label><b>@lang('file.Paypal Mode')</b></label>
+                    <select name="paypal_mode" class="form-control" required>
+                        <option value="sandbox">Sandbox</option>
+                        <option value="live">Live</option>
+                    </select>
+                </div>
+                @include('landlord.super-admin.partials.input-field',[
+                    'colSize' => 4,
+                    'labelName' => 'Currency',
+                    'fieldType' => 'text',
+                    'nameData' => 'paypal_currency',
+                    'placeholderData' => 'USD',
+                    'isRequired' => false,
+                    'valueData'=> config('payment_gateway.paypal.currency'),
                 ])
                 @include('landlord.super-admin.partials.input-field',[
                     'colSize' => 4,
@@ -73,7 +89,7 @@
                     'nameData' => 'paypal_client_id',
                     'placeholderData' => 'pk_test_ITN7XXXXXXXXXXXXXXXXXXXX',
                     'isRequired' => false,
-                    'valueData'=> config('payment_gateway.paypal.client_id')
+                    'valueData'=> config('payment_gateway.paypal.mode')==='sandbox' ? config('payment_gateway.paypal.sandbox.client_id') :  config('payment_gateway.paypal.live.client_id'),
                 ])
                 @include('landlord.super-admin.partials.input-field',[
                     'colSize' => 4,
@@ -82,7 +98,16 @@
                     'nameData' => 'paypal_client_secret',
                     'placeholderData' => 'pk_test_ITN7XXXXXXXXXXXXXXXXXXXX',
                     'isRequired' => false,
-                    'valueData'=> config('payment_gateway.paypal.client_secret')
+                    'valueData'=> config('payment_gateway.paypal.mode')==='sandbox' ? config('payment_gateway.paypal.sandbox.client_secret') :  config('payment_gateway.paypal.live.client_secret'),
+                ])
+                @include('landlord.super-admin.partials.input-field',[
+                    'colSize' => 4,
+                    'labelName' => 'Paypal App Id (only for live)',
+                    'fieldType' => 'text',
+                    'nameData' => 'paypal_app_id',
+                    'placeholderData' => 'APP-80W284485P519543T',
+                    'isRequired' => false,
+                    'valueData'=> config('payment_gateway.paypal.mode')==='sandbox' ? "" :  config('payment_gateway.paypal.live.app_id'),
                 ])
 
 

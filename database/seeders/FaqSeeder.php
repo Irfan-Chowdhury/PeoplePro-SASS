@@ -23,31 +23,31 @@ class FaqSeeder extends Seeder
             [
                 'faq_id' => $faq->id,
                 'question' => 'What is PeoplePro SAAS?',
-                'answer' => 'SalePro SAAS is a PHP Laravel Script featuring Point of Sale (POS) with inventory management system, accounting and HRM solution.',
+                'answer' => 'PeoplePro SaaS is a PHP Laravel Script featuring HRM system, Payroll & Project Management.',
                 'position' => 1
             ],
             [
                 'faq_id' => $faq->id,
                 'question' => 'Is it an addon or standalone solution?',
-                'answer' => 'It is a standalone solution so you don\'t have to purchase anything else.',
+                'answer' => 'It is an addon solution so you have to purchase PeoplePro before.',
                 'position' => 2
             ],
             [
                 'faq_id' => $faq->id,
                 'question' => 'Are you selling subscriptions or selling the script?',
-                'answer' => 'We are not selling subscription, but we are selling our script to various b2b and solo entrepreneurs. So, our customers can make money selling subscriptions',
+                'answer' => 'We are not selling subscription, but we are selling our script to various b2b and solo entrepreneurs. So, our customers can make money selling subscriptions.',
                 'position' => 3
             ],
             [
                 'faq_id' => $faq->id,
                 'question' => 'Is your saas multi-tenant or single-tenant ?',
-                'answer' => 'Our SaaS is multi-tenant, multi-database system. So, all your users will have their separate databases, sub-domains, custom domain - making it faster compared to other systems',
+                'answer' => 'Our SaaS is multi-tenant, multi-database system. So, all your users will have their separate databases, sub-domains, custom domain - making it faster compared to other systems.',
                 'position' => 4
             ],
             [
                 'faq_id' => $faq->id,
-                'question' => 'Do I have to renew it every year or just one time fee ?',
-                'answer' => 'No, you dont need to renew it every year. Whatever you pay for buying, that’s it. You have a lifetime SAAS POS in your hand with the support of a team of highly skilled programmers.',
+                'question' => 'Do I have to renew ?',
+                'answer' => 'Yes, you have to renew support after 6 months through codecanyon.',
                 'position' => 5
             ],
             [

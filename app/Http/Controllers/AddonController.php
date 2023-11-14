@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InstallationRequest;
 use App\Http\traits\ENVFilePutContent;
+use Exception;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,7 @@ class AddonController extends Controller
         if (!$isPurchaseVerified->codecheck) {
             return redirect()->back()->withErrors(['errors' => ['Wrong Purchase Code !']]);
         }
+
         $envPath = base_path('.env');
         if (!file_exists($envPath))
             return redirect()->back()->withErrors(['errors' => ['.env file does not exist.']]);
@@ -48,21 +50,30 @@ class AddonController extends Controller
         elseif (!is_writable($envPath))
             return redirect()->back()->withErrors(['errors' => ['.env file is not writable.']]);
         else {
+            DB::beginTransaction();
+            try {
 
-            $data = self::fileReceivedFromAuthorServer($isPurchaseVerified->authorServerURL);
+                $data = self::fileReceivedFromAuthorServer($isPurchaseVerified->authorServerURL);
+                if(!$data['isReceived']) {
+                    throw new Exception("The file transfer has failed. Please try again later.", 1);
+                }
 
-            if(!$data['isReceived']) {
-                return redirect()->back()->withErrors(['errors' => ['The file transfer has failed. Please try again later.']]);
+                self::fileUnzipAndDeleteManage($data);
+                $this->envSetDatabaseCredentials($request);
+                self::switchToNewDatabaseConnection($request);
+                self::migrateCentralDatabase();
+                self::seedCentralDatabase();
+                session(['centralDomain' => $request->central_domain]);
+
+                DB::commit();
+
+                return redirect($request->central_domain.'/addons/saas/install/step-4');
+
+            } catch (Exception $e) {
+                DB::rollback();
+
+                return redirect()->back()->withErrors(['errors' => [$e->getMessage()]]);
             }
-
-            self::fileUnzipAndDeleteManage($data);
-            $this->envSetDatabaseCredentials($request);
-            self::switchToNewDatabaseConnection($request);
-            self::migrateCentralDatabase();
-            self::seedCentralDatabase();
-            session(['centralDomain' => $request->central_domain]);
-
-            return redirect($request->central_domain.'/addons/saas/install/step-4');
         }
     }
 
@@ -155,7 +166,7 @@ class AddonController extends Controller
             '.env.example',
             '.gitattributes',
             '.gitignore',
-            '.styleci.yml'
+            '.styleci.yml',
         ];
 
         foreach ($baseFiles as $file) {
@@ -229,8 +240,3 @@ class AddonController extends Controller
         return view('addons.saas.step_4');
     }
 }
-
-
-
-
-

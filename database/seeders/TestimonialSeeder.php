@@ -14,13 +14,30 @@ class TestimonialSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            'name' => 'Mark Williamson',
-            'description' => 'Great Customer Support Ever! The support guy was really helpful!',
-            'business_name' => 'LionCoders',
-            'position' => 1,
-            'image' => 'logo.png',
+            [
+                'name' => 'Joe Saint',
+                'description' => 'Can be set up very well and efficiently. Best HRM software. I like it. We hope this will help us to succeed in our future endeavors. No bugs found so far. Support is best.',
+                'business_name' => 'VivaSoft.LTD',
+                'position' => 1,
+                'image' => '202310010821561.jpg',
+            ],
+            [
+                'name' => 'Mark Williamson',
+                'description' => 'Great Customer Support Ever! The support guy was really helpful !',
+                'business_name' => 'OrangeToolz.com',
+                'position' => 2,
+                'image' => '202310010823181.jpeg',
+            ],
+            [
+                'name' => 'Brenda Ballion',
+                'description' => 'This is perfect product for your HRM.',
+                'business_name' => 'BrainStation23',
+                'position' => 3,
+                'image' => '202310010824391.jpg',
+            ],
+
         ];
 
-        Testimonial::create($data);
+        Testimonial::insert($data);
     }
 }

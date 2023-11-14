@@ -141,26 +141,40 @@ class SettingService
 
             $this->paymentSettingContract->updateOrCreate([], $data);
 
+            // Payment Credentials set into Env
+            $this->stripeENVDataSet($request);
+            $this->paypalENVDataSet($request);
+            $this->razorpayENVDataSet($request);
+            $this->paystackENVDataSet($request);
+
             // Stripe
-            $this->dataWriteInENVFile('STRIPE_KEY', $request->stripe_public_key ?? null);
-            $this->dataWriteInENVFile('STRIPE_SECRET', $request->stripe_secret_key ?? null);
-            $this->dataWriteInENVFile('STRIPE_CURRENCY', $request->stripe_currency ?? null);
+            // $this->dataWriteInENVFile('STRIPE_KEY', $request->stripe_public_key ?? null);
+            // $this->dataWriteInENVFile('STRIPE_SECRET', $request->stripe_secret_key ?? null);
+            // $this->dataWriteInENVFile('STRIPE_CURRENCY', $request->stripe_currency ?? null);
+
 
             // Paypal
-            $this->dataWriteInENVFile('PAYPAL_MODE', $request->paypal_mode ?? null);
-            $this->dataWriteInENVFile('PAYPAL_SANDBOX_CLIENT_ID', $request->paypal_client_id ?? null);
-            $this->dataWriteInENVFile('PAYPAL_SANDBOX_CLIENT_SECRET', $request->paypal_client_secret ?? null);
+            // $this->dataWriteInENVFile('PAYPAL_MODE', $request->paypal_mode ?? null);
+            // $this->dataWriteInENVFile('PAYPAL_CURRENCY', $request->paypal_currency ?? null);
+            // if($request->paypal_mode === 'sandbox') {
+            //     $this->dataWriteInENVFile('PAYPAL_SANDBOX_CLIENT_ID', $request->paypal_client_id ?? null);
+            //     $this->dataWriteInENVFile('PAYPAL_SANDBOX_CLIENT_SECRET', $request->paypal_client_secret ?? null);
+            // } else {
+            //     $this->dataWriteInENVFile('PAYPAL_LIVE_CLIENT_ID', $request->paypal_client_id ?? null);
+            //     $this->dataWriteInENVFile('PAYPAL_LIVE_CLIENT_SECRET', $request->paypal_client_secret ?? null);
+            //     $this->dataWriteInENVFile('PAYPAL_LIVE_APP_ID', $request->paypal_app_id ?? null);
+            // }
 
             // Razorpay
-            $this->dataWriteInENVFile('RAZORPAY_KEY', $request->razorpay_key ?? null);
-            $this->dataWriteInENVFile('RAZORPAY_SECRET', $request->razorpay_secret ?? null);
+            // $this->dataWriteInENVFile('RAZORPAY_KEY', $request->razorpay_key ?? null);
+            // $this->dataWriteInENVFile('RAZORPAY_SECRET', $request->razorpay_secret ?? null);
 
             // Paystack
-            $this->dataWriteInENVFile('PAYSTACK_PUBLIC_KEY', $request->paystack_public_key ?? null);
-            $this->dataWriteInENVFile('PAYSTACK_SECRET_KEY', $request->paystack_secret_key ?? null);
-            $this->dataWriteInENVFile('PAYSTACK_PAYMENT_URL', $request->paystack_payment_url ?? null);
-            $this->dataWriteInENVFile('MERCHANT_EMAIL', $request->paystack_merchant_email ?? null);
-            $this->dataWriteInENVFile('PAYSTACK_CURRENCY', $request->paystack_currency ?? null);
+            // $this->dataWriteInENVFile('PAYSTACK_PUBLIC_KEY', $request->paystack_public_key ?? null);
+            // $this->dataWriteInENVFile('PAYSTACK_SECRET_KEY', $request->paystack_secret_key ?? null);
+            // $this->dataWriteInENVFile('PAYSTACK_PAYMENT_URL', $request->paystack_payment_url ?? null);
+            // $this->dataWriteInENVFile('MERCHANT_EMAIL', $request->paystack_merchant_email ?? null);
+            // $this->dataWriteInENVFile('PAYSTACK_CURRENCY', $request->paystack_currency ?? null);
 
 
             return Alert::successMessage('Data Submitted Successfully');
@@ -168,6 +182,41 @@ class SettingService
         catch (Exception $exception) {
             return Alert::errorMessage($exception->getMessage());
         }
+    }
+
+    private function stripeENVDataSet(object $request) : void
+    {
+        $this->dataWriteInENVFile('STRIPE_KEY', $request->stripe_public_key ?? null);
+        $this->dataWriteInENVFile('STRIPE_SECRET', $request->stripe_secret_key ?? null);
+        $this->dataWriteInENVFile('STRIPE_CURRENCY', $request->stripe_currency ?? null);
+    }
+
+    private function paypalENVDataSet(object $request) : void
+    {
+        $this->dataWriteInENVFile('PAYPAL_MODE', $request->paypal_mode ?? null);
+        $this->dataWriteInENVFile('PAYPAL_CURRENCY', $request->paypal_currency ?? null);
+        if($request->paypal_mode === 'sandbox') {
+            $this->dataWriteInENVFile('PAYPAL_SANDBOX_CLIENT_ID', $request->paypal_client_id ?? null);
+            $this->dataWriteInENVFile('PAYPAL_SANDBOX_CLIENT_SECRET', $request->paypal_client_secret ?? null);
+        } else {
+            $this->dataWriteInENVFile('PAYPAL_LIVE_CLIENT_ID', $request->paypal_client_id ?? null);
+            $this->dataWriteInENVFile('PAYPAL_LIVE_CLIENT_SECRET', $request->paypal_client_secret ?? null);
+            $this->dataWriteInENVFile('PAYPAL_LIVE_APP_ID', $request->paypal_app_id ?? null);
+        }
+    }
+    private function razorpayENVDataSet(object $request) : void
+    {
+        $this->dataWriteInENVFile('RAZORPAY_KEY', $request->razorpay_key ?? null);
+        $this->dataWriteInENVFile('RAZORPAY_SECRET', $request->razorpay_secret ?? null);
+    }
+
+    private function paystackENVDataSet(object $request) : void
+    {
+        $this->dataWriteInENVFile('PAYSTACK_PUBLIC_KEY', $request->paystack_public_key ?? null);
+        $this->dataWriteInENVFile('PAYSTACK_SECRET_KEY', $request->paystack_secret_key ?? null);
+        $this->dataWriteInENVFile('PAYSTACK_PAYMENT_URL', $request->paystack_payment_url ?? null);
+        $this->dataWriteInENVFile('MERCHANT_EMAIL', $request->paystack_merchant_email ?? null);
+        $this->dataWriteInENVFile('PAYSTACK_CURRENCY', $request->paystack_currency ?? null);
     }
 
 

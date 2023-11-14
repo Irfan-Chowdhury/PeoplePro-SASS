@@ -53,7 +53,6 @@
     49 => 'Barryvdh\\DomPDF\\ServiceProvider',
     50 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     51 => 'Intervention\\Image\\ImageServiceProvider',
-    52 => 'Srmklive\\PayPal\\Providers\\PayPalServiceProvider',
   ),
   'eager' => 
   array (
@@ -95,7 +94,6 @@
     35 => 'Barryvdh\\DomPDF\\ServiceProvider',
     36 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     37 => 'Intervention\\Image\\ImageServiceProvider',
-    38 => 'Srmklive\\PayPal\\Providers\\PayPalServiceProvider',
   ),
   'deferred' => 
   array (

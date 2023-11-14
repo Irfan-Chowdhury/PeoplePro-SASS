@@ -15,8 +15,8 @@ class HeroSeeder extends Seeder
     {
         $data = [
             'language_id' => 1,
-            'heading' => 'Peoplepro is a HRM software.',
-            'sub_heading' => 'Take care of all your products, sales, purchases, stores related tasks from an easy-to-use platform, from anywhere you want, anytime you want',
+            'heading' => 'PeoplePro - best HRM SaaS with payroll, attendance and project management.',
+            'sub_heading' => 'Unlock the full potential of your business with PeoplePro SaaS application. Streamline HR processes, effortlessly manage attendance, and seamlessly conquer projects. Enhance collaboration and productivity in one interactive platform, making your organization more efficient and successful than ever before.',
             'button_text' => 'Try for free',
             'image' => '202310010734541.png',
         ];

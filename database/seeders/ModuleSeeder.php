@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Contracts\ModuleDetailContract;
 use App\Models\Landlord\Module;
 use App\Models\Landlord\ModuleDetail;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ModuleSeeder extends Seeder
@@ -34,21 +32,14 @@ class ModuleSeeder extends Seeder
             ],
             [
                 'module_id' => $module->id,
-                'name' => 'Sales & POS',
-                'description' => 'Manage your daily sales from beautifully designed POS page with lots of exclusive features.',
+                'name' => 'HRM',
+                'description' => 'Manage your employees  with lots of exclusive features.',
                 'icon' => 'fa fa-briefcase',
                 'position' => 2
             ],
             [
                 'module_id' => $module->id,
-                'name' => 'Stock & Inventory',
-                'description' => 'Manage standard/combo/digital/service products with variants, IMEI, batches and expiry dates.',
-                'icon' => 'fa fa-cubes',
-                'position' => 3
-            ],
-            [
-                'module_id' => $module->id,
-                'name' => 'Manage accounts, account statement, balance sheet, employees, payroll, attendance, holidays and lots more.',
+                'name' => 'Manage accounts, account statement, balance sheet, employees, payroll, attendance, holidays and lots',
                 'description' => 'Manage standard/combo/digital/service products with variants, IMEI, batches and expiry dates.',
                 'icon' => 'fa fa-credit-card-alt',
                 'position' => 3

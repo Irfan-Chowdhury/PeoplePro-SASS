@@ -16,8 +16,8 @@ class PackageSeeder extends Seeder
             [
                 'name' => 'Basic',
                 'is_free_trial' => true,
-                'monthly_fee' => 20,
-                'yearly_fee' => 200,
+                'monthly_fee' => 19,
+                'yearly_fee' => 190,
                 'number_of_user_account' => 100,
                 'number_of_employee' => 200,
                 'features' => 'user,details-employee,customize-setting,role,general-setting,mail-setting,access-variable_type,access-variable_method,access-language,company,department,designation,location,timesheet,office_shift',
@@ -30,8 +30,8 @@ class PackageSeeder extends Seeder
             [
                 'name' => 'Standard',
                 'is_free_trial' => true,
-                'monthly_fee' => 20,
-                'yearly_fee' => 200,
+                'monthly_fee' => 22,
+                'yearly_fee' => 220,
                 'number_of_user_account' => 100,
                 'number_of_employee' => 200,
                 'features' => 'user,details-employee,customize-setting,role,general-setting,mail-setting,access-variable_type,access-variable_method,access-language,core_hr,view-calendar,promotion,award,transfer,travel,resignation,complaint,warning,termination,timesheet,office_shift,project-management,project,task,client,invoice',
@@ -44,8 +44,8 @@ class PackageSeeder extends Seeder
             [
                 'name' => 'Premium',
                 'is_free_trial' => true,
-                'monthly_fee' => 20,
-                'yearly_fee' => 200,
+                'monthly_fee' => 27,
+                'yearly_fee' => 270,
                 'number_of_user_account' => 100,
                 'number_of_employee' => 200,
                 'features' => 'user,details-employee,customize-setting,role,general-setting,mail-setting,access-variable_type,access-variable_method,access-language,company,department,designation,location,timesheet,office_shift,performance,goal-type,goal-tracking,indicator,appraisal',
