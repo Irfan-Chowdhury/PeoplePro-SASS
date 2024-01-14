@@ -301,11 +301,12 @@
             <hr class="notop">
         </div>
         <p>
-            After installation go to the project/root url.Then you will be prompt to login.
+            After installation go to the project/root url.Then you will be prompt to super-admin login.
             The login credentials provided below are for initial usage only - do not forget
             to update your password after first successful login.
 
         <ul>
+            <li>Login URL :: https://your_domain_url/super-admin </li>
             <li>Username :: admin</li>
             <li>Password :: admin</li>
         </ul>

@@ -7,6 +7,7 @@ use App\Http\Requests\Mail\MailSettingRequest;
 use App\Models\Employee;
 use App\Http\traits\ENVFilePutContent;
 use App\Mail\ConfirmationEmail;
+use App\Models\department;
 use App\Models\FinanceBankCash;
 use App\Models\GeneralSetting;
 use App\Models\LeaveType;

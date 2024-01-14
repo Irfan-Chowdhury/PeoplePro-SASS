@@ -2,6 +2,7 @@
 
 namespace App\Models\Landlord;
 
+use App\Models\Tenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,5 +26,10 @@ class Package extends Model
         'is_active',
         'position'
     ];
+
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class,'package_id');
+    }
 
 }

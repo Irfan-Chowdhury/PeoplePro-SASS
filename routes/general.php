@@ -13,15 +13,12 @@ Route::get('/phpinfo', function() {
     return phpinfo();
 });
 
-Route::get('/documentation', function() {
-    return view('documentation.index');
-});
-
 Route::get('/documentation-attendance-device-addon', function() {
     return view('documentation.attendance_device_addon.index');
 });
 
 Route::get('/optimize', function() {
+    Cache::flush();
     Artisan::call('optimize:clear');
     return redirect()->back();
 });

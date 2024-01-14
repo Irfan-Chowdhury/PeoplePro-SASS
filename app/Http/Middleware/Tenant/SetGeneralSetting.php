@@ -21,6 +21,7 @@ class SetGeneralSetting
             self::setAttendanceDeviceDateFormat($generalSetting);
             self::setDateFormat($generalSetting);
             self::setDateFormatJs($generalSetting);
+            self::setCommonDataInLayoutAndDoc($generalSetting);
         }
         return $next($request);
     }
@@ -73,6 +74,16 @@ class SetGeneralSetting
     {
         $dateFormatJs = $generalSetting->date_format_js ?? null;
         Session::put('dateFormatJs', $dateFormatJs);
+    }
+
+    private static function setCommonDataInLayoutAndDoc(object $generalSetting): void
+    {
+        view()->composer([
+            'documentation.index',
+            'layout.main',
+        ], function ($view) use ($generalSetting) {
+            $view->with('generalSetting', $generalSetting);
+        });
     }
 
 }

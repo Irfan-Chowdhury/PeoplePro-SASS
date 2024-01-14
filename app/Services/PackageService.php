@@ -7,6 +7,7 @@ use App\Contracts\PermissionContract;
 use App\Contracts\TenantContract;
 use App\Facades\Alert;
 use App\Http\traits\PermissionHandleTrait;
+use App\Models\Landlord\Package;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -216,9 +217,24 @@ class PackageService
         }
     }
 
+    public function hasTenants(int $packageId) : bool
+    {
+        $package =  Package::with('tenants')->find($packageId);
+
+        if ($package->tenants->count() > 0) {
+            return true;
+        }
+        return false;
+    }
+
     public function remove($id)
     {
         try {
+
+            if(self::hasTenants($id)) {
+                throw new Exception("You have sub-domains according to this package. At first you have to delete the domains (not recomended) or change into another package on that domains.");
+            }
+
             $this->packageContract->delete($id);
 
             return Alert::successMessage('Data Deleted Successfully');

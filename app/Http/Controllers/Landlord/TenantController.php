@@ -82,7 +82,7 @@ class TenantController extends Controller
                     return $row->customer->email;
                 })
                 ->addColumn('package', function ($row) {
-                    return $row->package->name;
+                    return isset($row->package->name) ? $row->package->name : null;
                 })
                 ->addColumn('subscription_type', function ($row) {
                     return $row->subscription_type;
@@ -110,7 +110,6 @@ class TenantController extends Controller
                 return redirect(route("payment.pay.page",$request->payment_method), 307);
             }
 
-            // $this->tenantGenerate($request);
             $this->tenantService->newTenantGenerate($request);
 
             DB::commit();

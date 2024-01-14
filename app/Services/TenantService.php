@@ -11,26 +11,20 @@ use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 
 class TenantService
 {
-    // use TenantTrait;
+    use TenantTrait;
 
     public function newTenantGenerate($request) : object
     {
         $customer = Customer::create(self::customerData($request));
         $package = Package::find($request->package_id);
+        Session::put('tenantCompanyName', $request->company_name);
 
         return self::createTenant($request, $customer, $package);
-
-        // if($package->is_free_trial) {
-        //     $this->createTenant($request, $customer, $package);
-        //     // return \Redirect::to('https://'.$request->tenant.'.'.env('CENTRAL_DOMAIN'));
-        // }
-
-        // Mail::to($request->email)->send(new ConfirmationEmail($request));
-        // event(new CustomerRegistered($request)); // Testing Purpose
     }
 
     protected function customerData($request)
@@ -221,4 +215,6 @@ class TenantService
             self::setDataInTenantGeneralSetting($packageDetailsForTenant);
         });
     }
+    
+
 }

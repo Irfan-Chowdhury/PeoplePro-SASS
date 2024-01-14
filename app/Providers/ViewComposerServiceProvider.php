@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\department;
 use App\Models\GeneralSetting as TenantGeneralSetting;
 use App\Services\PageService;
 use App\Services\SettingService;
@@ -34,7 +35,10 @@ class ViewComposerServiceProvider extends ServiceProvider
                 'landlord.public-section.pages.renew.contact_for_renewal',
                 'landlord.super-admin.pages.dashboard.index',
                 'landlord.super-admin.partials.header',
+                'landlord.super-admin.partials.footer',
                 'landlord.super-admin.auth.login',
+                'landlord.super-admin.auth.passwords.email',
+                'landlord.super-admin.auth.passwords.reset',
                 'documentation-landlord.index',
             ], function ($view) use ($settingService) {
                 $view->with('generalSetting',
@@ -57,15 +61,15 @@ class ViewComposerServiceProvider extends ServiceProvider
                     }));
             });
         }
-        // else {
         elseif (Schema::hasTable('general_settings')) {
 
+            // $comany = department::latest()->first();
             $general_settings = TenantGeneralSetting::latest()->first();
 
             view()->composer([
                 'layout.main',
                 'layout.client',
-                'documentation.index',
+                // 'documentation.index',
             ], function ($view) use ($general_settings) {
                 $view->with('general_settings', $general_settings);
             });

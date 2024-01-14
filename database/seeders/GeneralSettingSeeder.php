@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Http\traits\ENVFilePutContent;
 use App\Models\GeneralSetting;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Session;
 
 class GeneralSettingSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class GeneralSettingSeeder extends Seeder
         $timeZone = "Asia/Dhaka";
         $dateFormat = "d-m-Y";
 
-        $siteTitle = "PeoplePro";
+        $siteTitle = Session::has('tenantCompanyName') ? Session::get('tenantCompanyName') : "PeoplePro";
 
         $data = [
             'site_title' => $siteTitle,

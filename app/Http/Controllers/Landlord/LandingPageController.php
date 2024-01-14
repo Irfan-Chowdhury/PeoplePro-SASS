@@ -57,8 +57,8 @@ class LandingPageController extends Controller
             return $this->socialContract->getOrderByPosition();
         });
 
-        $hero = Cache::remember('hero', config('cache.duration'), function () {
-            return Hero::where('language_id', 1)->latest()->first();
+        $hero = Cache::remember('hero', config('cache.duration'), function () use ($languageId) {
+            return Hero::where('language_id', $languageId)->latest()->first();
         });
 
         $module = Cache::remember('module', config('cache.duration'), function () use ($moduleContract, $languageId) {

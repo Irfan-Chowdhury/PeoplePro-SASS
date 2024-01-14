@@ -1,9 +1,3 @@
-{{-- @php $general_setting = DB::table('general_settings')->latest()->first(); @endphp --}}
-
-@php
-        //  $general_settings = \App\Models\GeneralSetting::latest()->first();
-@endphp
-
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <link rel="icon" type="image/png" href="{{asset('../../images/logo/'.$general_settings->site_logo)}}"/>
-    <title>{{$general_settings->site_title ?? "NO Title"}}</title>
+    <title>{{$generalSetting->site_title ?? "NO Title"}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">

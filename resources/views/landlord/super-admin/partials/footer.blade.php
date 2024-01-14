@@ -1,9 +1,7 @@
-
 <footer class="main-footer">
     <div class="container-fluid">
-        {{-- <p>&copy; {{$general_settings->site_title ?? "no title"}} || {{ __('Developed by')}}
-            <a href={{$general_settings->footer_link}} class="external">{{$general_settings->footer}}</a> || Version - {{env('VERSION')}} --}}
-        <p>&copy; PeopleProSAAS || {{ __('Developed by')}}
-            <a href="" class="external">LionCoders</a> || Version - {{ config('app.version') }}
+        <p>&copy; {{$generalSetting->footer ?? "no title"}} || {{ __('Developed by')}}
+            <a href="https://lion-coders.com/" class="external">LionCoders</a> || Version - 1.1.1 <!-- config('app.version') }} -->
+        </p>
     </div>
 </footer>

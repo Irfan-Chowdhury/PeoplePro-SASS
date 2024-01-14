@@ -31,6 +31,7 @@ return array (
   'All_Department' => 'All Department',
   'Allocated Day' => 'Allocated Day',
   'Allowances' => 'Allowances',
+  'Amharic' => 'Amh',
   'Amount' => 'Amount',
   'Analytics Setting' => 'Analytics Setting',
   'Announcement' => 'Announcement',
@@ -113,11 +114,11 @@ return array (
   'Default' => 'Default',
   'Deferred' => 'Deferred',
   'Delete' => 'Delete',
-  'Deleting' => 
+  'Deleting' =>
   array (
-    '' => 
+    '' =>
     array (
-      '' => 
+      '' =>
       array (
         '' => 'Deleting...',
       ),
@@ -416,6 +417,7 @@ return array (
   'Size' => 'Size',
   'Social Section' => 'Social Section',
   'Solved' => 'Solved',
+  'Somali' => 'so',
   'Spouse' => 'Spouse',
   'Staff Id' => 'Staff Id',
   'Start Date' => 'Start Date',

@@ -14,4 +14,6 @@ class PackageRepository extends BaseRepository implements PackageContract
         $this->$model = $model;
         parent::__construct($this->$model);
     }
+
+    
 }

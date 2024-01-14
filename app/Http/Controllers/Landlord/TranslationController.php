@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use JoeDixon\Translation\Drivers\Translation;
 use JoeDixon\Translation\Http\Requests\LanguageRequest;
 use JoeDixon\Translation\Http\Requests\TranslationRequest;
+use Illuminate\Support\Facades\Cache;
 
 class TranslationController extends Controller
 {
@@ -54,6 +55,7 @@ class TranslationController extends Controller
         return view('landlord.super-admin.pages.translations.create', compact('language'));
     }
 
+
     public function store(TranslationRequest $request, $language)
     {
         if ($request->filled('group')) {
@@ -62,6 +64,9 @@ class TranslationController extends Controller
         } else {
             $this->translation->addSingleTranslation($language, 'single', $request->get('key'), $request->get('value') ?: '');
         }
+
+        // $sourcePath = resource_path('lang/en/file.php');
+        // $destinationPath = resource_path('lang/pt/file.php');
 
         session()->flash('message', 'Translation Successfully Added.');
         session()->flash('type', 'success');
@@ -96,13 +101,14 @@ class TranslationController extends Controller
     public function languageSwitchByPublic($locale)
     {
         // setcookie('language', $locale, time() + (86400 * 365), '/');
+        // Session::put('DefaultSuperAdminLocale', $language->locale);
 
         $language = Language::where('locale', $locale)->first();
         Session::put('TempPublicLangId', $language->id);
         Session::put('TempPublicLocale', $language->locale);
         App::setLocale($language->locale);
 
-        // Session::put('DefaultSuperAdminLocale', $language->locale);
+        Cache::flush();
 
         return back();
     }

@@ -16,7 +16,7 @@
                             @if($user->profile_photo)
                                 <img src="{{url(tenantPath().'/uploads/profile_photos',$user->profile_photo)}}" height="120" width="120">
                             @else
-                                <img src="{{url('logo/avatar.jpg')}}" height="120" width="120" >
+                                <img src="{{asset('../../images/logo/avatar.jpg')}}" height="120" width="120" >
                             @endif
                             <p class="italic"><small>{{__('The field labels marked with * are required input fields')}}.</small></p>
                             <form method="POST" action="{{ route('profile_update',$user->id)}}" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>{{trans('file.Username')}} *</label>
-                                            <input type="text" name="username" value="{{$user->username}}" required class="form-control" />
+                                            <input type="text" readonly name="username" value="{{$user->username}}" required class="form-control" />
                                             @if($errors->has('username'))
                                                 <span>
                                                     <strong>{{ $errors->first('username') }}</strong>

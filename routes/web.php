@@ -26,6 +26,7 @@ use App\Http\Controllers\Landlord\TenantController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AddonController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ use App\Http\Controllers\AddonController;
 | Feel free to customize them however you want. Good luck!
 |
 */
+
+Auth::routes(['register' => false]);
+
 
 Route::prefix('addons')->group(function () {
     Route::controller(AddonController::class)->group(function () {

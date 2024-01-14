@@ -153,6 +153,10 @@ Route::get('/get-host', function () {
 
 Route::middleware(['XSS', 'web', 'package.validity', 'setMailSetting', 'setGeneralSetting' ,InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(function () {
 
+        Route::get('/documentation', function() {
+            return view('documentation.index');
+        });
+
         Auth::routes(['register' => false]);
 
         Route::get('/pdf', function () {

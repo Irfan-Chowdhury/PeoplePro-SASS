@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
 use App\Http\traits\AutoUpdateTrait;
+use App\Http\traits\ENVFilePutContent;
 use App\Models\Landlord\Package;
 use App\Models\Landlord\Payment;
 use App\Models\Tenant;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Crypt;
 class DashboardController extends Controller
 {
-    use AutoUpdateTrait;
+    use AutoUpdateTrait, ENVFilePutContent;
 
     public function index()
     {
@@ -30,9 +28,9 @@ class DashboardController extends Controller
         $subscriptionValue = 0;
         foreach ($tenants as $tenant) {
             if($tenant->subscription_type === 'monthly')
-                $subscriptionValue += $tenant->package->monthly_fee;
+                $subscriptionValue += isset($tenant->package->monthly_fee) ? $tenant->package->monthly_fee : 0;
             else if($tenant->subscription_type === 'yearly')
-                $subscriptionValue += $tenant->package->yearly_fee;
+                $subscriptionValue += isset($tenant->package->yearly_fee) ? $tenant->package->yearly_fee : 0;
         }
 
         return view('landlord.super-admin.pages.dashboard.index',compact('subscriptionValue','receivedAmount',

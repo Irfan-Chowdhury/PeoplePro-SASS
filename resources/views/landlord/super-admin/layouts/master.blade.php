@@ -90,20 +90,6 @@
 
     @stack('css')
 
-{{--
-    @if (env('RTL_LAYOUT')!=NULL)
-        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"  href="{{ asset('vendor/bootstrap/css/bootstrap-rtl.min.css') }}">
-        <noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"  href="{{ asset('vendor/bootstrap/css/bootstrap-rtl.min.css') }}"></noscript>
-
-        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"  href="{{ asset('css/custom-rtl.css') }}">
-        <noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"  href="{{ asset('css/custom-rtl.css') }}"></noscript>
-    @endif --}}
-
-
-    {{-- @if((request()->is('admin/dashboard*')) || (request()->is('calendar*')) )
-        @include('calendarable.css')
-    @endif --}}
-
     <script type="text/javascript" src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/jquery/bootstrap-datepicker.min.js') }}"></script>
@@ -173,6 +159,6 @@
 </section>
 
 @stack('scripts')
-    
+
 </body>
 </html>

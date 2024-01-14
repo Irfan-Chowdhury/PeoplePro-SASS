@@ -1,4 +1,7 @@
-{{-- @php $general_settings = DB::table('general_settings')->latest()->first(); @endphp --}}
+@php
+    $appTitle = $generalSetting->site_title;
+    $appLogo = $generalSetting->site_logo;
+@endphp
 
 <!doctype html>
 <!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
@@ -11,10 +14,10 @@
 <head>
     <meta charset="utf-8">
     <title>
-        {{ $general_settings->site_title ?? null}}
+        {{ $appTitle ?? null}}
     </title>
 
-    <meta name="description" content="PeoplePro offers a comprehensive HR & payroll solution to manage all of your business HR needs which can also be customized according to your requirements." />
+    <meta name="description" content="{{ $appTitle }} offers a comprehensive HR & payroll solution to manage all of your business HR needs which can also be customized according to your requirements." />
     <meta name="author" content="LionCoders">
     <meta name="copyright" content="LionCoders">
     <!-- Google fonts - Roboto -->
@@ -31,21 +34,20 @@
 
 <body>
 <div id="documenter_sidebar">
-    @if($general_settings->site_logo)
-        <img src="{{asset('../../images/logo/'.$general_settings->site_logo)}}" style="border: none;margin: 0 0 0 0; " >
+    @if($appLogo)
+        <img src="{{asset('../../images/logo/'.$appLogo)}}" style="border: none;margin: 0 0 0 0; " >
         &nbsp; &nbsp;
     @endif
 
-    {{-- <h1 style="display: inline;margin-top: -10px"> {{ $general_settings->site_title }} </h1> --}}
     <ul id="documenter_nav">
         <li><a class="current" href="#documenter_cover">Start</a></li>
         <li><a href="#server_requirement" title="SERVER REQUIREMENTS">Server Requirements</a></li>
-        <li><a href="#install" title="INSTALL">Install</a></li>
+        {{-- <li><a href="#install" title="INSTALL">Install</a></li> --}}
         <li><a href="#common_error" title="Common Error">Common Error</a></li>
-        <li><a href="#software_update" title="SOFTWARE UPDATE">Software Update</a></li>
+        {{-- <li><a href="#software_update" title="SOFTWARE UPDATE">Software Update</a></li> --}}
         <li><a href="#log_in" title="Log In">Log In</a></li>
         <li><a href="#admin_dashboard" title="Admin DASHBOARD">Admin Dashboard</a></li>
-        <li><a href="#empty_database" title="Empty Database">Empty Database</a></li>
+        {{-- <li><a href="#empty_database" title="Empty Database">Empty Database</a></li> --}}
         <li><a href="#datatable_options" title="Datatable Options">Datatable Options</a></li>
         <li><a href="#location" title="Location">Location</a></li>
         <li><a href="#company" title="Company">Company</a></li>
@@ -57,7 +59,7 @@
         <li><a href="#designation" title="Designation">Designation</a></li>
         <li><a href="#general_setting" title="General Setting">General Setting</a></li>
         <li><a href="#mail_server" title="SETUP MAIL SERVER">Setup Mail Server</a></li>
-        <li><a href="#language_setting" title="Language Setting">Language Setting</a></li>
+        {{-- <li><a href="#language_setting" title="Language Setting">Language Setting</a></li> --}}
         <li><a href="#variable_type" title="Variable Type">Variable Type</a></li>
         <li><a href="#variable_method" title="Variable Method">Variable Method</a></li>
         <li><a href="#ip_setting" title="IP Settings">IP Settings</a></li> <!-- New-->
@@ -142,7 +144,7 @@
         <li><a href="#general_error" title="General Error">General Error</a></li>
         <li><a href="#video_tutorial" title="Video Tutorial">Video Tutorial</a></li>
         <li><a id="attendanceDeviceAddon" title="Attendance Device Addon">Attendance Device Addon</a></li>
-        <li><a href="#autoUpdateFeature" title="Auto Update Feature">Auto Update Feature</a></li>
+        {{-- <li><a href="#autoUpdateFeature" title="Auto Update Feature">Auto Update Feature</a></li> --}}
         <li><a href="#support" title="SUPPORT">Support</a></li>
     </ul>
 </div>
@@ -153,16 +155,16 @@
     </div>
 
     <section id="documenter_cover">
-        <h1>PeoplePro- HR Management System with payroll, finance, attendance, project management and many more
+        <h1>{{ $appTitle }}- HR Management System with payroll, finance, attendance, project management and many more
         </h1>
         <div id="documenter_buttons">
         </div>
         <hr>
         <ul>
             <li>by : LionCoders</li>
-            <li>Support : <a href="https://lion-coders.com/support">lion-coders.com/support</a></li>
+            {{-- <li>Support : <a href="https://lion-coders.com/support">lion-coders.com/support</a></li> --}}
         </ul>
-        <p> PeoplePro is a software that will you to manage the people in your company or organization in a
+        <p> {{ $appTitle }} is a software that will you to manage the people in your company or organization in a
             effective way that can assure a competitieve advantage in your buisness. The system is designed in such
             a
             way that can maximize employee performnace . We believe that this software is suitable for managing the
@@ -211,21 +213,21 @@
             If you need local machine support, you have to pay extra $50.</strong></p>
     </section>
 
-    <section id="install">
+    {{-- <section id="install">
         <div class="page-header">
             <h3>INSTALL</h3>
             <hr class="notop">
         </div>
         <p>
             <strong>Localhost</strong><br>
-            If you are installing on localhost, please keep in mind that you’ll need Internet for installation. After installation, you can use PeoplePro without Internet.
+            If you are installing on localhost, please keep in mind that you’ll need Internet for installation. After installation, you can use {{ $appTitle }} without Internet.
             We suggest you use XAMPP for localhost. You can use other solutions like WAMP, MAMP etc. as well and installation process for all of them are same. Create a folder inside htdocs folder inside your XAMPP installation. Now copy the zip folder you downloaded from Codecanyon to htdocs folder and unzip it there. Rename it to whatever you want. Say, you have named it- ‘my-folder’.
-            Now start your XAMPP (or whatever you are using) and go to your browser and access PeoplePro from your browser like- localhost/my-folder/.
+            Now start your XAMPP (or whatever you are using) and go to your browser and access {{ $appTitle }} from your browser like- localhost/my-folder/.
         </p>
         <p>
             <strong>Online Hosting</strong><br>
         Upload the zip folder you downloaded from Codecanyon to your hosting and unzip it. Please make sure you configure your web hosting’s settings, so that it shows hidden files and folders. This is to ensure that if you copy/move the contents from the unzipped folder to any other location, you copy all the files including ‘.htaccess’, ‘.env’ files which are necessary for the proper functioning of the software.
-        Now you can access the folder where you have PeoplePro from your browser.
+        Now you can access the folder where you have {{ $appTitle }} from your browser.
         </p>
         <p>
             Now follow the installation process below.
@@ -283,7 +285,7 @@
         <h2><strong>Step 4</strong></h2>
         <ul>
             <li>
-                Congratulations! You have successfully installed PeoplePro.<br>
+                Congratulations! You have successfully installed {{ $appTitle }}.<br>
                 <strong>Note :</strong> your project folder contains 'install' folder, then please delete
                 the folder.
             </li>
@@ -313,7 +315,7 @@
             username:<strong>admin</strong><br>
             password:<strong>admin</strong></p>
         <br>
-    </section>
+    </section> --}}
 
     <section id="common_error">
         <div class="page-header">
@@ -327,7 +329,7 @@
         <img alt="" src="{{ asset('../../docs/assets/images/app_debug_true.png')}}">
     </section>
 
-    <section id="software_update">
+    {{-- <section id="software_update">
         <div class="page-header">
             <h3>SOFTWARE UPDATE</h3>
             <hr class="notop">
@@ -335,14 +337,14 @@
         <h2><strong>UPDATE with Existing Data</strong></h2>
         <p>You can update the software very easily by following 4 steps:</p>
         <ul>
-            <li>Rename your previous database like peoplepro-backup.sql.</li>
+            <li>Rename your previous database like {{ $appTitle }}-backup.sql.</li>
             <li>Delete the project folder and reinstall it</li>
             <li>Merge your present database with previous one with
                 <a href="https://www.red-gate.com/products/mysql/mysql-compare/index">MySQL Compare</a>. If you are
                 // a linux user you can use <a href="https://www.navicat.com/en/">Navicat</a> to merge database.
             </li>
             <li>After that delete the new database and rename the previous one with present database name like
-                peoplepro-backup.sql to peoplepro.sql.
+                {{ $appTitle }}-backup.sql to {{ $appTitle }}.sql.
             </li>
         </ul>
         <p><strong>Please follow the following spanshots carefully to merge database:</strong></p>
@@ -383,7 +385,7 @@
         </ul>
         <p><strong>Still facing problem? Don't worry! We can update your software for USD 15. Please contact us at
             <a href="mailto:support@lion-coders.com">support@lion-coders.com</a>.</strong></p>
-    </section>
+    </section> --}}
 
     <section id="log_in">
         <div class="page-header">
@@ -432,7 +434,7 @@
         </ol>
 
         <ul>
-            <li><strong>Lanuage :</strong>Change Locale/Language</li>
+            <li><strong>Language :</strong>Change Locale/Language</li>
             <li><strong>Employees :</strong>Total Active employees in your company/organization</li>
             <li><strong>Attendance :</strong>Number of present and ansent employee</li>
             <li><strong>Total Leave :</strong>Total active Leave</li>
@@ -515,7 +517,7 @@
 
     </section>
 
-    <section id="empty_database">
+    {{-- <section id="empty_database">
         <div class="page-header">
             <h3>Empty Database</h3>
             <hr class="notop">
@@ -537,7 +539,7 @@
         <p>
             <img alt="" src="{{ asset('../../docs/assets/images/empty_database2.png')}}">
         </p>
-    </section>
+    </section> --}}
 
     <section id="datatable_options">
         <div class="page-header">
@@ -582,7 +584,7 @@
         </div>
         <p>
             <strong>Organization</strong> -> <strong>Location</strong>.<br>
-            PeoplePro provides an easy to use location module system, where administrator can add multiple
+            {{ $appTitle }} provides an easy to use location module system, where administrator can add multiple
             locations, and
             under one location administrator can add companies.Later on, Administrator can edit /
             update or delete any location information.
@@ -797,7 +799,7 @@
 
     </section>
 
-    <section id="language_setting">
+    {{-- <section id="language_setting">
         <div class="page-header">
             <h3>Language Setting</h3>
             <hr class="notop">
@@ -828,7 +830,7 @@
             </li>
 
         </ul>
-    </section>
+    </section> --}}
 
     <section id="variable_type">
         <div class="page-header">
@@ -2783,7 +2785,7 @@
     </section>
 
 
-    <section id="autoUpdateFeature">
+    {{-- <section id="autoUpdateFeature">
         <div class="page-header">
             <h3>Auto Update Feature</h3>
             <hr class="notop">
@@ -2826,16 +2828,16 @@
         <h5><b>Error -</b></h5>
         <p>If you see this notification during update, please contact at <a href="lion-coders.com/support">Support Panel</a>.</p>
         <p><img src="{{ asset('../../docs/assets/images/auto_update/7.Error.png')}}"></p>
-    </section>
+    </section> --}}
 
     <section id="support">
         <div class="page-header">
             <h3>SUPPORT</h3>
             <hr class="notop">
         </div>
-        <p> We are happy to provide support for any issues within our software. We also provide customization service for as little as $15/hour. So if you have any features in mind or suugestions, please feel free to knock us at <a href="https://lion-coders.com/support">lion-coders.com/support</a>. Please note that we don't provide support though any other means (example- whatsapp, remote platform, comments etc). And if any client modify/add any code of our script and then face problem, we don't provide the support on that specific feature where he/she face problem. We only fix the bugs/issues if it's exists from previous. So, please refrain from commenting your queries on codecanyon or kocking us elsewhere.</p>
+        <p> We are happy to provide support for any issues within our software. We also provide customization service for as little as $15/hour. So if you have any features in mind or suugestions, please feel free to knock us. Please note that we don't provide support though any other means (example- whatsapp, remote platform, comments etc). And if any client modify/add any code of our script and then face problem, we don't provide the support on that specific feature where he/she face problem. We only fix the bugs/issues if it's exists from previous. So, please refrain from commenting your queries on codecanyon or kocking us elsewhere.</p>
         <p>Also, in case of any errors/bugs/issues on your installation, please contact us with your hosting details (url, username, password), software admin access (url, username, password) and purchase code. If your support period has expired, please renew support on codecanyon before contacting us for support.</p>
-        <p>Thank you and with best wishes - <a href="http://lion-coders.com">LionCoders</a></p>
+        {{-- <p>Thank you and with best wishes - <a href="http://lion-coders.com">LionCoders</a></p> --}}
     </section>
 
 </div>
