@@ -237,8 +237,9 @@ class DashboardController extends Controller {
 			$salary_basics = SalaryBasic::where('employee_id', $employee->id)
                                         ->orderByRaw('DATE_FORMAT(first_date, "%y-%m")')
                                         ->get();
+            $tenantPath = tenantPath();
 
-			return view('profile.employee_profile', compact('user', 'employee', 'statuses',
+			return view('profile.employee_profile', compact('user', 'employee', 'statuses','tenantPath',
 				'countries', 'document_types', 'education_levels', 'language_skills', 'general_skills','salary_basics'));
 		}
 	}
