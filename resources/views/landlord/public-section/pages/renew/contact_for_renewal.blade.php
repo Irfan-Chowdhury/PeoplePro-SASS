@@ -1,5 +1,5 @@
 @extends('landlord.public-section.layouts.master')
-@section('public-title', config('app.name').' | '.'Renewal')
+@section('public-title', 'Renewal')
 
 @section('public-content')
 @push('css')

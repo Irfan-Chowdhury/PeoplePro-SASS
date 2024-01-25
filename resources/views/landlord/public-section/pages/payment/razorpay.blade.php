@@ -1,5 +1,5 @@
 @extends('landlord.public-section.layouts.master')
-@section('public-title', config('app.name').' | '.'Razorpay')
+@section('public-title', 'Razorpay')
 
 @section('public-content')
 <div class="row">

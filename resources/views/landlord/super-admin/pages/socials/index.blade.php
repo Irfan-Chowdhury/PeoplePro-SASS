@@ -74,9 +74,9 @@
                 <thead>
                     <tr>
                         <th class="not-exported"></th>
-                        <th>{{ __('Icon') }}</th>
-                        <th>{{ __('Name') }}</th>
-                        <th class="not-exported">{{ __('Action') }}</th>
+                        <th>{{ __('file.Icon') }}</th>
+                        <th>{{ __('file.Name') }}</th>
+                        <th class="not-exported">{{ __('file.Action') }}</th>
                     </tr>
                 </thead>
                 <tbody id="tablecontents"></tbody>

@@ -41,10 +41,8 @@
 
 
         @if(count($translations))
-
             <div class="table-responsive">
-                <table id="language-table" class="table ">
-
+                <table id="language-table" class="table">
                     <thead>
                     <tr>
                         <th class="w-1/5 uppercase font-thin">{{ __('translation::translation.key') }}</th>
@@ -88,7 +86,11 @@
         "use strict";
         $(document).ready(function () {
 
-            var dataSrc = [];
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
             var table = $('#language-table').DataTable({
                 "order": [],
@@ -105,13 +107,15 @@
                 'lengthMenu': [[100, 200, 500,-1], [100, 200, 500,"All"]],
             });
 
-
-            $(".edit_textarea").on('click',function(){
-                $(".update_btn").hide(); //for all
+            
+            // With this delegated event handler
+            $('#language-table').on('click', '.edit_textarea', function() {
+                console.log(12);
+                $(".update_btn").hide(); // for all
                 $(this).siblings('.update_btn').show();
             });
 
-            $(".update_btn").on('click',function(){
+            $('#language-table').on('click', '.update_btn', function() {
                 var language = $(this).data('language');
                 var key   = $(this).data('key');
                 var group = $(this).data('group');

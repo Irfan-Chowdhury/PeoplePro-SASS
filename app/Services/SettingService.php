@@ -108,7 +108,14 @@ class SettingService
 
             $this->mailSettingContract->updateOrCreate([], $data);
 
+            $this->dataWriteInENVFile('MAIL_ENCRYPTION', $request->encryption ?? null);
+            $this->dataWriteInENVFile('MAIL_FROM_ADDRESS', $request->from_address ?? null);
+            $this->dataWriteInENVFile('MAIL_HOST', $request->host ?? null);
+            $this->dataWriteInENVFile('MAIL_MAILER', $request->driver ?? null);
             $this->dataWriteInENVFile('MAIL_PASSWORD', $request->password ?? null);
+            $this->dataWriteInENVFile('MAIL_PORT', $request->port ?? null);
+            $this->dataWriteInENVFile('MAIL_USERNAME', $request->username ?? null);
+            
 
             return Alert::successMessage('Data Submitted Successfully');
         }

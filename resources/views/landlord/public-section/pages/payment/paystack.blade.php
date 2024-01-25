@@ -1,5 +1,5 @@
 @extends('landlord.public-section.layouts.master')
-@section('public-title', config('app.name').' | '.'Paystack')
+@section('public-title', 'Paystack')
 
 @section('public-content')
 

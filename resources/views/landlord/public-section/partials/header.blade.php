@@ -31,9 +31,9 @@
                             <li><a href="{{url('/')}}#packages">@lang('file.Pricing')</a></li>
                             <li><a href="{{url('/')}}#contact">@lang('file.Contact Us')</a></li>
                             <li><a href="{{url('/blogs')}}">@lang('file.Blogs')</a></li>
-                            <li><a href="{{url('/super-admin')}}" class="text-primary">Super-Admin</a></li>
-                            <li><a href="https://acme.peopleprohrmsaas.com/login" class="text-primary">Tenant 1</a></li>
-                            <li><a href="https://lion.peopleprohrmsaas.com/login" class="text-primary">Tenant 2</a></li>
+                            <li><a href="{{url('/super-admin')}}" class="text-primary">@lang('file.Super-Admin')</a></li>
+                            <li><a href="https://acme.peopleprohrmsaas.com/login" class="text-primary">@lang('file.Tenant1')</a></li>
+                            <li><a href="https://lion.peopleprohrmsaas.com/login" class="text-primary">@lang('file.Tenant2')</a></li>
                         </ul>
                     </div>
                 </div>

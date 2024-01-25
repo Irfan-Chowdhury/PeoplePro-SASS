@@ -31,7 +31,13 @@ class FaqService
 
             $faq  = $this->faqContract->fetchLatestDataByLanguageIdWithRelation(['faqDetails'], $languageId);
 
-            return datatables()->of($faq->faqDetails)
+            if(isset($faq->faqDetails))
+                $faqDetails  = $faq->faqDetails;
+            else
+                $faqDetails = [];
+
+
+            return datatables()->of($faqDetails)
                 ->setRowId(function ($row) {
                     return $row->id;
                 })

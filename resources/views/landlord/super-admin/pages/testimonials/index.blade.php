@@ -10,7 +10,7 @@
                     <th class="not-exported"></th>
                     <th>{{ __('file.Image') }}</th>
                     <th>{{ __('file.Name') }}</th>
-                    <th class="not-exported">{{ __('Action') }}</th>
+                    <th class="not-exported">{{ __('file.Action') }}</th>
                 </tr>
             </thead>
             <tbody id="tablecontents"></tbody>

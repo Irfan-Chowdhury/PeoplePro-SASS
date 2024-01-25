@@ -6,7 +6,7 @@
 
 
 @extends('landlord.public-section.layouts.master')
-@section('public-title', config('app.name').' | '.'Blogs')
+@section('public-title','Blogs')
 
 @section('public-content')
     <section id="blog">

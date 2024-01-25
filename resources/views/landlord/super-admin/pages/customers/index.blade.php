@@ -1,27 +1,5 @@
 @extends('landlord.super-admin.layouts.master')
 @section('landlord-content')
-{{-- @push('css')
-    <style>
-    .loading-icon {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.8);
-        z-index: 9999;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .loading-icon i {
-        font-size: 40px;
-        color: #333;
-    }
-</style>
-@endpush --}}
-
 
 <div class="container-fluid mb-3">
     <div class="card">
@@ -45,10 +23,6 @@
                 <th>{{trans('file.Email')}}</th>
                 <th>{{trans('file.Package')}}</th>
                 <th>{{trans('file.Subscription Type')}}</th>
-                {{-- <th>{{trans('file.Company Name')}}</th>
-                <th>{{trans('file.Phone Number')}}</th>
-                <th>{{trans('file.Created At')}}</th>
-                <th>{{trans('file.Expiry Date')}}</th> --}}
                 <th class="not-exported">{{trans('file.Action')}}</th>
             </tr>
         </thead>

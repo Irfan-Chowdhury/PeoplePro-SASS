@@ -25,7 +25,12 @@ class ModuleService
 
             $module  = $this->moduleContract->fetchLatestDataByLanguageIdWithRelation(['moduleDetails'], $languageId);
 
-            return datatables()->of($module->moduleDetails)
+            if(isset($module->moduleDetails))
+                $moduleDetails  = $module->moduleDetails;
+            else
+                $moduleDetails = [];
+
+            return datatables()->of($moduleDetails)
                 ->setRowId(function ($row) {
                     return $row->id;
                 })

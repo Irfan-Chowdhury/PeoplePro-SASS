@@ -8,11 +8,11 @@
     </span>
     <ul id="side-main-menu" class="side-menu list-unstyled">
         <li><a href="{{ route('landlord.dashboard') }}"> <i class="dripicons-meter"></i><span>{{ __('file.Dashboard') }}</span></a></li>
-        <li><a target="_blank" href="{{ route('landingPage.index') }}"> <i class="dripicons-monitor"></i><span>Frontend</span></a></li>
+        <li><a target="_blank" href="{{ route('landingPage.index') }}"> <i class="dripicons-monitor"></i><span>@lang('file.Frontend')</span></a></li>
         <li><a href="{{ route('customer.index') }}"><i class="dripicons-list"></i> {{trans('file.Customers')}}</a></li>
 
         <li><a href="{{ route('payment.index') }}"><i class="dripicons-card"></i> {{trans('file.Payments')}}</a></li>
-        <li><a href="#package" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-archive"></i><span>{{trans('file.Package')}}</span><span></a>
+        <li><a href="#package" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-archive"></i><span>{{trans('file.Packages')}}</span><span></a>
             <ul id="package" class="collapse list-unstyled ">
                 <li id="package-list-menu"><a href="{{ route('package.index') }}">{{trans('file.Package List')}}</a></li>
                 <li id="package-create-menu"><a href="{{ route('package.create') }}">{{trans('file.Add Package')}}</a></li>
@@ -35,8 +35,6 @@
         <li><a href="#localization" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-web"></i><span>{{trans('file.Localization')}}</span><span></a>
             <ul id="localization" class="collapse list-unstyled ">
                 <li id="localization-language-menu"><a href="{{ route('language.index') }}">{{trans('file.Language Setting')}}</a></li>
-                {{-- <li id="localization-translation-menu"><a href="{{ route('lang.translations.index', $language) }}">{{trans('file.Translation')}} </a></li>
-                <li id="localization-add-translation-menu"><a href="{{ route('lang.translations.create', $language) }}">{{trans('file.Add Translation')}} </a></li> --}}
                 <li id="localization-translation-menu"><a href="{{ route('lang.translations.index', config('app.locale')) }}">{{trans('file.Translation')}} </a></li>
                 @if (env('PRODUCT_MODE') !== 'CLIENT')
                     <li id="localization-add-translation-menu"><a href="{{ route('lang.translations.create', config('app.locale')) }}">{{trans('file.Add Translation')}} </a></li>

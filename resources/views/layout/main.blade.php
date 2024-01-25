@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <link rel="icon" type="image/png" href="{{asset('../../images/logo/'.$general_settings->site_logo)}}"/>
-    <title>{{$generalSetting->site_title ?? "NO Title"}}</title>
+    <title>{{isset($generalSetting->site_title) ? $generalSetting->site_title : "NO Title"}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -88,9 +88,7 @@
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{ asset('../../css/style.default.css') }}" id="theme-stylesheet" >
     <noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{ asset('../../css/style.default.css') }}" id="theme-stylesheet" ></noscript>
 
-
     @stack('css')
-
 
     @if (isset($isEnableRtlLayout) && $isEnableRtlLayout)
         <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"  href="{{ asset('../../vendor/bootstrap/css/bootstrap-rtl.min.css') }}">
@@ -184,7 +182,6 @@
 
             }
         });
-
 
         $('#notify-btn').on('click', function () {
             $.ajax({

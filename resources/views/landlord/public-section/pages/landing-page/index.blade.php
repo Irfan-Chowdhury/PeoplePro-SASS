@@ -1,5 +1,5 @@
 @extends('landlord.public-section.layouts.master')
-@section('public-title', config('app.name').' | '.'Home')
+@section('public-title', 'Home')
 @section('public-content')
 
 @push('css')
@@ -45,16 +45,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2 text-center hero-text mb-5">
-                    <h1 class="heading">{{$hero->heading}}</h1>
-                    <h2 class="sub-heading light h5 mb-5">{{$hero->sub_heading}}</h2>
-                    <a href="#packages" class="button lg style2">{{$hero->button_text}}</a>
+                    <h1 class="heading">{{isset($hero->heading) ? $hero->heading : null}}</h1>
+                    <h2 class="sub-heading light h5 mb-5">{{isset($hero->sub_heading) ? $hero->sub_heading : null}}</h2>
+                    <a href="#packages" class="button lg style2">{{isset($hero->button_text) ? $hero->button_text : null}}</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="hero-img">
-        <img src="{{asset('landlord/images/hero/'.$hero->image)}}" alt=""/>
+        @if (isset($hero->image))
+            <img src="{{asset('landlord/images/hero/'.$hero->image)}}" alt=""/>
+        @endif
     </section>
 
     <section>

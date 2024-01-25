@@ -114,11 +114,11 @@ return array (
   'Default' => 'Default',
   'Deferred' => 'Deferred',
   'Delete' => 'Delete',
-  'Deleting' =>
+  'Deleting' => 
   array (
-    '' =>
+    '' => 
     array (
-      '' =>
+      '' => 
       array (
         '' => 'Deleting...',
       ),
@@ -196,6 +196,7 @@ return array (
   'Fresh' => 'Fresh',
   'Friday' => 'Friday',
   'From' => 'From',
+  'Frontend' => 'Frontend',
   'Frontend Layout' => 'Frontend Layout',
   'Gender' => 'Gender',
   'General' => 'General',
@@ -441,6 +442,7 @@ return array (
   'Suffix' => 'Suffix',
   'Summary' => 'Summary',
   'Sunday' => 'Sunday',
+  'Super-Admin' => 'Super-Admin',
   'TAX' => 'TAX',
   'TLS' => 'TLS',
   'Target Achievement' => 'Target Achievement',
@@ -450,6 +452,8 @@ return array (
   'Taxable' => 'Taxable',
   'Technical Competencies' => 'Technical Competencies',
   'Tenant Signup Description' => 'Tenant Signup Description',
+  'Tenant1' => 'Tenant1',
+  'Tenant2' => 'Tenant2',
   'Termination' => 'Termination',
   'Terminations' => 'Terminations',
   'Testimonial Section' => 'Testimonial Section',

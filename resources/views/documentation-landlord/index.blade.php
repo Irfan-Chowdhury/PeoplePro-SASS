@@ -292,6 +292,15 @@
         </p>
         <img alt="" src="{{ asset('docs-landlord/assets/images/env.png')}}">
         <img alt="" src="{{ asset('docs-landlord/assets/images/app_debug_true.png')}}">
+
+        <h4>Some Client Errors :</h4>
+        <img src="https://snipboard.io/nTzk5t.jpg">
+        <img src="https://snipboard.io/ZsdBQv.jpg">
+
+        <p>If you face this type of errors just goto the path : <b>public_html/storage/framework/cache/data</b>  and then delete all the files.</p>
+        <img src="https://snipboard.io/6cChrp.jpg">
+
+
     </section>
 
 

@@ -1,5 +1,5 @@
 @extends('landlord.public-section.layouts.master')
-@section('public-title', config('app.name').' | '.'Paypal')
+@section('public-title', 'Paypal')
 @section('public-content')
 
 <div class="row">

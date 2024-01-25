@@ -9,8 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="LionCoders" />
     <meta name="csrf-token" content="CmSeExxpkZmScDB9ArBZKMGKAyzPqnxEriplXWrS">
-    <title>@yield('public-title')</title>
-    <link rel="icon" type="image/png" href="{{asset('landlord/images/logo', $generalSetting->site_logo)}}" />
+
+    @if(isset($generalSetting))
+        <title>@yield('public-title') | {{ $generalSetting->site_title ? $generalSetting->site_title : null }}</title>
+        <link rel="icon" type="image/png" href="{{asset('landlord/images/logo', $generalSetting->site_logo)}}" />
+    @endif
+    
     <!-- Meta -->
     @isset($seoSetting)
         <meta name="title" content="{{$seoSetting->meta_title}}" />
@@ -74,109 +78,6 @@
 
     <!-- Main js -->
     <script src="{{ asset('landlord/js/main.js')}}"></script>
-
-
-    {{-- <script>
-        $("div.alert").delay(3000).slideUp(800);
-        var public_key = <?php echo json_encode($general_setting->stripe_public_key)?>;
-        var active_payment_gateway = <?php echo json_encode($general_setting->active_payment_gateway)?>;
-        (function ($) {
-            "use strict";
-
-            $(".card-element").hide();
-            $(".card-errors").hide();
-
-            $('.banner-slide-up').on('click', function () {
-                $(this).parent().slideUp();
-            });
-
-            $(document).ready(function () {
-                $('#newsletter-modal').modal('toggle');
-            });
-
-            $(".signup-btn").on("click", function () {
-                $('input[name=package_id]').val($(this).data('package_id'));
-                if($('input[name=subscription_type]').val() == 'monthly') {
-                    $('input[name=price]').val($(this).parent().parent().find('.package-price').data('monthly'));
-                } else {
-                    $('input[name=price]').val($(this).parent().parent().find('.package-price').data('yearly'));
-                }
-                $('html, body').animate({
-                    scrollTop: $("#customer-signup").offset().top
-                });
-            });
-
-            $("#plan_type").change(function(){
-                if($("#plan_type").is(':checked')){
-                    $('input[name=subscription_type]').val('yearly');
-
-                    $(".package-price").each(function(){
-                        var plan = $(this).data('yearly')+'/year';
-                        $(this).html(plan);
-                    })
-                }
-                else {
-                    $('input[name=subscription_type]').val('monthly');
-                    $(".package-price").each(function(){
-                        var plan = $(this).data('monthly')+'/month';
-                        $(this).html(plan);
-                    })
-                }
-            })
-
-            $('input[name=tenant]').on('input', function () {
-                var tenant = $(this).val();
-                var letters = /^[a-zA-Z0-9]+$/;
-                if(!letters.test(tenant)) {
-                    alert('Tenant name must be alpha numeric(a-z and 0-9)!');
-                    tenant = tenant.substring(0, tenant.length-1);
-                    $('input[name=tenant]').val(tenant);
-                }
-            });
-
-            $(document).on('submit', '.customer-signup-form', function(e) {
-                $("#submit-btn").prop('disabled', true);
-                $("p#waiting-msg").text("Please wait. It will take some few seconds. System will redirect you to the tenant url automatically.")
-            });
-
-            //Search field
-            $('#search_field').hide();
-
-            $(document).ready(function () {
-                $('#searchText').keyup(function () {
-                    var txt = $(this).val();
-                    if (txt != '') {
-                        $('#search_field').show();
-                        $('#result').html('<li>loading...</li>');
-                        $.ajax({
-                            url: "data_ajax_search",
-                            type: "GET",
-                            data: {
-                                search_txt: txt
-                            },
-                            success: function (data) {
-                                $('#search_field').show();
-                                $('#result').empty().html(data);
-                            }
-                        })
-                    } else if (txt.length === 0) {
-                        $('#search_field').hide();
-                    } else {
-                        $('#search_field').hide();
-                        $('#result').empty();
-                    }
-                })
-            });
-
-            $('#stripeContent').hide();
-
-            $(window).on('load', function () {
-
-                $('.lazy').Lazy();
-            });
-
-        })(jQuery);
-    </script> --}}
     <script>
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : evt.keyCode

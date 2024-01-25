@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    {{-- <link rel="icon" type="image/png" href="{{asset('/images/logo/'.$general_settings->site_logo)}}"/> --}}
-    <title>PeopleproSaaS</title>
+    @if(isset($generalSetting) && $generalSetting->site_title)
+        <title>{{ $generalSetting->site_title }}</title>
+    @endif
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">

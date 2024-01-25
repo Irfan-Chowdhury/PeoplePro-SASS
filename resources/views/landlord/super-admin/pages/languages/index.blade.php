@@ -5,12 +5,11 @@
     <div class="container-fluid"><span id="generalResult"></span></div>
 
     <div class="container-fluid mb-3">
-        <h4 class="font-weight-bold mt-3">{{__('Languages')}}</h4>
+        <h4 class="font-weight-bold mt-3">{{__('file.Languages')}}</h4>
         <div id="success_alert" role="alert"></div>
         <br>
 
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createModal"><i class="fa fa-plus"></i> {{__('file.Add New')}}</button>
-        {{-- <button type="button" class="btn btn-danger" name="bulk_delete" id="bulkDelete"><i class="fa fa-minus-circle"></i> {{__('Bulk Delete')}}</button> --}}
     </div>
 
     <div class="container">
@@ -19,10 +18,10 @@
                 <thead>
                     <tr>
                         <th class="not-exported"></th>
-                        <th>{{__('Name')}}</th>
-                        <th>{{__('Locale')}}</th>
-                        <th>{{__('Default')}}</th>
-                        <th class="not-exported">{{__('Action')}}</th>
+                        <th>{{__('file.Name')}}</th>
+                        <th>{{__('file.Locale')}}</th>
+                        <th>{{__('file.Default')}}</th>
+                        <th class="not-exported">{{__('file.Action')}}</th>
                     </tr>
                 </thead>
             </table>
