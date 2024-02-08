@@ -22,6 +22,7 @@ class SetMailSetting
             config()->set('mail.username', $mailSetting->username);
             config()->set('mail.password', Crypt::decrypt($mailSetting->password));
             config()->set('mail.encryption', $mailSetting->encryption);
+            // config()->set('app.name', 'Modonhat');
         }
         return $next($request);
     }

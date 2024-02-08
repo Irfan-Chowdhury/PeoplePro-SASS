@@ -44,6 +44,12 @@
                             @endif
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://peopleprohrmsaas.com/central-documentation" target="_blank" data-toggle="tooltip"
+                           title="{{__('Documentation')}}">
+                            <i class="dripicons-information"></i>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a rel="nofollow" href="#" class="nav-link dropdown-item">

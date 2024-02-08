@@ -57,7 +57,7 @@
 
                 @if (Auth::user()->role_users_id==1)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/documentation')}}" target="_blank" data-toggle="tooltip"
+                        <a class="nav-link" href="https://lion.peopleprohrmsaas.com/documentation" target="_blank" data-toggle="tooltip"
                            title="{{__('Documentation')}}">
                             <i class="dripicons-information"></i>
                         </a>

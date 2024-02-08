@@ -283,6 +283,8 @@
                     }
                 })
             });
+
+
             $(document).ready(function() {
                 $("#packageUpdateForm").on("submit",function(e){
                     e.preventDefault();
@@ -314,8 +316,7 @@
                     });
                 });
             });
-
-
+            
         })(jQuery);
     </script>
 

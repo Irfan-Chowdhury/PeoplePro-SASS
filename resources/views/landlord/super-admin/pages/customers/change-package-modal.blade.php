@@ -9,7 +9,8 @@
             </div>
 
             <div class="modal-body">
-                <form method="POST" action="{{ route('customer.change_package','saastest9') }}" id="packageUpdateForm" method="POST">
+                {{-- <form action="{{ route('customer.change_package','foo') }}" id="packageUpdateForm" method="POST"> --}}
+                <form id="packageUpdateForm">
                     @csrf
                     <input type="hidden" name="tenant_id" id="tenantId">
                     <div class="row">

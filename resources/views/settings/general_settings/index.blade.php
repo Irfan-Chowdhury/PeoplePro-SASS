@@ -110,6 +110,7 @@
                                         </div>
                                     </div>
 
+                                    <!--
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label><strong>{{trans('file.Footer')}} </strong></label>
@@ -122,6 +123,7 @@
                                             <input type="text" name="footer_link" placeholder="https://www.lion-coders.com" class="form-control" value="{{$general_settings_data->footer_link ?? ''}}" required />
                                         </div>
                                     </div>
+                                    -->
                                     <div class="col-md-6">
                                         <div class="mt-4 form-check">
                                             <input type="checkbox" name="rtl_layout" class="form-check-input" value="1" {{isset($general_settings_data->rtl_layout) && $general_settings_data->rtl_layout ? 'checked':''}} />

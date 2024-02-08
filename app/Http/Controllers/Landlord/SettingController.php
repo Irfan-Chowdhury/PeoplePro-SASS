@@ -12,15 +12,15 @@ use App\Http\Requests\Setting\PaymentSettingRequest;
 use App\Http\Requests\Setting\SeoSettingRequest;
 use App\Models\Landlord\AnalyticSetting;
 use App\Models\Landlord\GeneralSetting;
+use App\Models\Tenant;
 use App\Services\GeneralSettingService;
 use App\Services\SettingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\GeneralSetting as TenantGeneralSetting;
 
 class SettingController extends Controller
 {
-
-
     public function __construct(private SettingService $settingService){}
 
     public function index()

@@ -40,7 +40,6 @@ class UtilityService
         $path = app()->environmentFilePath();
         $searchArray = array($key.'='.env($key));
         $replaceArray= array($key.'='.$value);
-
         file_put_contents($path, str_replace($searchArray, $replaceArray, file_get_contents($path)));
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 
 class ForgotPasswordController extends Controller
@@ -24,9 +26,20 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm()
     {
 
-        if (Schema::hasTable('general_settings') && in_array(request()->getHost(), config('tenancy.central_domains'))) {
+        if (self::isCentral()) {
             return view('landlord.super-admin.auth.passwords.email'); // Landlord
         }
         return view('auth.passwords.email'); // Tenant
     }
+
+    protected function isCentral() : bool
+    {
+        if (Schema::hasTable('general_settings') && in_array(request()->getHost(), config('tenancy.central_domains')))
+            return true;
+        else
+            return false;
+    }
+
+
+
 }

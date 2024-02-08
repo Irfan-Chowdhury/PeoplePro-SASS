@@ -84,6 +84,8 @@ class SetGeneralSetting
         ], function ($view) use ($generalSetting) {
             $view->with('generalSetting', $generalSetting);
         });
+
+        config()->set('app.name', $generalSetting->site_title);
     }
 
 }

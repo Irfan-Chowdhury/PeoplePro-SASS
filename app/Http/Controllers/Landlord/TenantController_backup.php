@@ -172,12 +172,13 @@ class TenantController extends Controller
 
     public function changePackageProcess(Request $request, Tenant $tenant)
     {
+
         DB::beginTransaction();
         try {
             $package = Package::find($request->package_id);
-            $this->tenantService->packageSwitch($tenant, $request, $package);
+            $this->permissionUpdate($tenant, $request, $package);
 
-            $result =  Alert::successMessage("Package Switched into the $package->name Successfully");
+            $result =  Alert::successMessage('Package Switched Successfully');
             DB::commit();
 
         } catch (Exception $e) {
@@ -273,7 +274,7 @@ class TenantController extends Controller
             //     return redirect(route("payment.pay.page",$request->payment_method), 307);
 
             $tenant = Tenant::find($request->tenant_id);
-            $this->tenantService->renewProcess($tenant, $request, $package);
+            $this->tenantService->permissionUpdate($tenant, $request, $package);
 
             DB::commit();
             return redirect()->back()->with(['success' => 'Data Created Successfully']);
@@ -285,54 +286,30 @@ class TenantController extends Controller
         }
     }
 
-    // Switch Basic(14) to Standard(2)
+    protected function permissionUpdate($tenant, $request, $package)
+    {
+        $prevPermissions = json_decode($tenant->package->permissions, true);
+        $prevPermissionIds = array_column($prevPermissions, 'id');
 
-    // protected function permissionUpdate($tenant, $request, $package)
-    // {
-    //     $prevPermissions = json_decode($tenant->package->permissions, true); //P-46 not exist | count-60
-    //     $prevPermissionIds = array_column($prevPermissions, 'id');
+        $latestPermissions = json_decode($package->permissions, true);
+        $latestPermissionsIds = array_column($latestPermissions, 'id');
 
-    //     $latestPermissions = json_decode($package->permissions, true); //P-46 exists | count-96 | Standard(2)
-    //     $latestPermissionsIds = array_column($latestPermissions, 'id');
+        $newAddedPermissions = [];
+        foreach ($latestPermissions as $element) {
+            if (!in_array($element["id"], $prevPermissionIds)) {
+                $newAddedPermissions[] = $element;
+            }
+        }
 
-    //     $newAddedPermissions = [];
-    //     foreach ($latestPermissions as $element) {
-    //         if (!in_array($element["id"], $prevPermissionIds)) {
-    //             $newAddedPermissions[] = $element; //P-46 exists | count-42
-    //         }
-    //     }
-
-    //     $tenant->package_id = $request->package_id;
-    //     $tenant->update();
-    //     $tenant->run(function () use ($newAddedPermissions, $latestPermissions, $latestPermissionsIds) {
-
-    //         // $data = $latestPermissionsIds; // P-46 exists | count 96
-    //         // $data = $newAddedPermissions; // Already p-46 exists | count 46
-    //         // $data = DB::table('permissions')->count(); // Already p-46 exists | count 96
-
-    //         $prevPermissionIds = DB::table('permissions')->pluck('id')->toArray(); // Standard(2)
-    //         $newAddedPermissions = [];
-    //         foreach ($latestPermissions as $element) {
-    //             if (!in_array($element["id"], $prevPermissionIds)) {
-    //                 $newAddedPermissions[] = $element; //P-46 exists | count-42
-    //             }
-    //         }
-    //         // dd($newAddedPermissions);
-    //         if ($newAddedPermissions) {
-    //             DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
-    //             DB::table('permissions')->insert($newAddedPermissions);
-    //             $role = Role::findById(1);
-    //             $role->syncPermissions($latestPermissionsIds);
-    //         }
-
-
-
-    //         // DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
-    //         // DB::table('permissions')->insert($newAddedPermissions);
-    //         // $role = Role::findById(1);
-    //         // $role->syncPermissions($latestPermissionsIds);
-    //     });
-    // }
+        $tenant->package_id = $request->package_id;
+        $tenant->update();
+        $tenant->run(function () use ($newAddedPermissions, $latestPermissionsIds) {
+            DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
+            DB::table('permissions')->insert($newAddedPermissions);
+            $role = Role::findById(1);
+            $role->syncPermissions($latestPermissionsIds);
+        });
+    }
 
     // sudo php artisan cache:clear
     // php artisan cache:forget spatie.permission.cache

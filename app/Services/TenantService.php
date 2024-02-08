@@ -64,14 +64,15 @@ class TenantService
         $tenant = Tenant::create($tenantData);
         $tenant->domains()->create(['domain' => $request->tenant.'.'.env('CENTRAL_DOMAIN')]); // This Line
 
-        $tenant->run(function ($tenant) use ($request, $permissions, $allPermissionIds, $packageDetailsForTenant) {
+        $centralGeneralSetting = GeneralSetting::latest()->first();
+        $tenant->run(function ($tenant) use ($request, $permissions, $allPermissionIds, $packageDetailsForTenant, $centralGeneralSetting) {
             DB::table('permissions')->insert($permissions);
             $user = self::tenantAdminCreate($request);
             $role = Role::findById(1);
 			$role->syncPermissions($allPermissionIds);
 			$user->syncRoles(1);
 
-            self::setDataInTenantGeneralSetting($packageDetailsForTenant);
+            self::setDataInTenantGeneralSetting($packageDetailsForTenant, $centralGeneralSetting);
             self::directoryCreateAndCopyFiles($tenant->id);
         });
 
@@ -120,12 +121,22 @@ class TenantService
         ]);
     }
 
-    protected function setDataInTenantGeneralSetting($packageDetailsForTenant) : void
+    protected function setDataInTenantGeneralSetting($packageDetailsForTenant, $centralGeneralSetting=null) : void
     {
         $tenantGeneralSetting = TenantGeneralSetting::latest()->first();
-        $tenantGeneralSetting->update([
-            'package_details' => json_encode($packageDetailsForTenant)
-        ]);
+        if($centralGeneralSetting) {
+            $tenantGeneralSetting->update([
+                'package_details' => json_encode($packageDetailsForTenant),
+                'footer' => $centralGeneralSetting->developed_by,
+                'footer_link' => $centralGeneralSetting->footer_link
+            ]);
+        }else {
+            //Only Package Change
+            $tenantGeneralSetting->update([
+                'package_details' => json_encode($packageDetailsForTenant)
+            ]);
+        }
+
     }
 
     public function directoryCreateAndCopyFiles($tenantId) : void
@@ -180,41 +191,131 @@ class TenantService
         }
     }
 
-    public function permissionUpdate($tenant, $request, $package)
+    // public function renewProcess($tenant, $request, $package)
+    // {
+    //     $generalSetting = GeneralSetting::latest()->first();
+
+    //     $prevPermissions = json_decode($tenant->package->permissions, true);
+    //     $prevPermissionIds = array_column($prevPermissions, 'id');
+
+    //     $tenant->package_id = $request->package_id;
+    //     $tenant->update();
+
+    //     $latestPermissions = json_decode($package->permissions, true);
+    //     $latestPermissionsIds = array_column($latestPermissions, 'id');
+
+    //     $newAddedPermissions = [];
+    //     foreach ($latestPermissions as $element) {
+    //         if (!in_array($element["id"], $prevPermissionIds)) {
+    //             $newAddedPermissions[] = $element;
+    //         }
+    //     }
+
+
+    //     $numberOfDaysToExpired = self::numberOfDaysToExpired($package, $generalSetting, $request);
+    //     $packageDetailsForTenant =  self::packageDetailsForTenant($package, $generalSetting, $request);
+    //     $packageDetailsForTenant['expiry_date'] = date("Y-m-d", strtotime("+".$numberOfDaysToExpired." days"));
+
+
+    //     $tenant->run(function () use ($newAddedPermissions, $latestPermissionsIds, $packageDetailsForTenant) {
+    //         DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
+    //         DB::table('permissions')->insert($newAddedPermissions);
+    //         $role = Role::findById(1);
+    //         $role->syncPermissions($latestPermissionsIds);
+
+    //         self::setDataInTenantGeneralSetting($packageDetailsForTenant);
+    //     });
+    // }
+
+    public function renewProcess($tenant, $request, $package)
     {
         $generalSetting = GeneralSetting::latest()->first();
 
-        $prevPermissions = json_decode($tenant->package->permissions, true);
-        $prevPermissionIds = array_column($prevPermissions, 'id');
-
-        $tenant->package_id = $request->package_id;
-        $tenant->update();
-
         $latestPermissions = json_decode($package->permissions, true);
         $latestPermissionsIds = array_column($latestPermissions, 'id');
-
-        $newAddedPermissions = [];
-        foreach ($latestPermissions as $element) {
-            if (!in_array($element["id"], $prevPermissionIds)) {
-                $newAddedPermissions[] = $element;
-            }
-        }
-
 
         $numberOfDaysToExpired = self::numberOfDaysToExpired($package, $generalSetting, $request);
         $packageDetailsForTenant =  self::packageDetailsForTenant($package, $generalSetting, $request);
         $packageDetailsForTenant['expiry_date'] = date("Y-m-d", strtotime("+".$numberOfDaysToExpired." days"));
 
-
-        $tenant->run(function () use ($newAddedPermissions, $latestPermissionsIds, $packageDetailsForTenant) {
-            DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
-            DB::table('permissions')->insert($newAddedPermissions);
-            $role = Role::findById(1);
-            $role->syncPermissions($latestPermissionsIds);
-
+        $tenant->run(function () use ($latestPermissions, $latestPermissionsIds, $packageDetailsForTenant) {
+            self::permissionUpdate($latestPermissions, $latestPermissionsIds);
             self::setDataInTenantGeneralSetting($packageDetailsForTenant);
         });
-    }
-    
 
+        $tenant->package_id = $request->package_id;
+        $tenant->update();
+
+    }
+
+    public function packageSwitch(object $tenant, object $request, object $package) : void
+    {
+        $latestPermissions = json_decode($package->permissions, true); //P-46 exists | count-96 | Standard(2)
+        $latestPermissionsIds = array_column($latestPermissions, 'id');
+
+        $tenant->run(function () use ($latestPermissions, $latestPermissionsIds) {
+            self::permissionUpdate($latestPermissions, $latestPermissionsIds);
+        });
+
+        $tenant->package_id = $request->package_id;
+        $tenant->update();
+    }
+
+    protected function permissionUpdate(array $latestPermissions, array $latestPermissionsIds) : void
+    {
+        /**
+         * Delete Previous permission data and Insert newly
+         * and Existing employees all role-permission date will lost, have to re-assign
+         *
+         */
+
+        DB::table('permissions')->delete();
+        DB::table('permissions')->insert($latestPermissions);
+        $role = Role::findById(1);
+        $role->syncPermissions($latestPermissionsIds);
+
+        /**
+         * Below this code for - existing employees haven't change the role permission
+         */
+
+        // $prevPermissionIds = DB::table('permissions')->pluck('id')->toArray();
+        // $newAddedPermissions = [];
+        // foreach ($latestPermissions as $element) {
+        //     if (!in_array($element["id"], $prevPermissionIds)) {
+        //         $newAddedPermissions[] = $element;
+        //     }
+        // }
+
+
+        // if ($newAddedPermissions) {
+            // DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
+            // DB::table('permissions')->insert($newAddedPermissions);
+
+            // DB::table('permissions')->delete();
+            // DB::table('permissions')->insert($latestPermissions);
+            // $role = Role::findById(1);
+            // $role->syncPermissions($latestPermissionsIds);
+        // }
+    }
+
+    public function allTenantFooterUpdate(string|null $developedBy, string|null $footerLink) : void
+    {
+        $tenants = Tenant::all();
+
+        if($tenants && isset($developedBy) && isset($footerLink)) {
+            foreach ($tenants as  $tenant) {
+                $tenant->run(function () use ($developedBy, $footerLink) {
+                    $tenantGeneralSetting = TenantGeneralSetting::latest()->first();
+                    $tenantGeneralSetting->update([
+                        'footer' => $developedBy,
+                        'footer_link' => $footerLink
+                    ]);
+                });
+            }
+        }
+    }
 }
+
+
+    // sudo php artisan cache:clear
+    // php artisan cache:forget spatie.permission.cache

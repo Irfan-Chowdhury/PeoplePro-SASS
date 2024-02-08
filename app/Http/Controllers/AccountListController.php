@@ -6,7 +6,7 @@ use App\Models\FinanceBankCash;
 use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Validator;
+use IlluminPate\Support\Facades\Validator;
 
 class AccountListController extends Controller {
 

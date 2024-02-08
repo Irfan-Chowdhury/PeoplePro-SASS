@@ -29,6 +29,7 @@ class SettingService
         private MailSettingContract $mailSettingContract,
         private AnalyticSettingContract $analyticSettingContract,
         private SeoSettingContract $seoSettingContract,
+        public TenantService $tenantService
     ){}
 
     public function getLatestGeneralSettingData() : object | null
@@ -82,7 +83,14 @@ class SettingService
             }
             $this->generalSettingContract->updateOrCreate([], $data);
 
-            Utility::setEnv('APP_NAME','"'.$data['site_title'].'"');
+            // Utility::setEnv('APP_NAME','"'.$data['site_title'].'"');
+
+            if (str_contains($request->site_title, ' ')) {
+                $data['site_title'] = preg_replace('/\s+/u', '-', trim($request->site_title));
+            }
+            Utility::setEnv('APP_NAME',$data['site_title']);
+
+            $this->tenantService->allTenantFooterUpdate($request->developed_by, $request->footer_link);
 
             return Alert::successMessage('Data Submitted Successfully');
         }
@@ -115,7 +123,7 @@ class SettingService
             $this->dataWriteInENVFile('MAIL_PASSWORD', $request->password ?? null);
             $this->dataWriteInENVFile('MAIL_PORT', $request->port ?? null);
             $this->dataWriteInENVFile('MAIL_USERNAME', $request->username ?? null);
-            
+
 
             return Alert::successMessage('Data Submitted Successfully');
         }
