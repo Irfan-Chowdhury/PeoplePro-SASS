@@ -107,10 +107,16 @@ Route::post('/super-admin/logout', [AdminController::class, 'logout'])->name('la
 Route::middleware(['web','auth','setSuperAdminLocale','XSS'])->group(function () {
     Route::prefix('super-admin')->group(function () {
 
-        Route::get('/all/notifications', [NotificationController::class, 'allNotifications'])->name('seeAllNotification');
-        Route::get('clearAll', [NotificationController::class, 'clearAll'])->name('clearAllNotification');
-        Route::get('markAsRead', [NotificationController::class, 'markAsReadNotification'])->name('markAsReadNotification');
+        // Route::get('/all/notifications', [NotificationController::class, 'allNotifications'])->name('seeAllNotification');
+        // Route::get('clearAll', [NotificationController::class, 'clearAll'])->name('clearAllNotification');
+        // Route::get('markAsRead', [NotificationController::class, 'markAsReadNotification'])->name('markAsReadNotification');
 
+
+        Route::controller(NotificationController::class)->group(function () {
+            Route::get('all-notifications', 'allNotifications')->name('seeAllNotification');
+            Route::get('clearAll', 'clearAll')->name('clearAllNotification');
+            Route::get('markAsRead', 'markAsReadNotification')->name('markAsReadNotification');
+        });
 
         Route::controller(AdminController::class)->group(function () {
             Route::prefix('profile')->group(function () {

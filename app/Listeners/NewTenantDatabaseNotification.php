@@ -20,7 +20,6 @@ class NewTenantDatabaseNotification
 
     public function handle(CustomerRegistered $event): void
     {
-
         $notifiable = User::where('is_super_admin',true)->get();
 
         Notification::send($notifiable, new NewTenantNotify());

@@ -136,9 +136,6 @@ class TenantController extends Controller
     // }
     public function customerSignUp(CustomerSignUpRequest $request)
     {
-        // event(new CustomerRegistered($request));
-        // return 56;
-
         DB::beginTransaction();
         $request->session()->put('price', $request->price);
         try {
@@ -212,12 +209,15 @@ class TenantController extends Controller
 
     public function changePackageProcess(Request $request, Tenant $tenant)
     {
+        $package = Package::find($request->package_id);
+        $previousPackageName = $tenant->package->name;
+        $newPackageName = $package->name;
+
         DB::beginTransaction();
         try {
-            $package = Package::find($request->package_id);
             $this->tenantService->packageSwitch($tenant, $request, $package);
 
-            event(new PackageChanged());
+            event(new PackageChanged($tenant, $previousPackageName, $newPackageName));
 
             $result =  Alert::successMessage("Package Switched into the $package->name Successfully");
             DB::commit();

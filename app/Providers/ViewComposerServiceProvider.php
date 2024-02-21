@@ -34,6 +34,7 @@ class ViewComposerServiceProvider extends ServiceProvider
                 'landlord.public-section.pages.landing-page.index',
                 'landlord.public-section.pages.renew.contact_for_renewal',
                 'landlord.public-section.emails.confirmation',
+                'landlord.public-section.emails.package-change-confirmation',
                 'landlord.super-admin.pages.dashboard.index',
                 'landlord.super-admin.layouts.master',
                 'landlord.super-admin.partials.header',

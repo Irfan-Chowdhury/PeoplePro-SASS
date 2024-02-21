@@ -22,7 +22,7 @@ class NewTenantEmailNotification
      */
     public function handle(object $event): void
     {
-        // Send the confirmation email asynchronously
+        // asynchronously
         if (config('mail.is_active'))
             Mail::to($event->customerRequest->email)->send(new ConfirmationEmail($event->customerRequest));
     }

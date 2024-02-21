@@ -5,6 +5,9 @@
 	<section>
 		<div class="container">
 			<div class="card">
+                <div class="card-header text-center">
+                    <h2>All Notifications</h2>
+                </div>
 				<div class="card-body">
 
 						@foreach($all_notification as $notification)
@@ -24,7 +27,6 @@
 			</div>
 		</div>
 	</section>
-
 
 
 @endsection

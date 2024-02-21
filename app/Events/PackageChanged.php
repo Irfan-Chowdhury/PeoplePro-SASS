@@ -17,7 +17,7 @@ class PackageChanged
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(public $tenant, public $previousPackageName, public $newPackageName)
     {
         //
     }

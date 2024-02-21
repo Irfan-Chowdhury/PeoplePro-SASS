@@ -8,21 +8,26 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Address;
 
-class ConfirmationEmail extends Mailable
+class PackageChangeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public $request)
+    /**
+     * Create a new message instance.
+     */
+    public function __construct(public $tenant,  public $previousPackageName, public $newPackageName)
     {
         //
     }
 
+    /**
+     * Get the message envelope.
+     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'SaaS Confirmation Email',
+            subject: 'Package Change Email',
         );
     }
 
@@ -32,9 +37,11 @@ class ConfirmationEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'landlord.public-section.emails.confirmation',
+            view: 'landlord.public-section.emails.package-change-confirmation',
             with: [
-                'name' => $this->request->first_name.' '.$this->request->last_name,
+                'name' => $this->tenant->customer->first_name.' '.$this->tenant->customer->last_name,
+                'previousPackage' => $this->previousPackageName,
+                'newPackage' => $this->newPackageName
             ],
         );
     }

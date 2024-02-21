@@ -25,11 +25,11 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         CustomerRegistered::class => [
-            NewTenantEmailNotification::class,
             NewTenantDatabaseNotification::class,
+            NewTenantEmailNotification::class,
         ],
         PackageChanged::class => [
-            // PackageChangeEmailNotification::class,
+            PackageChangeEmailNotification::class,
             PackageChangeDatabaseNotification::class,
         ],
     ];
