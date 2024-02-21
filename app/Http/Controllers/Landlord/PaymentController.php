@@ -38,10 +38,20 @@ class PaymentController extends Controller
         return view('landlord.super-admin.pages.payments.index');
     }
 
-
     public function datatable()
     {
-        $payments = Payment::with('tenant','domainInfo')->get();
+        $payments = Payment::select(DB::raw('CONCAT(customers.first_name," ",customers.last_name) AS customer_name'),
+                            'payments.id AS id',
+                            'amount',
+                            'payment_method',
+                            'subscription_type',
+                            'domains.domain AS domain',
+                            DB::raw("DATE_FORMAT(DATE(payments.created_at), '%Y-%m-%d') AS created_date"))                ->join('tenants', 'tenants.id', '=', 'payments.tenant_id')
+                    ->join('domains', 'domains.tenant_id', '=', 'tenants.id')
+                    ->join('customers', 'customers.id', '=', 'tenants.customer_id')
+                    ->whereNull('tenants.deleted_at')
+                    ->orderBy('id', 'DESC')
+                    ->get();
 
         if (request()->ajax()) {
             return datatables()->of($payments)
@@ -49,24 +59,22 @@ class PaymentController extends Controller
                     return $row->id;
                 })
                 ->addColumn('customer', function ($row) {
-                    return $row->tenant->customer->getFullNameAttribute();
+                    return $row->customer_name;
                 })
                 ->addColumn('amount', function ($row) {
                     return $row->amount;
                 })
                 ->addColumn('payment_method ', function ($row) {
-                    return 12; //ucfirst($row->payment_method);
+                    return ucfirst($row->payment_method);
                 })
                 ->addColumn('subscription_type ', function ($row) {
                     return ucfirst($row->subscription_type);
                 })
                 ->addColumn('domain', function ($row) {
-                    if(isset($row->domainInfo->domain)) {
-                        return '<a href="https://'.$row->domainInfo->domain.'" target="_blank">'.$row->domainInfo->domain.'</a>';
-                    }
+                    return '<a href="https://'.$row->domain.'" target="_blank">'.$row->domain.'</a>';
                 })
                 ->addColumn('created_at', function ($row) {
-                    return date('Y-m-d', strtotime($row->created_at));
+                    return $row->created_date;
                 })
                 ->rawColumns(['domain'])
                 ->make(true);

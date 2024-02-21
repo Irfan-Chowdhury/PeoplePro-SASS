@@ -307,6 +307,7 @@
                     }
                     if (data.error) {
                         html = '<div class="alert alert-danger">' + data.error + '</div>';
+                        $('#payment_type_error').html(html).slideDown(300).delay(5000).slideUp(300);
                     }
                     if (data.success) {
                         html = '<div class="alert alert-success">' + data.success + '</div>';

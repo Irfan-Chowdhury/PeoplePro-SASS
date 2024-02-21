@@ -7,5 +7,6 @@
     <br><br>
     Thanks and Regards,
     <br>
-    {{ env('APP_NAME') }}
+    {{-- {{ env('APP_NAME') }} --}}
+    {{$generalSetting->footer ?? "no title"}}
 </div>

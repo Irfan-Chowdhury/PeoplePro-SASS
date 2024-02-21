@@ -6,6 +6,7 @@ use App\Contracts\PackageContract;
 use App\Contracts\PageContract;
 use App\Contracts\SocialContract;
 use App\Events\CustomerRegistered;
+use App\Events\PackageChanged;
 use App\Facades\Alert;
 use App\Http\traits\TenantTrait;
 use App\Models\Landlord\Package;
@@ -100,8 +101,44 @@ class TenantController extends Controller
     }
 
 
+    // public function customerSignUp(CustomerSignUpRequest $request)
+    // {
+    //     DB::beginTransaction();
+    //     $request->session()->put('price', $request->price);
+    //     try {
+    //         $paymentMethodList = array_column($this->paymentMethods(), 'payment_method');
+    //         if(!$request->is_free_trail && in_array($request->payment_method ,$paymentMethodList)) {
+    //             return redirect(route("payment.pay.page",$request->payment_method), 307);
+    //         }
+
+    //         $this->tenantService->newTenantGenerate($request);
+
+    //         DB::commit();
+
+    //         $result =  Alert::successMessage('Data Created Successfully');
+    //         if (request()->ajax()) {
+    //             return response()->json($result['alertMsg'], $result['statusCode']);
+    //         } else {
+    //             return redirect()->back()->with(['success' => 'Data Created Successfully']);
+    //         }
+
+    //     }
+    //     catch (Exception $e) {
+    //         DB::rollback();
+    //         $result =  Alert::errorMessage($e->getMessage());
+
+    //         if (request()->ajax()) {
+    //             return response()->json($result['alertMsg'], $result['statusCode']);
+    //         } else {
+    //             return redirect()->back()->withErrors(['errors' => [$result['alertMsg']]]);
+    //         }
+    //     }
+    // }
     public function customerSignUp(CustomerSignUpRequest $request)
     {
+        // event(new CustomerRegistered($request));
+        // return 56;
+
         DB::beginTransaction();
         $request->session()->put('price', $request->price);
         try {
@@ -111,6 +148,8 @@ class TenantController extends Controller
             }
 
             $this->tenantService->newTenantGenerate($request);
+
+            event(new CustomerRegistered($request));
 
             DB::commit();
 
@@ -125,6 +164,7 @@ class TenantController extends Controller
         catch (Exception $e) {
             DB::rollback();
             $result =  Alert::errorMessage($e->getMessage());
+            return $e->getMessage();
 
             if (request()->ajax()) {
                 return response()->json($result['alertMsg'], $result['statusCode']);
@@ -176,6 +216,8 @@ class TenantController extends Controller
         try {
             $package = Package::find($request->package_id);
             $this->tenantService->packageSwitch($tenant, $request, $package);
+
+            event(new PackageChanged());
 
             $result =  Alert::successMessage("Package Switched into the $package->name Successfully");
             DB::commit();

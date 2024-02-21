@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendCustomerConfirmationEmail
+class NewTenantEmailNotification
 {
     /**
      * Create the event listener.
@@ -23,6 +23,7 @@ class SendCustomerConfirmationEmail
     public function handle(object $event): void
     {
         // Send the confirmation email asynchronously
-        Mail::to($event->customerRequest->email)->send(new ConfirmationEmail($event));
+        if (config('mail.is_active'))
+            Mail::to($event->customerRequest->email)->send(new ConfirmationEmail($event->customerRequest));
     }
 }

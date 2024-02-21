@@ -84,6 +84,10 @@
                 @include('settings.variables.JS_DT.leave_type_js')
                     leaveLoad = 1;
             }
+
+            // $('[data-table="status"]').one('click', function (e) {
+            //     @include('settings.variables.JS_DT.status_type_js')
+            // });
         });
 
 

@@ -76,6 +76,8 @@ new $.fn.dataTable.FixedHeader(table_table);
 
 $('#status_type_submit').on('click', function(event) {
 event.preventDefault();
+console.log(123);
+
 let status_title = $('input[name="status_title"]').val();
 
 $.ajax({

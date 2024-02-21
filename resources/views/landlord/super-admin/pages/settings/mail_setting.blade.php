@@ -75,9 +75,16 @@
                     <label class="font-weight-bold">{{trans('file.Encryption')}}</label>
                     <select name="encryption" class="selectpicker form-control"
                         data-live-search="true" data-live-search-style="contains">
-			<option value="tls" {{ isset($mailSetting->encryption) && $mailSetting->encryption === 'tls' ? 'selected' : null }}>@lang('file.TLS')</option>
+			            <option value="tls" {{ isset($mailSetting->encryption) && $mailSetting->encryption === 'tls' ? 'selected' : null }}>@lang('file.TLS')</option>
                         <option value="ssl" {{ isset($mailSetting->encryption) && $mailSetting->encryption === 'ssl' ? 'selected' : null }}>@lang('file.SSL')</option>
                     </select>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <div class="form-check mt-2">
+                        <input type="checkbox" name="is_active"  {{ config('mail.is_active')==1 ? "checked" : '' }} value="1" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label font-weight-bold" for="exampleCheck1">Active</label>
+                    </div>
                 </div>
 
             </div>

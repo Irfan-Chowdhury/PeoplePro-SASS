@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Throwable;
 use App\Http\traits\MonthlyWorkedHours;
+use App\Models\GeneralSetting;
 use App\Models\SalaryBasic;
 
 class PayrollController extends Controller {
@@ -574,22 +575,24 @@ class PayrollController extends Controller {
 					$data['pension_amount'] = $request->pension_amount;
 					$data['company_id']     = $employee->company_id;
 
+                    $generalSetting = GeneralSetting::latest()->first();
+
 					if ($data['payment_type'] == NULL) { //No Need This Line
 						return response()->json(['payment_type_error' => __('Please select a payslip-type for this employee.')]);
 					}
 
-					$account_balance = DB::table('finance_bank_cashes')->where('id', config('variable.account_id'))->pluck('account_balance')->first();
+					$account_balance = DB::table('finance_bank_cashes')->where('id', $generalSetting->default_payment_bank)->pluck('account_balance')->first();
 
-					if ((int)$account_balance < (int)$request->net_salary)
-					{
+					if ((int)$account_balance < (int)$request->net_salary) {
 						return response()->json(['error' => 'requested balance is less then available balance']);
 					}
+
 
 					$new_balance = (int)$account_balance - (int)$request->net_salary;
 
 					$finance_data = [];
 
-					$finance_data['account_id'] = config('variable.account_id');
+					$finance_data['account_id'] = $generalSetting->default_payment_bank;
 					$finance_data['amount'] = $request->net_salary;
 					$finance_data ['expense_date'] = now()->format(session()->get('dateFormat'));
 					$finance_data ['expense_reference'] = trans('file.Payroll');
@@ -771,6 +774,8 @@ class PayrollController extends Controller {
 						->get();
 				}
 
+                $generalSetting = GeneralSetting::latest()->first();
+
 
 				DB::beginTransaction();
 					try
@@ -877,7 +882,7 @@ class PayrollController extends Controller {
 						}
 
 
-						$account_balance = DB::table('finance_bank_cashes')->where('id', config('variable.account_id'))->pluck('account_balance')->first();
+						$account_balance = DB::table('finance_bank_cashes')->where('id', $generalSetting->default_payment_bank)->pluck('account_balance')->first();
 
 						if ((int)$account_balance < $total_sum)
 						{
@@ -888,7 +893,7 @@ class PayrollController extends Controller {
 
 						$finance_data = [];
 
-						$finance_data['account_id'] = config('variable.account_id');
+						$finance_data['account_id'] = $generalSetting->default_payment_bank;
 						$finance_data['amount'] = $total_sum;
 						$finance_data ['expense_date'] = now()->format(session()->get('dateFormat'));
 						$finance_data ['expense_reference'] = trans('file.Payroll');

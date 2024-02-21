@@ -56,7 +56,6 @@ class User extends Authenticatable
 
 	public function RoleUser()
 	{
-		// return $this->hasone('App\Models\Role_User','id',"role_users_id");
         return $this->hasone('Spatie\Permission\Models\Role','id',"role_users_id");
 	}
 

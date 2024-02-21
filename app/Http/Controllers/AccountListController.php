@@ -6,7 +6,7 @@ use App\Models\FinanceBankCash;
 use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use IlluminPate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class AccountListController extends Controller {
 
@@ -65,11 +65,12 @@ class AccountListController extends Controller {
 	public
 	function store(Request $request)
 	{
-		$logged_user = auth()->user();
 
+		$logged_user = auth()->user();
 
 		if ($logged_user->can('store-account'))
 		{
+
 			$validator = Validator::make($request->only('account_name', 'initial_balance', 'account_number', 'branch_code', 'bank_branch'),
 				[
 					'account_name' => 'required|unique:finance_bank_cashes,account_name,',
@@ -78,6 +79,8 @@ class AccountListController extends Controller {
 					'branch_code' => 'required',
 					'bank_branch' => 'required',
 				]);
+
+            // return response()->json(90);
 
 
 			if ($validator->fails())

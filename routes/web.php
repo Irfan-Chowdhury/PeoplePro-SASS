@@ -10,6 +10,7 @@ use App\Http\Controllers\Landlord\LandingPageController;
 use App\Http\Controllers\Landlord\DashboardController;
 use App\Http\Controllers\Landlord\FaqController;
 use App\Http\Controllers\Landlord\FeatureController;
+use App\Http\Controllers\Landlord\NotificationController;
 use App\Http\Controllers\Landlord\SettingController;
 use App\Http\Controllers\Landlord\HeroController;
 use App\Http\Controllers\Landlord\LanguageController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Landlord\TestimonialController;
 use App\Http\Controllers\Landlord\TranslationController;
 use App\Http\Controllers\LanguageSettingController;
 use App\Http\Controllers\Landlord\TenantController;
+use App\Http\Controllers\RouteClosureHandlerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AddonController;
@@ -104,6 +106,11 @@ Route::post('/super-admin/logout', [AdminController::class, 'logout'])->name('la
 
 Route::middleware(['web','auth','setSuperAdminLocale','XSS'])->group(function () {
     Route::prefix('super-admin')->group(function () {
+
+        Route::get('/all/notifications', [NotificationController::class, 'allNotifications'])->name('seeAllNotification');
+        Route::get('clearAll', [NotificationController::class, 'clearAll'])->name('clearAllNotification');
+        Route::get('markAsRead', [NotificationController::class, 'markAsReadNotification'])->name('markAsReadNotification');
+
 
         Route::controller(AdminController::class)->group(function () {
             Route::prefix('profile')->group(function () {

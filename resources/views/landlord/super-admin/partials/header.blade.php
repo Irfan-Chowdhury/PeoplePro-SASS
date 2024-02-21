@@ -50,6 +50,27 @@
                             <i class="dripicons-information"></i>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a rel="nofollow" id="notify-btn" href="#" class="nav-link dropdown-item" data-toggle="tooltip"
+                           title="{{__('Notifications')}}">
+                            <i class="dripicons-bell"></i>
+                            @if(auth()->user()->unreadNotifications->count())
+                                <span class="badge badge-danger">
+                                    {{auth()->user()->unreadNotifications->count()}}
+                                </span>
+                            @endif
+                        </a>
+                        <ul class="right-sidebar">
+                            <li class="header">
+                                <span class="pull-right"><a href="{{route('clearAllNotification')}}">{{__('Clear All')}}</a></span>
+                                <span class="pull-left"><a href="{{route('seeAllNotification')}}">{{__('See All')}}</a></span>
+                            </li>
+                            @foreach(auth()->user()->notifications as $notification)
+                                <li><a class="unread-notification"
+                                       href={{$notification->data['link']}}>{{$notification->data['data']}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
 
                     <li class="nav-item">
                         <a rel="nofollow" href="#" class="nav-link dropdown-item">
@@ -79,3 +100,25 @@
         </div>
     </nav>
 </header>
+
+@push('scripts')
+<script type="text/javascript">
+    (function ($) {
+
+        "use strict";
+
+        $('#notify-btn').on('click', function (event) {
+            event.preventDefault();
+            $('.badge.badge-danger').empty();
+            $.ajax({
+                url: '{{route('markAsReadNotification')}}',
+                dataType: "json",
+                success: function (result) {
+                },
+            });
+        })
+
+    })(jQuery);
+</script>
+
+@endpush

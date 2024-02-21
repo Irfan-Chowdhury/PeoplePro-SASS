@@ -49,7 +49,7 @@ class FinancePayeeController extends Controller {
 	{
 		$logged_user = auth()->user();
 
-		if ($logged_user->can('store-payees'))
+		if ($logged_user->can('store-payee'))
 		{
 			$validator = Validator::make($request->only('payee_name', 'contact_no'),
 				[

@@ -123,7 +123,7 @@ class SettingService
             $this->dataWriteInENVFile('MAIL_PASSWORD', $request->password ?? null);
             $this->dataWriteInENVFile('MAIL_PORT', $request->port ?? null);
             $this->dataWriteInENVFile('MAIL_USERNAME', $request->username ?? null);
-
+            $this->dataWriteInENVFile('MAIL_IS_ACTIVE', $request->is_active ?? null);
 
             return Alert::successMessage('Data Submitted Successfully');
         }

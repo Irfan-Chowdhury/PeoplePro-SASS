@@ -191,42 +191,6 @@ class TenantService
         }
     }
 
-    // public function renewProcess($tenant, $request, $package)
-    // {
-    //     $generalSetting = GeneralSetting::latest()->first();
-
-    //     $prevPermissions = json_decode($tenant->package->permissions, true);
-    //     $prevPermissionIds = array_column($prevPermissions, 'id');
-
-    //     $tenant->package_id = $request->package_id;
-    //     $tenant->update();
-
-    //     $latestPermissions = json_decode($package->permissions, true);
-    //     $latestPermissionsIds = array_column($latestPermissions, 'id');
-
-    //     $newAddedPermissions = [];
-    //     foreach ($latestPermissions as $element) {
-    //         if (!in_array($element["id"], $prevPermissionIds)) {
-    //             $newAddedPermissions[] = $element;
-    //         }
-    //     }
-
-
-    //     $numberOfDaysToExpired = self::numberOfDaysToExpired($package, $generalSetting, $request);
-    //     $packageDetailsForTenant =  self::packageDetailsForTenant($package, $generalSetting, $request);
-    //     $packageDetailsForTenant['expiry_date'] = date("Y-m-d", strtotime("+".$numberOfDaysToExpired." days"));
-
-
-    //     $tenant->run(function () use ($newAddedPermissions, $latestPermissionsIds, $packageDetailsForTenant) {
-    //         DB::table('permissions')->whereNotIn('id', $latestPermissionsIds)->delete();
-    //         DB::table('permissions')->insert($newAddedPermissions);
-    //         $role = Role::findById(1);
-    //         $role->syncPermissions($latestPermissionsIds);
-
-    //         self::setDataInTenantGeneralSetting($packageDetailsForTenant);
-    //     });
-    // }
-
     public function renewProcess($tenant, $request, $package)
     {
         $generalSetting = GeneralSetting::latest()->first();

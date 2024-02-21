@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="card mb-0">
-        <div class="card-body">           
+        <div class="card-body">
             <h3 class="card-title">{{__('Add Status Type')}}</h3>
             <form method="post" id="status_type_form" class="form-horizontal" >
                 @csrf

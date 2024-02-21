@@ -83,8 +83,8 @@ class FinanceDepositController extends Controller {
 	{
 		$logged_user = auth()->user();
 
-
-		if ($logged_user->can('add-deposit'))
+		// if ($logged_user->can('add-deposit'))
+		if ($logged_user->can('store-deposit'))
 		{
 			$validator = Validator::make($request->only('account_id', 'amount', 'category', 'description', 'payment_method_id', 'payer_id',
 				'deposit_reference', 'deposit_date', 'deposit_file'

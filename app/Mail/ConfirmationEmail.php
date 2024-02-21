@@ -14,7 +14,7 @@ class ConfirmationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public $customerRequest)
+    public function __construct(public $request)
     {
         //
     }
@@ -34,7 +34,8 @@ class ConfirmationEmail extends Mailable
         return new Content(
             view: 'landlord.public-section.emails.confirmation',
             with: [
-                'name' => $this->customerRequest->from_name,
+                // 'name' => $this->request->from_name,
+                'name' => $this->request->first_name.' '.$this->request->last_name,
             ],
         );
     }
