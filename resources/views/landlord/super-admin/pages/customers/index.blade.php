@@ -31,6 +31,7 @@
 </div>
 
 @include('landlord.super-admin.pages.customers.create-modal')
+@include('landlord.super-admin.pages.customers.edit-modal')
 @include('landlord.super-admin.pages.customers.renew-modal')
 @include('landlord.super-admin.pages.customers.change-package-modal')
 
@@ -41,6 +42,7 @@
         let dataTableURL = "{{ route('customer.datatable') }}";
         let storeURL = "{{ route('customer.signup') }}";
         let tenantInfoURL = '/super-admin/customers/tenant-info/';
+        let updateURL = '/super-admin/customers/update/';
         let renewSubscriptionURL = '/super-admin/customers/renew-subscription/';
         let changePackageURL = '/super-admin/customers/change-package/';
         let destroyURL = '/super-admin/customers/destroy/';
@@ -212,6 +214,25 @@
                 new $.fn.dataTable.FixedHeader(table);
             });
 
+            //--------- Edit -------
+            $(document).on('click', '.edit', function() {
+                let id = $(this).data("id");
+                $.get({
+                    url: tenantInfoURL + id,
+                    success: function(response) {
+                        $("#editModal input[name='tenant_id']").val(response.id);
+                        $("#editModal input[name='customer_id']").val(response.customer.id);
+                        $("#editModal input[name='first_name']").val(response.customer.first_name);
+                        $("#editModal input[name='last_name']").val(response.customer.last_name);
+                        $("#editModal input[name='contact_no']").val(response.customer.contact_no);
+                        $("#editModal input[name='email']").val(response.customer.email);
+                        $("#editModal input[name='username']").val(response.customer.username);
+                        $("#editModal input[name='company_name']").val(response.customer.company_name);
+                        $('#editModal').modal('show');
+                    }
+                })
+            });
+
             // Renew
             $(document).on("click", ".renewSubscription", function (e) {
                 e.preventDefault();
@@ -269,7 +290,6 @@
                 });
             });
 
-
             // Change Package
             $(document).on("click", ".changePackage", function (e) {
                 e.preventDefault();
@@ -283,7 +303,6 @@
                     }
                 })
             });
-
 
             $(document).ready(function() {
                 $("#packageUpdateForm").on("submit",function(e){
@@ -321,6 +340,7 @@
     </script>
 
     <script type="text/javascript" src="{{ asset('js/landlord/common-js/store.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/landlord/common-js/update.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/landlord/common-js/delete.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/landlord/common-js/alertMessages.js') }}"></script>
 

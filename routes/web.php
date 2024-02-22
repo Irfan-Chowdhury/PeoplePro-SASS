@@ -133,6 +133,7 @@ Route::middleware(['web','auth','setSuperAdminLocale','XSS'])->group(function ()
             Route::prefix('customers')->group(function () {
                 Route::get('/', 'index')->name('customer.index');
                 Route::get('/datatable', 'datatable')->name('customer.datatable');
+                Route::post('/update/{customer}', 'update')->name('customer.update')->middleware('demoCheck');
                 Route::get('/tenant-info/{tenant}', 'tenantInfo')->name('customer.tenant_info');
                 Route::post('/renew-subscription/{tenant}', 'renewExpiryUpdate')->name('customer.renew_subscription_update')->middleware('demoCheck');
                 Route::post('/change-package/{tenant}', 'changePackageProcess')->name('customer.change_package')->middleware('demoCheck');

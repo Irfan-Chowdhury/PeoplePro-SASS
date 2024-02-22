@@ -191,6 +191,36 @@ class TenantService
         }
     }
 
+    public function updateCustomerData(object $request, object $customer) :void
+    {
+        $data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'company_name' => $request->company_name,
+            'contact_no' => $request->contact_no,
+            'email' => $request->email,
+            'username' => $request->username,
+        ];
+
+        if($request->password)
+            $data['password'] = bcrypt($request->password);
+
+        $tenant = Tenant::find($request->tenant_id);
+
+        $tenant->run(function () use ($customer, $data) {
+
+            unset($data['company_name']);
+
+            DB::table('users')->where([
+                'username' => $customer->username,
+                'email' => $customer->email
+            ])
+            ->update($data);
+        });
+
+        $customer->update($data);
+    }
+
     public function renewProcess($tenant, $request, $package)
     {
         $generalSetting = GeneralSetting::latest()->first();

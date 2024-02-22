@@ -7,6 +7,9 @@ return array (
   'Accounts' => 'Accounts',
   'Action' => 'Action',
   'Active' => 'Active',
+  'Password Confirmation (Optional)' => 'Password Confirmation (Optional)',
+  'Password (Optional)' => 'Password (Optional)',
+  'Edit Customer' => 'Edit Customer',
   'Active Payment Gateway' => 'Active Payment Gateway',
   'Add' => 'Add',
   'Add Blog' => 'Add Blog',
@@ -114,11 +117,11 @@ return array (
   'Default' => 'Default',
   'Deferred' => 'Deferred',
   'Delete' => 'Delete',
-  'Deleting' => 
+  'Deleting' =>
   array (
-    '' => 
+    '' =>
     array (
-      '' => 
+      '' =>
       array (
         '' => 'Deleting...',
       ),

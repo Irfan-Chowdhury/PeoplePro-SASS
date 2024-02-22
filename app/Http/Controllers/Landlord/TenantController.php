@@ -13,6 +13,7 @@ use App\Models\Landlord\Package;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tenant\CustomerSignUpRequest;
+use App\Http\Requests\Tenant\CustomerUpdateRequest;
 use App\Http\Requests\Tenant\RenewExpiryDataRequest;
 use App\Http\Requests\Tenant\RenewSubscriptionRequest;
 use App\Http\traits\PaymentTrait;
@@ -89,9 +90,10 @@ class TenantController extends Controller
                     return $row->subscription_type;
                 })
                 ->addColumn('action', function ($row) {
-                    $button  = '<button type="button" data-id="'.$row->id.'" class="renewSubscription btn btn-warning btn-sm mr-2" title="Renew Subscription"><i class="dripicons-clockwise"></i></button>';
-                    $button .= '<button type="button" data-id="'.$row->id.'" class="changePackage btn btn-success btn-sm mr-2" title="Change Package"><i class="dripicons-swap"></i></button>';
-                    $button .= '<button type="button" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm" title="Delete"><i class="dripicons-trash"></i></button>';
+                    $button = '<button type="button" data-id="'.$row->id.'" class="mr-2 edit btn btn-primary btn-sm"><i class="dripicons-pencil"></i></button>';
+                    $button .= '<button type="button" data-id="'.$row->id.'" class="mr-2 renewSubscription btn btn-warning btn-sm mr-2" title="Renew Subscription"><i class="dripicons-clockwise"></i></button>';
+                    $button .= '<button type="button" data-id="'.$row->id.'" class="mr-2 changePackage btn btn-success btn-sm mr-2" title="Change Package"><i class="dripicons-swap"></i></button>';
+                    $button .= '<button type="button" data-id="'.$row->id.'" class="mr-2 delete btn btn-danger btn-sm" title="Delete"><i class="dripicons-trash"></i></button>';
 
                     return $button;
                 })
@@ -100,40 +102,6 @@ class TenantController extends Controller
         }
     }
 
-
-    // public function customerSignUp(CustomerSignUpRequest $request)
-    // {
-    //     DB::beginTransaction();
-    //     $request->session()->put('price', $request->price);
-    //     try {
-    //         $paymentMethodList = array_column($this->paymentMethods(), 'payment_method');
-    //         if(!$request->is_free_trail && in_array($request->payment_method ,$paymentMethodList)) {
-    //             return redirect(route("payment.pay.page",$request->payment_method), 307);
-    //         }
-
-    //         $this->tenantService->newTenantGenerate($request);
-
-    //         DB::commit();
-
-    //         $result =  Alert::successMessage('Data Created Successfully');
-    //         if (request()->ajax()) {
-    //             return response()->json($result['alertMsg'], $result['statusCode']);
-    //         } else {
-    //             return redirect()->back()->with(['success' => 'Data Created Successfully']);
-    //         }
-
-    //     }
-    //     catch (Exception $e) {
-    //         DB::rollback();
-    //         $result =  Alert::errorMessage($e->getMessage());
-
-    //         if (request()->ajax()) {
-    //             return response()->json($result['alertMsg'], $result['statusCode']);
-    //         } else {
-    //             return redirect()->back()->withErrors(['errors' => [$result['alertMsg']]]);
-    //         }
-    //     }
-    // }
     public function customerSignUp(CustomerSignUpRequest $request)
     {
         DB::beginTransaction();
@@ -174,7 +142,17 @@ class TenantController extends Controller
 
     public function tenantInfo(Tenant $tenant)
     {
+        $tenant->load('customer:id,first_name,last_name,email,username,company_name,contact_no');
         return response()->json($tenant);
+    }
+
+    public function update(CustomerUpdateRequest $request, Customer $customer)
+    {
+        $this->tenantService->updateCustomerData($request, $customer);
+
+        $result =  Alert::successMessage('Data Updated Successfully');
+
+        return response()->json($result['alertMsg'], $result['statusCode']);
     }
 
     public function renewExpiryUpdate(RenewExpiryDataRequest $request, Tenant $tenant)
