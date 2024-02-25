@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Addon\SaasController;
 use App\Http\Controllers\Landlord\ClientAutoUpdateController;
 use App\Http\Controllers\Landlord\DeveloperSectionController;
 use App\Http\Controllers\Landlord\AdminController;
@@ -27,7 +28,6 @@ use App\Http\Controllers\Landlord\TenantController;
 use App\Http\Controllers\RouteClosureHandlerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\AddonController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -46,9 +46,12 @@ Auth::routes(['register' => false]);
 
 
 Route::prefix('addons')->group(function () {
-    Route::controller(AddonController::class)->group(function () {
-        Route::get('/', 'index')->name('saas');
 
+    Route::get('/', function () {
+        return view('addons.index');
+    })->name('addons');
+
+    Route::controller(SaasController::class)->group(function () {
         Route::prefix('saas')->group(function () {
             Route::get('install/step-1', 'saasInstallStep1')->name('saas-install-step-1');
             Route::get('install/step-2', 'saasInstallStep2')->name('saas-install-step-2');

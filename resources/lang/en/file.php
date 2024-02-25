@@ -7,9 +7,6 @@ return array (
   'Accounts' => 'Accounts',
   'Action' => 'Action',
   'Active' => 'Active',
-  'Password Confirmation (Optional)' => 'Password Confirmation (Optional)',
-  'Password (Optional)' => 'Password (Optional)',
-  'Edit Customer' => 'Edit Customer',
   'Active Payment Gateway' => 'Active Payment Gateway',
   'Add' => 'Add',
   'Add Blog' => 'Add Blog',
@@ -117,11 +114,11 @@ return array (
   'Default' => 'Default',
   'Deferred' => 'Deferred',
   'Delete' => 'Delete',
-  'Deleting' =>
+  'Deleting' => 
   array (
-    '' =>
+    '' => 
     array (
-      '' =>
+      '' => 
       array (
         '' => 'Deleting...',
       ),
@@ -147,6 +144,7 @@ return array (
   'Edit' => 'Edit',
   'Edit Appraisal' => 'Edit Appraisal',
   'Edit Blog' => 'Edit Blog',
+  'Edit Customer' => 'Edit Customer',
   'Edit Feature' => 'Edit Feature',
   'Edit Goal Tracking' => 'Edit Goal Tracking',
   'Edit Goal Type' => 'Edit Goal Type',
@@ -312,7 +310,9 @@ return array (
   'Paid' => 'Paid',
   'Partnership' => 'Partnership',
   'Password' => 'Password',
+  'Password (Optional)' => 'Password (Optional)',
   'Password Confirmation' => 'Password Confirmation',
+  'Password Confirmation (Optional)' => 'Password Confirmation (Optional)',
   'Pay' => 'Pay',
   'Payee' => 'Payee',
   'Payer' => 'Payer',
