@@ -23,14 +23,16 @@ Route::get('/optimize', function() {
     return redirect()->back();
 });
 
-Route::get('/db-seed', function() {
-    Artisan::call('db:seed --class=NameSeeder');
-    return 'DB Seeding Successfully';
+
+Route::get('/migrate-central', function() {
+    Artisan::call('migrate --path=database/migrations/landlord');
+    return 'Successfully Migrated';
 });
 
-Route::get('/migrate', function() {
-    Artisan::call('migrate');
-    return 'Successfully Migrated';
+Route::get('/db-seed-central', function() {
+    // Artisan::call('db:seed --class=NameSeeder');
+    Artisan::call('db:seed');
+    return 'DB Seeding Successfully';
 });
 
 Route::get('/maintainance-down', function() {

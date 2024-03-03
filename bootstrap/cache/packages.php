@@ -33,6 +33,13 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'irfan-chowdhury/version-elevate' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'IrfanChowdhury\\VersionElevate\\VersionElevateServiceProvider',
+    ),
+  ),
   'joedixon/laravel-translation' => 
   array (
     'providers' => 

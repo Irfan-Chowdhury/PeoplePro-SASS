@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "107ee2312d010d84a295078a1b19f0eb",
+    "content-hash": "505d51a79db386ac14ce72a67ff149bf",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1391,6 +1391,67 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "irfan-chowdhury/version-elevate",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Irfan-Chowdhury/version-elevate.git",
+                "reference": "fd28e4cf5c52f4e8e7b7aa84dbe38a7b7a4e612b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Irfan-Chowdhury/version-elevate/zipball/fd28e4cf5c52f4e8e7b7aa84dbe38a7b7a4e612b",
+                "reference": "fd28e4cf5c52f4e8e7b7aa84dbe38a7b7a4e612b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=9.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "dev-main",
+                "orchestra/testbench": "8.x-dev",
+                "pestphp/pest": "1.x-dev",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "IrfanChowdhury\\VersionElevate\\VersionElevateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "IrfanChowdhury\\VersionElevate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Irfan Chowdhury",
+                    "email": "irfanchowdhury80@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package will notify the buyers about the new version and it can upgrade their current app to the new version.",
+            "homepage": "https://github.com/Irfan-Chowdhury/version-elevate",
+            "keywords": [
+                "auto-update",
+                "new version notify",
+                "version auto update"
+            ],
+            "support": {
+                "issues": "https://github.com/Irfan-Chowdhury/version-elevate/issues",
+                "source": "https://github.com/Irfan-Chowdhury/version-elevate/tree/v1.0.2"
+            },
+            "time": "2023-11-10T16:55:47+00:00"
         },
         {
             "name": "joedixon/laravel-translation",

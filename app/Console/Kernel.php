@@ -9,16 +9,12 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
     protected $commands = [
         //
 		Commands\DocumentExpiryReminder::class,
         Commands\OfficialDocumentExpiryReminder::class,
         Commands\EmployeeImmigrationExpiryReminder::class,
+        Commands\VersionNotify::class,
         Commands\MakeService::class,
         Commands\MakeContract::class,
         Commands\MakeRepository::class,
@@ -26,24 +22,15 @@ class Kernel extends ConsoleKernel
         Commands\MakeRepositoryWithInterfaceAndService::class,
 	];
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
+
     protected function schedule(Schedule $schedule)
     {
 		$schedule->command('document:expiry')->everyMinute();
         $schedule->command('officialDocument:expiry')->everyMinute();
         $schedule->command('employeeImmigration:expiry')->everyMinute();
+        $schedule->command('version:notify')->everyMinute();
 	}
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');

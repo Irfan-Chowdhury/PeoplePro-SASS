@@ -46,7 +46,7 @@
 
         @if (config('auto_update.product_mode') === "DEVELOPER")
             <li class="{{ (request()->is('developer-section*')) ? 'active' : '' }}"><a
-                href="{{route('admin.developer-section.index')}}">
+                href="{{route('developer-section.index')}}">
                 <i class="dripicons-calendar"></i><span> {{__('Auto Update Setting')}}</span></a>
             </li>
         @endif

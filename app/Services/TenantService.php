@@ -41,7 +41,7 @@ class TenantService
     }
 
 
-    protected function createTenant($request, $customer, $package) : object
+    public function createTenant($request, $customer, $package) : object
     {
         $generalSetting = GeneralSetting::latest()->first();
 

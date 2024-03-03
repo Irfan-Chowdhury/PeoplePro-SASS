@@ -12,6 +12,7 @@
         "ext-json": "*",
         "barryvdh/laravel-dompdf": "^2.0.1",
         "intervention/image": "^2.7",
+        "irfan-chowdhury/version-elevate": "^1.0",
         "joedixon/laravel-translation": "^1.1",
         "laravel/framework": "^10.15",
         "laravel/tinker": "^2.8",

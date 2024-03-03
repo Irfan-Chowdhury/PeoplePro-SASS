@@ -194,6 +194,7 @@ return [
 		Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         // Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        IrfanChowdhury\VersionElevate\VersionElevateServiceProvider::class,
 
     ],
 
