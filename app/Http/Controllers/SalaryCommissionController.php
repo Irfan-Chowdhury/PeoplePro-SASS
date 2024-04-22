@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\GeneralSetting;
 use App\Models\SalaryCommission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,8 @@ class SalaryCommissionController extends Controller
 	public function show(Employee $employee)
 	{
 		$logged_user = auth()->user();
+        $generalSetting = GeneralSetting::latest()->first();
+
 
 		if ($logged_user->can('view-details-employee'))
 		{
@@ -23,6 +26,14 @@ class SalaryCommissionController extends Controller
 					{
 						return $commission->id;
 					})
+                    ->addColumn('commission_amount', function ($row) use ($generalSetting)
+                    {
+                        if($generalSetting->currency_format=='suffix') {
+                            return $row->commission_amount.' '.$generalSetting->currency;
+                        }else {
+                            return $generalSetting->currency.' '.$row->commission_amount;
+                        }
+                    })
 					->addColumn('action', function ($data)
 					{
 						if (auth()->user()->can('modify-details-employee'))

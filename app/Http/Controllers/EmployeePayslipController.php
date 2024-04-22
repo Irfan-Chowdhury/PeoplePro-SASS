@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GeneralSetting;
 use App\Models\Payslip;
 
 class EmployeePayslipController extends Controller
@@ -10,6 +11,7 @@ class EmployeePayslipController extends Controller
 	public function index($employee)
 	{
 		$logged_user = auth()->user();
+        $generalSetting = GeneralSetting::latest()->first();
 
 		if ($logged_user->can('view-details-employee')||$logged_user->id==$employee)
 		{
@@ -20,6 +22,14 @@ class EmployeePayslipController extends Controller
 					{
 						return $payslip->id;
 					})
+                    ->addColumn('net_salary', function ($row) use ($generalSetting)
+                    {
+                        if($generalSetting->currency_format=='suffix') {
+                            return $row->net_salary.' '.$generalSetting->currency;
+                        }else {
+                            return $generalSetting->currency.' '.$row->net_salary;
+                        }
+                    })
 					->addColumn('action', function ($data) use ($employee,$logged_user)
 					{
 						if ($logged_user->can('modify-details-employee')||$logged_user->id==$employee)

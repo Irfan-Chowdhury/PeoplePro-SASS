@@ -63,7 +63,7 @@ class ClientController extends Controller
                     'first_name' => 'required',
                     'last_name' => 'required',
                     'contact_no' => 'required|unique:users',
-                    'zip' => 'nullable|numeric',
+                    // 'zip' => 'nullable|numeric',
                     'password' => 'required|min:4',
                     'profile_photo' => 'nullable|image|max:2048|mimes:jpeg,png,jpg,gif',
                 ]
@@ -158,7 +158,7 @@ class ClientController extends Controller
                     'first_name' => 'required',
                     'last_name' => 'required',
                     'contact_no' => 'required|unique:users,contact_no,'.$id,
-                    'zip' => 'nullable|numeric',
+                    // 'zip' => 'nullable|numeric',
                     'profile_photo' => 'nullable|image|max:2048|mimes:jpeg,png,jpg,gif',
                 ]
             );

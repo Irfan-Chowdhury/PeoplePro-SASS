@@ -86,7 +86,12 @@
                         <label class="form-check-label font-weight-bold" for="exampleCheck1">Active</label>
                     </div>
                 </div>
-
+                
+                <br>
+                <div class="col-md-12 form-group">
+                    <span class="text-danger"><i>(To confirm, I suggest you to test on Forget Password.)</i></span>
+		</div>
+		
             </div>
             <div class="form-group row">
                 <button type="submit" id="mailButton" class="my-3 btn btn-primary btn-block">@lang('file.Submit')</button>

@@ -17,11 +17,7 @@
                 <tr>
                     <th>{{__('Month-Year')}}</th>
                     <th>{{__('Commission Title')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{__('Commission Amount')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{__('Commission Amount')}}</th>
-                    @endif
+                    <th>{{__('Commission Amount')}} </th>
                     <th class="not-exported">{{trans('file.action')}}</th>
                 </tr>
                 </thead>
@@ -58,13 +54,8 @@
                                                required class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Commission Amount')}} ({{config('variable.currency')}}
-                                            )*</label>
-                                @else
-                                    <label>({{config('variable.currency')}}
-                                            ) {{__('Commission Amount')}} *</label>
-                                @endif <input type="text" name="commission_amount" id="commission_amount"
+                                <label>{{__('Commission Amount')}} *</label>
+                                <input type="text" name="commission_amount" id="commission_amount"
                                               placeholder={{__('Commission Type')}}
                                                       required class="form-control">
                             </div>

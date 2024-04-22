@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\FinanceBankCash;
 use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
@@ -9,6 +10,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class AccountListController extends Controller {
+
+    use CurrencyTrait;
 
 	public function index()
 	{
@@ -29,6 +32,10 @@ class AccountListController extends Controller {
 
 						return $button;
 					})
+					->addColumn('account_balance', function ($row)
+					{
+						return $this->displayWithCurrency($row->account_balance);
+					})
 					->addColumn('action', function ($data)
 					{
 						$button = '';
@@ -44,8 +51,7 @@ class AccountListController extends Controller {
 
 						return $button;
 					})
-					->
-					rawColumns(['action', 'account_name'])
+					->rawColumns(['action', 'account_name'])
 					->make(true);
 			}
 
@@ -232,8 +238,7 @@ class AccountListController extends Controller {
 		return response()->json(['success' => __('You are not authorized')]);
 	}
 
-	public
-	function accountBalance()
+	public function accountBalance()
 	{
 		$logged_user = auth()->user();
 

@@ -16,11 +16,7 @@
                 <tr>
                     <th>{{__('Month-Year')}}</th>
                     <th>{{trans('file.Loan')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{__('Loan Amount')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{__('Loan Amount')}}</th>
-                    @endif
+                    <th>{{__('Loan Amount')}}</th>
                     <th>{{__('Loan Time')}}</th>
                     <th>{{__('Loan Remaining')}}</th>
                     <th class="not-exported">{{trans('file.action')}}</th>
@@ -69,11 +65,8 @@
                                         required class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Amount')}} ({{config('variable.currency')}}) *</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{__('Amount')}} *</label>
-                                @endif <input type="text" name="loan_amount" id="loan_amount"
+                                <label>{{__('Amount')}} *</label>
+                                <input type="text" name="loan_amount" id="loan_amount"
                                               placeholder={{trans('file.Amount')}}
                                                       required class="form-control">
                             </div>

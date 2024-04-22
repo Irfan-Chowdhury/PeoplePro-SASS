@@ -54,14 +54,6 @@
             {
                 data: 'overtime_rate',
                 name: 'overtime_rate',
-                render: function (data) {
-                    if ('{{config('variable.currency_format') =='suffix'}}') {
-                        return data + ' {{config('variable.currency')}}';
-                    }
-                    else {
-                        return '{{config('variable.currency')}} ' + data;
-                    }
-                }
             },
             {
                 data: 'action',

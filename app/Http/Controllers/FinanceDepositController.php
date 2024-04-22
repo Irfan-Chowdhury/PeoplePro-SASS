@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\FinanceBankCash;
 use App\Models\FinanceDeposit;
 use App\Models\FinancePayers;
@@ -16,7 +17,7 @@ use Throwable;
 
 class FinanceDepositController extends Controller {
 
-
+    use CurrencyTrait;
 	public function index()
 	{
 		$logged_user = auth()->user();
@@ -45,6 +46,10 @@ class FinanceDepositController extends Controller {
 					->addColumn('payer', function ($row)
 					{
 						return empty($row->Payer->payer_name) ? '' : $row->Payer->payer_name;
+					})
+					->addColumn('amount', function ($row)
+					{
+						return $this->displayWithCurrency($row->amount);
 					})
 					->addColumn('action', function ($data)
 					{

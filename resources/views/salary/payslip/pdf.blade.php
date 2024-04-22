@@ -177,10 +177,10 @@
 
                 <tr>
                     <td class="py-3">Total</td>
-                    @if(config('variable.currency_format') =='suffix')
-                        <td id="total_earnings">{{$total_earnings}} <span style="font-family: DejaVu Sans; sans-serif;">{{config('variable.currency')}}</span></td>
+                    @if($currency_format =='suffix')
+                        <td id="total_earnings">{{$total_earnings}} <span style="font-family: DejaVu Sans; sans-serif;">{{$currency}}</span></td>
                     @else
-                        <td id="total_earnings"><span style="font-family: DejaVu Sans; sans-serif;">{{config('variable.currency')}}</span> {{$total_earnings}} </td>
+                        <td id="total_earnings"><span style="font-family: DejaVu Sans; sans-serif;">{{$currency}} &nbsp;</span> {{$total_earnings}} </td>
                     @endif
                 </tr>
 
@@ -249,10 +249,10 @@
 
                 <tr>
                     <td class="py-3">{{trans('file.Total')}}</td>
-                    @if(config('variable.currency_format') =='suffix')
-                        <td id="total_deductions">{{$total_deductions}} <span style="font-family: DejaVu Sans; sans-serif;">{{config('variable.currency')}}</span></td>
+                    @if($currency_format =='suffix')
+                        <td id="total_deductions">{{$total_deductions}} <span style="font-family: DejaVu Sans; sans-serif;">{{$currency}}</span></td>
                     @else
-                        <td id="total_deductions"><span style="font-family: DejaVu Sans; sans-serif;">{{config('variable.currency')}}</span> {{$total_deductions}} </td>
+                        <td id="total_deductions"><span style="font-family: DejaVu Sans; sans-serif;">{{$currency}} &nbsp;</span> {{$total_deductions}} </td>
                     @endif
                 </tr>
 
@@ -261,10 +261,10 @@
         </div>
         <!-- /.col -->
     </div>
-    @if(config('variable.currency_format') =='suffix')
-        <p class="text-danger">{{__('Total Paid')}} : <strong>{{$net_salary}} <span style="font-family: DejaVu Sans; sans-serif;">{{config('variable.currency')}}</span></strong></p>
+    @if($currency_format =='suffix')
+        <p class="text-danger">{{__('Total Paid')}} : <strong>{{$net_salary}} <span style="font-family: DejaVu Sans; sans-serif;">{{$currency}}</span></strong></p>
     @else
-        <p class="text-danger">{{__('Total Paid')}} :<span style="font-family: DejaVu Sans; sans-serif;">{{config('variable.currency')}}</span> <strong>{{$net_salary}}</strong></p>
+        <p class="text-danger">{{__('Total Paid')}} :<span style="font-family: DejaVu Sans; sans-serif;">{{$currency}} &nbsp;</span> <strong>{{$net_salary}}</strong></p>
     @endif
 
 

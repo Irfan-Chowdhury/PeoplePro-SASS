@@ -17,11 +17,7 @@
                 <tr>
                     <th>{{__('Month-Year')}}</th>
                     <th>{{trans('file.Title')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{__('Amount')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{__('Amount')}}</th>
-                    @endif
+                    <th>{{__('Amount')}}</th>
                     <th class="not-exported">{{trans('file.action')}}</th>
                 </tr>
                 </thead>
@@ -58,11 +54,8 @@
                                                required class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Amount')}} ({{config('variable.currency')}}) *</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{__('Amount')}} *</label>
-                                @endif <input type="text" name="other_payment_amount" id="other_payment_amount"
+                                <label>{{__('Amount')}} *</label>
+                                <input type="text" name="other_payment_amount" id="other_payment_amount"
                                               placeholder={{trans('file.Amount')}}
                                                       required class="form-control">
                             </div>

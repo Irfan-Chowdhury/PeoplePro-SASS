@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\company;
 use App\Models\Employee;
 use App\Models\FinanceBankCash;
@@ -23,11 +24,13 @@ class PayrollController extends Controller {
 
 	use TotalSalaryTrait;
 	use MonthlyWorkedHours;
+	use CurrencyTrait;
 
 	public function index(Request $request)
 	{
 		$logged_user = auth()->user();
 		$companies = company::all();
+        $generalSetting = GeneralSetting::latest()->first();
 
 		$selected_date = empty($request->filter_month_year) ? now()->format('F-Y') : $request->filter_month_year;
 		$first_date = date('Y-m-d', strtotime('first day of ' . $selected_date));
@@ -206,7 +209,9 @@ class PayrollController extends Controller {
                                 $basicsalary = $salaryBasic->basic_salary; //basic salary
                             }
                         }
-						return $basicsalary;
+
+                        return $this->displayWithCurrency($basicsalary);
+
 					})
 					->addColumn('net_salary', function ($row)  use ($first_date)
 					{
@@ -240,38 +245,12 @@ class PayrollController extends Controller {
                             //converting in minute
                             $total += $hour * 60 + $min;
 
-
-                            //********** Test *********/
-                            // $total_overtime = 0;
-							// $total_overtimes = $this->totalOvertimeHours($row);
-                            // sscanf($total_overtimes, '%d:%d', $overtimeHour, $overtimeMin);
-							// $total_overtime += $overtimeHour * 60 + $overtimeMin;
-
-                            // return $total_overtime;
-
-                            //********** Test End*********/
-
                             $total_salary = $this->totalSalary($row, $payslip_type, $basicsalary, $allowance_amount, $deduction_amount, $pension_amount, $total);
 
 
 						}
 
-						return $total_salary;
-
-						// if ($row->payslip_type == 'Monthly')
-						// {
-						// 	$total_salary = $this->totalSalary($row);
-						// } else
-						// {
-						// 	$total = 0;
-						// 	$total_hours = $this->totalWorkedHours($row);
-
-						// 	sscanf($total_hours, '%d:%d', $hour, $min);
-						// 	//converting in minute
-						// 	$total += $hour * 60 + $min;
-						// 	$total_salary = $this->totalSalary($row, $total);
-						// }
-
+                        return $this->displayWithCurrency($total_salary);
 					})
 					->addColumn('status', function ($row)
 					{
@@ -305,7 +284,7 @@ class PayrollController extends Controller {
 					->make(true);
 			}
 
-			return view('salary.pay_list.index', compact('companies'));
+			return view('salary.pay_list.index', compact('companies', 'generalSetting'));
 		}
 
 		return abort('403', __('You are not authorized'));

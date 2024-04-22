@@ -112,6 +112,8 @@ class TenantController extends Controller
                 return redirect(route("payment.pay.page",$request->payment_method), 307);
             }
 
+            // dd($request->all());
+
             $this->tenantService->newTenantGenerate($request);
 
             event(new CustomerRegistered($request));

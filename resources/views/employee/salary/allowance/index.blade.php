@@ -18,11 +18,7 @@
                     <th>{{__('Month-Year')}}</th>
                     <th>{{__('Allowance Type')}}</th>
                     <th>{{__('Allowance Title')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{__('Allowance Amount')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{__('Allowance Amount')}}</th>
-                    @endif
+                    <th>{{__('Allowance Amount')}}</th>
                     <th class="not-exported">{{trans('file.action')}}</th>
                 </tr>
                 </thead>
@@ -68,13 +64,7 @@
                                                required class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Allowance Amount')}} ({{config('variable.currency')}})
-                                            *</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{__('Allowance Amount')}}
-                                            *</label>
-                                @endif
+                                <label>{{__('Allowance Amount')}}*</label>
                                 <input type="text" name="allowance_amount" id="allowance_amount"
                                        placeholder={{__('Allowance Amount')}}
                                                required class="form-control">

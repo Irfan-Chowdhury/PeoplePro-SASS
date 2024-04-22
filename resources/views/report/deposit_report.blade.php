@@ -89,11 +89,8 @@
                                     <th>{{trans('file.Account')}}</th>
                                     <th>{{trans('file.Category')}}</th>
                                     <th>{{trans('file.Payer')}}</th>
-                                    @if(config('variable.currency_format')=='suffix')
-                                        <th>{{trans('file.Amount')}} ({{config('variable.currency')}})</th>
-                                    @else
-                                        <th>({{config('variable.currency')}}) {{trans('file.Amount')}}</th>
-                                    @endif
+                                    <th>{{trans('file.Amount')}}</th>
+
                                     <th>{{__('Reference No')}}</th>
                                 </tr>
                                 </thead>
@@ -214,14 +211,6 @@
                     {
                         data: 'amount',
                         name: 'amount',
-                        render: function (data) {
-                            if ('{{config('variable.currency_format') =='suffix'}}') {
-                                return data + ' {{config('variable.currency')}}';
-                            } else {
-                                return '{{config('variable.currency')}} ' + data;
-
-                            }
-                        }
                     },
                     {
                         data: 'deposit_reference',

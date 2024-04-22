@@ -149,19 +149,12 @@ class ProjectController extends Controller {
 
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param Project $project
-	 * @return Response
-	 */
 	public function show(Project $project)
 	{
-		try
-		{
+		try {
 			$name = DB::table('employee_project')->where('project_id', $project->id)->pluck('employee_id')->toArray();
-		} catch (Exception $e)
-		{
+		}
+        catch (Exception $e) {
 			$name = null;
 		}
 

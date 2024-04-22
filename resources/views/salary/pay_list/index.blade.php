@@ -157,26 +157,10 @@
                         {
                             data: 'basic_salary',
                             name: 'basic_salary',
-                            render: function (data) {
-                                if ('{{config('variable.currency_format') =='suffix'}}') {
-                                    return data + ' {{config('variable.currency')}}';
-                                } else {
-                                    return '{{config('variable.currency')}} ' + data;
-
-                                }
-                            }
                         },
                         {
                             data: 'net_salary',
                             name: 'net_salary',
-                            render: function (data) {
-                                if ('{{config('variable.currency_format') =='suffix'}}') {
-                                    return data + ' {{config('variable.currency')}}';
-                                } else {
-                                    return '{{config('variable.currency')}} ' + data;
-
-                                }
-                            }
                         },
                         {
                             data: 'status',

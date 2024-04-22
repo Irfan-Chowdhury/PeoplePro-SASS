@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\FinanceBankCash;
 use App\Models\FinanceTransaction;
 
 
 class FinanceTransactionsController extends Controller {
 
+    use CurrencyTrait;
 	public function index()
 	{
 		$logged_user = auth()->user();
@@ -34,6 +36,10 @@ class FinanceTransactionsController extends Controller {
 					->addColumn('ref_no', function ($row)
 					{
 						return empty($row->expense_reference) ? $row->deposit_reference : $row->expense_reference;
+					})
+					->addColumn('amount', function ($row)
+					{
+						return $this->displayWithCurrency($row->amount);
 					})
 					->rawColumns(['account'])
 					->make(true);

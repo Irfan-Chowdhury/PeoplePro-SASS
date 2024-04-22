@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Variables;
 use App\Http\Controllers\Controller;
+use App\Http\traits\CurrencyTrait;
 use App\Models\TaxType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class TaxTypeController extends Controller
 {
+    use CurrencyTrait;
 	public function index()
 	{
 

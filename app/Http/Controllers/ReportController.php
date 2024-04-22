@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\company;
 use App\Models\Employee;
 use App\Models\ExpenseType;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller {
 
-	//
+	use CurrencyTrait;
 	public function payslip(Request $request)
 	{
 		$logged_user = auth()->user();
@@ -667,6 +668,10 @@ class ReportController extends Controller {
 					{
 						return empty($row->Category->type) ? '' : $row->Category->type;
 					})
+					->addColumn('amount', function ($row)
+					{
+						return $this->displayWithCurrency($row->amount);
+					})
 					->make(true);
 			}
 
@@ -717,6 +722,10 @@ class ReportController extends Controller {
 					{
 						return empty($row->category) ? '' : $row->category;
 					})
+                    ->addColumn('amount', function ($row)
+					{
+						return $this->displayWithCurrency($row->amount);
+					})
 					->make(true);
 			}
 
@@ -759,6 +768,10 @@ class ReportController extends Controller {
 					->addColumn('ref_no', function ($row)
 					{
 						return empty($row->expense_reference) ? $row->deposit_reference : $row->expense_reference;
+					})
+                    ->addColumn('amount', function ($row)
+					{
+						return $this->displayWithCurrency($row->amount);
 					})
 					->rawColumns(['account'])
 					->make(true);
@@ -821,7 +834,7 @@ class ReportController extends Controller {
                             return '% '.$row->pension_amount;
                         }
                         else{
-                            return config('variable.currency').' '.$row->pension_amount;
+                            return $this->displayWithCurrency($row->pension_amount);
                         }
 
 					})
@@ -832,8 +845,7 @@ class ReportController extends Controller {
                         } else {
                             $remaining = $row->basic_salary - $row->pension_amount;
                         }
-
-						return config('variable.currency').' '.$remaining;
+                        return $this->displayWithCurrency($remaining);
 					})
 					->make(true);
 

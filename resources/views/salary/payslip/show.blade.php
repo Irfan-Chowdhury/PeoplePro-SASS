@@ -486,15 +486,7 @@
                                             </tbody>
                                             <tfooter>
                                                 <tr>
-                                                    @if(config('variable.currency_format') =='suffix')
-                                                        <th class="text-dark"><strong>Paid Amount:</strong> <span
-                                                                    class="pull-right">{{$payslip->net_salary}} {{config('variable.currency')}}</span>
-                                                        </th>
-                                                    @else
-                                                        <th class="text-dark"><strong>Paid Amount:</strong> <span
-                                                                    class="pull-right">{{config('variable.currency')}} {{$payslip->net_salary}}</span>
-                                                        </th>
-                                                    @endif
+                                                    <th class="text-dark"><strong>Paid Amount:</strong> <span class="pull-right">{{ $netSalary }}</span></th>
 
                                                 </tr>
                                             </tfooter>

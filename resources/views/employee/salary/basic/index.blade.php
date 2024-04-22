@@ -17,11 +17,7 @@
                     <tr>
                         <th>{{__('Month-Year')}}</th>
                         <th>{{__('Payslip Type')}}</th>
-                        @if(config('variable.currency_format')=='suffix')
-                            <th>{{__('Basic Salary')}} ({{config('variable.currency')}})</th>
-                        @else
-                            <th>({{config('variable.currency')}}) {{__('Basic Salary')}}</th>
-                        @endif
+                        <th>{{__('Basic Salary')}}</th>
                         <th class="not-exported">{{trans('file.action')}}</th>
                     </tr>
                 </thead>
@@ -60,12 +56,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Basic Salary')}} ({{config('variable.currency')}}) *</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{__('Basic Salary')}} *</label>
-                                @endif
-
+                                <label>Basic Salary *</label>
                                 <input type="text" name="basic_salary" id="basic_salary_edit" placeholder="{{__('0.00')}}"  class="form-control">
                             </div>
 

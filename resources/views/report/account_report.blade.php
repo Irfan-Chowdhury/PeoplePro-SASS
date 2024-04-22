@@ -88,16 +88,8 @@
                                     <th>{{trans('file.Date')}}</th>
                                     <th>{{trans('file.Type')}}</th>
                                     <th>{{__('Reference No')}}</th>
-                                    @if(config('variable.currency_format')=='suffix')
-                                        <th>{{trans('file.Credit')}} ({{config('variable.currency')}})</th>
-                                    @else
-                                        <th>({{config('variable.currency')}}) {{trans('file.Credit')}}</th>
-                                    @endif
-                                    @if(config('variable.currency_format')=='suffix')
-                                        <th>{{trans('file.Debit')}} ({{config('variable.currency')}})</th>
-                                    @else
-                                        <th>({{config('variable.currency')}}) {{trans('file.Debit')}}</th>
-                                    @endif
+                                    <th>{{trans('file.Credit')}}</th>
+                                    <th>{{trans('file.Debit')}}</th>
                                 </tr>
                                 </thead>
                                 <tfoot>

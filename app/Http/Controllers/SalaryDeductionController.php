@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\GeneralSetting;
 use App\Models\SalaryDeduction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,7 @@ class SalaryDeductionController extends Controller
 	public function show(Employee $employee)
 	{
 		$logged_user = auth()->user();
+        $generalSetting = GeneralSetting::latest()->first();
 
 		if (auth()->user()->can('view-details-employee'))
 		{
@@ -23,6 +25,14 @@ class SalaryDeductionController extends Controller
 					{
 						return $deduction->id;
 					})
+                    ->addColumn('deduction_amount', function ($row) use ($generalSetting)
+                    {
+                        if($generalSetting->currency_format=='suffix') {
+                            return $row->deduction_amount.' '.$generalSetting->currency;
+                        }else {
+                            return $generalSetting->currency.' '.$row->deduction_amount;
+                        }
+                    })
 					->addColumn('action', function ($data)
 					{
 						if (auth()->user()->can('modify-details-employee'))

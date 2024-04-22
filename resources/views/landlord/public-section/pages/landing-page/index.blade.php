@@ -232,7 +232,7 @@
                                         <div>
                                             <span class="h4"><span class="currency-code">{{$generalSetting->currency_code}}</span> <span class="package-price" data-monthly="{{$package->monthly_fee}}" data-yearly="{{$package->yearly_fee}}">{{$package->monthly_fee}}/month</span></span><br>
                                             {{-- <button href="#customer-signup" data-free="{{$package->is_free_trial}}" data-package_id="{{$package->id}}" class="button style2 signup-btn">Sign Up</button> --}}
-                                            <button  data-bs-toggle="modal" data-bs-target="#signupModal" data-free="{{$package->is_free_trial}}" data-package_id="{{$package->id}}" class="button style2 d-block w-100 signup-btn mt-2">Sign Up</button>
+                                            <button  data-bs-toggle="modal" data-bs-target="#signupModal" data-free="{{$package->is_free_trial}}" data-package_id="{{$package->id}}" class="button style2 d-block w-100 signup-btn mt-2">Sign Up ({{$package->id}})</button>
 
                                         </div>
                                     </div>
@@ -467,6 +467,7 @@
             }
 
             $('input[name=package_id]').val($(this).data('package_id'));
+
             if($('input[name=subscription_type]').val() == 'monthly') {
                 $('input[name=price]').val($(this).parent().parent().find('.package-price').data('monthly'));
             } else {

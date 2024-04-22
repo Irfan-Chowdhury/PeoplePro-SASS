@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\ExpenseType;
 use App\Models\FinanceBankCash;
 use App\Models\FinanceExpense;
@@ -17,6 +18,7 @@ use Throwable;
 
 class FinanceExpenseController extends Controller {
 
+    use CurrencyTrait;
 	public function index()
 	{
 		$logged_user = auth()->user();
@@ -50,6 +52,10 @@ class FinanceExpenseController extends Controller {
 					->addColumn('category', function ($row)
 					{
 						return $row->Category->type ?? '';
+					})
+					->addColumn('amount', function ($row)
+					{
+						return $this->displayWithCurrency($row->amount);
 					})
 					->addColumn('action', function ($data)
 					{

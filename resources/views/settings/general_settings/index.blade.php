@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <span id="form_result"></span>
 
     <section class="forms">

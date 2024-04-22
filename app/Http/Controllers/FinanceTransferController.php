@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\FinanceBankCash;
 use App\Models\FinanceTransaction;
 use App\Models\FinanceTransfer;
@@ -15,6 +16,7 @@ use Throwable;
 
 class FinanceTransferController extends Controller {
 
+    use CurrencyTrait;
 	public function index()
 	{
 		$logged_user = auth()->user();
@@ -46,6 +48,10 @@ class FinanceTransferController extends Controller {
 					->addColumn('payment_method', function ($row)
 					{
 						return empty($row->PaymentMethod->method_name) ? ' ' : $row->PaymentMethod->method_name;
+					})
+					->addColumn('amount', function ($row)
+					{
+						return $this->displayWithCurrency($row->amount);
 					})
 					->rawColumns(['from_account', 'to_account'])
 					->make(true);

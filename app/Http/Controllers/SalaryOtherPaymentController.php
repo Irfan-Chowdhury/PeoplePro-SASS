@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\GeneralSetting;
 use App\Models\SalaryOtherPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -11,6 +12,8 @@ class SalaryOtherPaymentController extends Controller
 {
 	public function show(Employee $employee)
 	{
+        $generalSetting = GeneralSetting::latest()->first();
+
 		if (auth()->user()->can('view-details-employee'))
 		{
 			if (request()->ajax())
@@ -20,6 +23,14 @@ class SalaryOtherPaymentController extends Controller
 					{
 						return $other_payment->id;
 					})
+                    ->addColumn('other_payment_amount', function ($row) use ($generalSetting)
+                    {
+                        if($generalSetting->currency_format=='suffix') {
+                            return $row->other_payment_amount.' '.$generalSetting->currency;
+                        }else {
+                            return $generalSetting->currency.' '.$row->other_payment_amount;
+                        }
+                    })
 					->addColumn('action', function ($data)
 					{
 						if (auth()->user()->can('modify-details-employee'))

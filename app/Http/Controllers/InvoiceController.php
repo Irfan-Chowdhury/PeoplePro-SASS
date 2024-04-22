@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Notifications\InvoicePaidNotification;
@@ -18,6 +19,8 @@ use Throwable;
 
 
 class InvoiceController extends Controller {
+
+    use CurrencyTrait;
 
 	public function index()
 	{
@@ -37,6 +40,10 @@ class InvoiceController extends Controller {
 						$project_name = empty($row->project->title) ? '' : $row->project->title;
 
 						return $project_name;
+					})
+					->addColumn('grand_total', function ($row)
+					{
+						return $this->displayWithCurrency($row->grand_total);
 					})
 					->addColumn('action', function ($data)
 					{
@@ -158,6 +165,7 @@ class InvoiceController extends Controller {
 					$data['grand_total'] = $request->grand_total;
 					$data['invoice_note'] = $request->invoice_note;
 					$data['status'] = 0;
+
 
 					$invoice = Invoice::create($data);
 

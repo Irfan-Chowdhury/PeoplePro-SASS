@@ -39,14 +39,6 @@ var table_table = $('#employee_payslip-table').DataTable({
         {
             data: 'net_salary',
             name: 'net_salary',
-render: function (data) {
-if ('{{config('variable.currency_format') =='suffix'}}') {
-return data + ' {{config('variable.currency')}}';
-} else {
-return '{{config('variable.currency')}} ' + data;
-
-}
-}
         },
         {
             data: 'month_year',

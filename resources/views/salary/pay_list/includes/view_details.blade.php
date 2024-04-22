@@ -317,26 +317,26 @@ aria-hidden="true">
 
                     if (currency_format == 'suffix') {
 
-                        $('#basic_salary_amount').html(result.data.basic_salary + ' {{config('variable.currency')}}');
-                        $('#pension_amount').html(result.data.pension_amount + ' {{config('variable.currency')}}');
-                        $('#total_allowance').html(total_allowance + ' {{config('variable.currency')}}');
-                        $('#total_commission').html(total_commission + ' {{config('variable.currency')}}');
-                        $('#total_loan').html(total_loan + ' {{config('variable.currency')}}');
-                        $('#total_overtime').html(total_overtime + ' {{config('variable.currency')}}');
-                        $('#total_deduction').html(total_deduction + ' {{config('variable.currency')}}');
-                        $('#total_other_payment').html(total_other_payment + ' {{config('variable.currency')}}');
-                        $('#total_salary').html(total_salary + ' {{config('variable.currency')}}');
+                        $('#basic_salary_amount').html(result.data.basic_salary + ' {{ $generalSetting->currency }}');
+                        $('#pension_amount').html(result.data.pension_amount + ' {{ $generalSetting->currency }}');
+                        $('#total_allowance').html(total_allowance + ' {{ $generalSetting->currency }}');
+                        $('#total_commission').html(total_commission + ' {{ $generalSetting->currency }}');
+                        $('#total_loan').html(total_loan + ' {{ $generalSetting->currency }}');
+                        $('#total_overtime').html(total_overtime + ' {{ $generalSetting->currency }}');
+                        $('#total_deduction').html(total_deduction + ' {{ $generalSetting->currency }}');
+                        $('#total_other_payment').html(total_other_payment + ' {{ $generalSetting->currency }}');
+                        $('#total_salary').html(total_salary + ' {{ $generalSetting->currency }}');
                     }
                     else {
-                        $('#basic_salary_amount').html('{{config('variable.currency')}} ' + result.data.basic_salary);
-                        $('#pension_amount').html('{{config('variable.currency')}} ' + result.data.pension_amount);
-                        $('#total_allowance').html('{{config('variable.currency')}} '+ total_allowance);
-                        $('#total_commission').html('{{config('variable.currency')}} ' + total_commission);
-                        $('#total_loan').html('{{config('variable.currency')}} '+ total_loan);
-                        $('#total_overtime').html('{{config('variable.currency')}} '+ total_overtime);
-                        $('#total_deduction').html('{{config('variable.currency')}} '+ total_deduction);
-                        $('#total_other_payment').html('{{config('variable.currency')}} '+ total_other_payment);
-                        $('#total_salary').html('{{config('variable.currency')}} '+ total_salary);
+                        $('#basic_salary_amount').html('{{ $generalSetting->currency }} ' + result.data.basic_salary);
+                        $('#pension_amount').html('{{ $generalSetting->currency }} ' + result.data.pension_amount);
+                        $('#total_allowance').html('{{ $generalSetting->currency }} '+ total_allowance);
+                        $('#total_commission').html('{{ $generalSetting->currency }} ' + total_commission);
+                        $('#total_loan').html('{{ $generalSetting->currency }} '+ total_loan);
+                        $('#total_overtime').html('{{ $generalSetting->currency }} '+ total_overtime);
+                        $('#total_deduction').html('{{ $generalSetting->currency }} '+ total_deduction);
+                        $('#total_other_payment').html('{{ $generalSetting->currency }} '+ total_other_payment);
+                        $('#total_salary').html('{{ $generalSetting->currency }} '+ total_salary);
                     }
 
                     $('#salary_model').modal('show');

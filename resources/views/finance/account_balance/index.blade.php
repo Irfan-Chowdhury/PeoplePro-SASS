@@ -13,21 +13,13 @@
                 <thead>
                 <tr>
                     <th>{{trans('file.Account')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{trans('file.Balance')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{trans('file.Balance')}}</th>
-                    @endif
+                    <th>{{trans('file.Balance')}}</th>
                 </tr>
                 </thead>
 
                 <tfoot>
                 <tr>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{trans('file.Total')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{trans('file.Total')}}</th>
-                    @endif
+                    <th>{{trans('file.Total')}}</th>
                     <th></th>
                 </tr>
                 </tfoot>

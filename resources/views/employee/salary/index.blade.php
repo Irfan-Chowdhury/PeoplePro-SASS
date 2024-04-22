@@ -81,11 +81,7 @@
                             </div>
 
                             <div class="col-md-3 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Amount')}} ({{config('variable.currency')}})</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{__('Amount')}}</label>
-                                @endif
+                                <label>{{__('Amount')}} </label>
                                 <input type="text" min="0" name="pension_amount" id="pension_amount" placeholder="{{__('Amount')}}" required class="form-control" value="{{ $employee->pension_amount ?? '' }}">
                             </div>
                         </div>

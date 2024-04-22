@@ -28,11 +28,7 @@
                     <th>{{trans('file.Accounts')}}</th>
                     <th>{{__('Account No.')}}</th>
                     <th>{{__('Branch Code')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{trans('file.Balance')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{trans('file.Balance')}}</th>
-                    @endif
+                    <th>{{__('Balance')}}</th>
                     <th>{{__('Bank Branch')}}</th>
                     <th class="not-exported">{{trans('file.action')}}</th>
                 </tr>
@@ -67,11 +63,7 @@
                             </div>
 
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Initial Balance')}} ({{config('variable.currency')}})*</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{__('Initial Balance')}}*</label>
-                                @endif
+                                <label>{{__('Initial Balance')}}*</label>
                                 <input type="text" name="initial_balance" id="initial_balance" required
                                        class="form-control"
                                        placeholder="{{__('Initial Balance')}}">
@@ -111,8 +103,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <div id="confirmModal" class="modal fade" role="dialog">
@@ -202,14 +192,6 @@
                     {
                         data: 'account_balance',
                         name: 'account_balance',
-                        render: function (data) {
-                            if ('{{config('variable.currency_format') =='suffix'}}') {
-                                return data + ' {{config('variable.currency')}}';
-                            } else {
-                                return '{{config('variable.currency')}} ' + data;
-
-                            }
-                        }
                     },
                     {
                         data: 'bank_branch',

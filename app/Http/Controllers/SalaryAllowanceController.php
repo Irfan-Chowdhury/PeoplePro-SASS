@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\GeneralSetting;
 use App\Models\SalaryAllowance;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,6 +13,8 @@ class SalaryAllowanceController extends Controller {
 
 	public function show(Employee $employee)
 	{
+        $generalSetting = GeneralSetting::latest()->first();
+
 		$logged_user = auth()->user();
 
 		if ($logged_user->can('view-details-employee'))
@@ -27,6 +30,14 @@ class SalaryAllowanceController extends Controller {
 					{
 						return $allowance->id;
 					})
+                    ->addColumn('allowance_amount', function ($row) use ($generalSetting)
+                    {
+                        if($generalSetting->currency_format=='suffix') {
+                            return $row->allowance_amount.' '.$generalSetting->currency;
+                        }else {
+                            return $generalSetting->currency.' '.$row->allowance_amount;
+                        }
+                    })
 					->addColumn('action', function ($data)
 					{
 						if (auth()->user()->can('modify-details-employee'))

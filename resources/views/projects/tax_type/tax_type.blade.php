@@ -16,13 +16,7 @@
                placeholder="{{__('Tax Name')}}">
     </div>
     <div class="col-md-4 form-group">
-        @if(config('variable.currency_format')=='suffix')
-            <label>{{__('Tax Rate')}} ({{config('variable.currency')}}) *</strong>
-            </label>
-        @else
-            <label>({{config('variable.currency')}}) {{__('Tax Rate')}}</strong>
-            </label>
-        @endif
+        <label>{{__('Tax Rate')}} *</strong>
 
         <input type="text" name="rate" id="rate"  required class="form-control required"
                placeholder="{{__('Tax Rate')}}">

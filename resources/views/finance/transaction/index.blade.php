@@ -16,11 +16,7 @@
                     <th class="not-exported"></th>
                     <th>{{trans('file.Date')}}</th>
                     <th>{{trans('file.Account')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{trans('file.Amount')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{trans('file.Amount')}}</th>
-                    @endif
+                    <th>{{trans('file.Amount')}}</th>
                     <th></th>
                     <th>{{trans('file.Type')}}</th>
                     <th>{{__('Reference No')}}</th>
@@ -93,14 +89,6 @@
                     {
                         data: 'amount',
                         name: 'amount',
-                        render: function (data) {
-                            if ('{{config('variable.currency_format') =='suffix'}}') {
-                                return data + ' {{config('variable.currency')}}';
-                            } else {
-                                return '{{config('variable.currency')}} ' + data;
-
-                            }
-                        }
                     },
                     {
                         data: null,

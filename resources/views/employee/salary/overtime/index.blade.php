@@ -19,11 +19,7 @@
                     <th>{{trans('file.Title')}}</th>
                     <th>{{__('Number Of Days')}}</th>
                     <th>{{__('Total Hours')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{__('Rate')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{__('Rate')}}</th>
-                    @endif
+                    <th>{{__('Rate')}}</th>
                     <th class="not-exported">{{trans('file.action')}}</th>
                 </tr>
                 </thead>
@@ -73,11 +69,8 @@
                                                required class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{__('Rate')}} ({{config('variable.currency')}}) *</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{__('Rate')}} *</label>
-                                @endif <input type="text" name="overtime_rate" id="overtime_rate"
+                                <label>{{__('Rate')}} *</label>
+                                <input type="text" name="overtime_rate" id="overtime_rate"
                                               placeholder={{trans('file.Rate')}}
                                                       required class="form-control">
                             </div>

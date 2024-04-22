@@ -6,11 +6,14 @@ use App\Models\Employee;
 use App\Models\SalaryBasic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\GeneralSetting;
 
 class SalaryBasicController extends Controller
 {
     public function show(Employee $employee)
     {
+        $generalSetting = GeneralSetting::latest()->first();
+
         $logged_user = auth()->user();
         if ($logged_user->can('view-details-employee'))
         {
@@ -25,6 +28,14 @@ class SalaryBasicController extends Controller
                 ->setRowId(function ($row)
                 {
                     return $row->id;
+                })
+                ->addColumn('basic_salary', function ($row) use ($generalSetting)
+                {
+                    if($generalSetting->currency_format=='suffix') {
+                        return $row->basic_salary.' '.$generalSetting->currency;
+                    }else {
+                        return $generalSetting->currency.' '.$row->basic_salary;
+                    }
                 })
                 ->addColumn('action', function ($row)
                 {

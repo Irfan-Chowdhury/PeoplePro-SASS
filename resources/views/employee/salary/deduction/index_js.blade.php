@@ -50,14 +50,6 @@
             {
                 data: 'deduction_amount',
                 name: 'deduction_amount',
-                render: function (data) {
-                    if ('{{config('variable.currency_format') =='suffix'}}') {
-                        return data + ' {{config('variable.currency')}}';
-                    }
-                    else {
-                        return '{{config('variable.currency')}} ' + data;
-                    }
-                }
             },
             {
                 data: 'action',

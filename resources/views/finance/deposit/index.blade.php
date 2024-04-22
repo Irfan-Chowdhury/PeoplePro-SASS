@@ -22,11 +22,7 @@
                     <th class="not-exported"></th>
                     <th>{{trans('file.Account')}}</th>
                     <th>{{trans('file.Payer')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{trans('file.Amount')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{trans('file.Amount')}}</th>
-                    @endif
+                    <th>{{trans('file.Amount')}}</th>
                     <th>{{trans('file.Category')}}</th>
                     <th>{{__('Reference No')}}</th>
                     <th>{{trans('file.Payment')}}</th>
@@ -83,11 +79,7 @@
                             </div>
 
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{trans('file.Amount')}} ({{config('variable.currency')}}) *</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{trans('file.Amount')}} *</label>
-                                @endif
+                                <label>{{trans('file.Amount')}} *</label>
                                 <input type="text" name="amount" id="amount" required class="form-control"
                                        placeholder="{{trans('file.Amount')}}">
                             </div>
@@ -199,11 +191,7 @@
                                     </tr>
 
                                     <tr>
-                                        @if(config('variable.currency_format')=='suffix')
-                                            <th>{{trans('file.Amount')}} ({{config('variable.currency')}})</th>
-                                        @else
-                                            <th>({{config('variable.currency')}}) {{trans('file.Amount')}}</th>
-                                        @endif
+                                        <th>{{trans('file.Amount')}}</th>
                                         <td id="amount_show"></td>
                                     </tr>
 
@@ -345,14 +333,6 @@
                     {
                         data: 'amount',
                         name: 'amount',
-                        render: function (data) {
-                            if ('{{config('variable.currency_format') =='suffix'}}') {
-                                return data + ' {{config('variable.currency')}}';
-                            } else {
-                                return '{{config('variable.currency')}} ' + data;
-
-                            }
-                        }
                     },
                     {
                         data: 'category',

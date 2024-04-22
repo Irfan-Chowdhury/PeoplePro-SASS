@@ -8,8 +8,7 @@
         <div class="container-fluid">
             <h1>{{__('Transfer History')}}</h1>
             @can('store-transfer')
-                <button type="button" class="btn btn-info" name="create_record" id="create_record"><i
-                            class="fa fa-tumblr"></i> {{__('Add Transfer')}}</button>
+                <button type="button" class="btn btn-info" name="create_record" id="create_record">{{__('Add Transfer')}}</button>
             @endcan
             @can('delete-transfer')
                 <button type="button" class="btn btn-outline-secondary float-right" name="trans_index" id="trans_index">
@@ -28,11 +27,7 @@
                     <th>{{trans('file.Date')}}</th>
                     <th>{{__('From Account')}}</th>
                     <th>{{__('To Account')}}</th>
-                    @if(config('variable.currency_format')=='suffix')
-                        <th>{{trans('file.Amount')}} ({{config('variable.currency')}})</th>
-                    @else
-                        <th>({{config('variable.currency')}}) {{trans('file.Amount')}}</th>
-                    @endif
+                    <th>{{__('Amount')}}</th>
                     <th>{{__('Payment Mode')}}</th>
                     <th>{{__('Reference No')}}</th>
                 </tr>
@@ -93,11 +88,7 @@
 
 
                             <div class="col-md-6 form-group">
-                                @if(config('variable.currency_format')=='suffix')
-                                    <label>{{trans('file.Amount')}} ({{config('variable.currency')}}) *</label>
-                                @else
-                                    <label>({{config('variable.currency')}}) {{trans('file.Amount')}} *</label>
-                                @endif
+                                <label>{{trans('file.Amount')}} *</label>
                                 <input type="text" name="amount" id="amount" required class="form-control"
                                        placeholder="{{trans('file.Amount')}}">
                             </div>
@@ -231,14 +222,6 @@
                     {
                         data: 'amount',
                         name: 'amount',
-                        render: function (data) {
-                            if ('{{config('variable.currency_format') =='suffix'}}') {
-                                return data + ' {{config('variable.currency')}}';
-                            } else {
-                                return '{{config('variable.currency')}} ' + data;
-
-                            }
-                        }
                     },
                     {
                         data: 'payment_method',

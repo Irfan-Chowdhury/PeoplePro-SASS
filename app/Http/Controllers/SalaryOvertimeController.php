@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\GeneralSetting;
 use App\Models\SalaryOvertime;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,6 +13,8 @@ class SalaryOvertimeController extends Controller {
 
 	public function show(Employee $employee)
 	{
+        $generalSetting = GeneralSetting::latest()->first();
+
 		if (auth()->user()->can('view-details-employee'))
 		{
 			if (request()->ajax())
@@ -21,6 +24,14 @@ class SalaryOvertimeController extends Controller {
 					{
 						return $overtime->id;
 					})
+                    ->addColumn('overtime_rate', function ($row) use ($generalSetting)
+                    {
+                        if($generalSetting->currency_format=='suffix') {
+                            return $row->overtime_rate.' '.$generalSetting->currency;
+                        }else {
+                            return $generalSetting->currency.' '.$row->overtime_rate;
+                        }
+                    })
 					->addColumn('action', function ($data)
 					{
 						if (auth()->user()->can('modify-details-employee'))

@@ -65,7 +65,6 @@ class PermissionController extends Controller {
     {
 		if (auth()->user()->can('set-permission')) {
 
-
             // $topLevelItems = $this->displayDataAsNestedTree($this->permissionsData);
             // $permissionIds = $this->displayPermissionIdsByParent($topLevelItems);
 
@@ -82,9 +81,6 @@ class PermissionController extends Controller {
             }
 
 			$role = Role::findById($id);
-            // $permissionsData = DB::table('permissions')->get();
-
-            // return $permissionsData;
 
 			return view('settings.roles.permission',compact('role', 'permissionsData'));
 		}

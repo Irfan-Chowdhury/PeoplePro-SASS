@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\company;
 use App\Models\Employee;
 use App\Models\EmployeeLeaveTypeDetail;
 use App\Models\Payslip;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Http\traits\MonthlyWorkedHours;
+use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PayslipController extends Controller {
 
-	use MonthlyWorkedHours;
+	use MonthlyWorkedHours, CurrencyTrait;
 
 	public function index(Request $request)
 	{
@@ -174,7 +176,7 @@ class PayslipController extends Controller {
 						//Total Salary
 						$data .= "<div class='d-flex'>
 									<div class='ml-auto'> <b>Total Salary</b> :</div>
-									<div class='ml-auto'><b>".config('variable.currency')." ".$total_salary."</b></div>
+									<div class='ml-auto'><b>".$this->displayWithCurrency($total_salary)."</b></div>
 								</div>";
 
 						if($row->commissions) {
@@ -210,7 +212,7 @@ class PayslipController extends Controller {
 						//Net Payable
 						$data .= "<div class='d-flex'>
 									<div class='ml-auto'><b>Net Payable</b> :</div>
-									<div class='ml-auto'><b>".config('variable.currency')." ".$row->net_salary."</b></div>
+									<div class='ml-auto'><b>".$this->displayWithCurrency($row->net_salary)."</b></div>
 								</div>";
 
 						return $data;
@@ -253,8 +255,9 @@ class PayslipController extends Controller {
 		//converting in minute
 		$total_minutes += $hour * 60 + $min;
 		$amount_hours = ($payslip->basic_salary / 60 ) * $total_minutes;
+        $netSalary =  $this->displayWithCurrency($payslip->net_salary);
 
-		return view('salary.payslip.show',compact('payslip','employee','total_hours','amount_hours','leaveTypeUnserialize'));
+		return view('salary.payslip.show',compact('payslip','employee','total_hours','amount_hours','leaveTypeUnserialize','netSalary'));
 	}
 
 	public function delete(Payslip $payslip){
@@ -294,7 +297,9 @@ class PayslipController extends Controller {
 		$employee['hours_amount'] = $amount_hours;
         $employee['pension_amount'] = $payslip->pension_amount;
 
-		//return view('salary.payslip.pdf',compact('payslip','employee'));
+        $generalSetting = GeneralSetting::latest()->first();
+        $employee['currency_format'] = $generalSetting->currency_format;
+        $employee['currency'] = $generalSetting->currency;
 
 		PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif','tempDir'=>storage_path('temp')]);
         $pdf = PDF::loadView('salary.payslip.pdf', $payslip->toArray(), $employee);

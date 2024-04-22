@@ -47,14 +47,6 @@
             {
                 data: 'basic_salary',
                 name: 'basic_salary',
-                render: function (data) {
-                    if ('{{config('variable.currency_format') =='suffix'}}') {
-                        return data + ' {{config('variable.currency')}}';
-                    } else {
-                        return '{{config('variable.currency')}} ' + data;
-
-                    }
-                }
             },
             {
                 data: 'action',
