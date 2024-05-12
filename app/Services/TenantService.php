@@ -65,6 +65,7 @@ class TenantService
         $tenant->domains()->create(['domain' => $request->tenant.'.'.env('CENTRAL_DOMAIN')]); // This Line
 
         $centralGeneralSetting = GeneralSetting::latest()->first();
+
         $tenant->run(function ($tenant) use ($request, $permissions, $allPermissionIds, $packageDetailsForTenant, $centralGeneralSetting) {
             DB::table('permissions')->insert($permissions);
             $user = self::tenantAdminCreate($request);

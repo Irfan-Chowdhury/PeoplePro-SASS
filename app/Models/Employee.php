@@ -122,11 +122,11 @@ class Employee extends Model
 		}
 	}
 
-	public function setExitDateAttribute($value)
-	{
-		$this->attributes['exit_date'] = Carbon::createFromFormat(session()->get('dateFormat'), $value)->format('Y-m-d');
-	}
-
+	// public function setExitDateAttribute($value)
+	// {
+    	//     $this->attributes['exit_date'] = Carbon::createFromFormat(env('Date_Format'), $value)->format('Y-m-d');
+	// }
+	
 	public function getExitDateAttribute($value)
 	{
 		if($value === null)

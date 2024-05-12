@@ -43,7 +43,6 @@
                         <a href="{{route('expense.index')}}">
                             <div class="name"><strong class="blue-text">{{__('Total Expense')}}</strong></div>
                             <div class="count-number total_expense"> {{$total_expense}}</div>
-                            {{-- <div class="count-number total_expense"> {{number_format((float)$total_expense, 2, '.', '') }}</div> --}}
                         </a>
                     </div>
                 </div>

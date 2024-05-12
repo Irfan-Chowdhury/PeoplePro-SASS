@@ -20,6 +20,7 @@ use App\Models\FinanceExpense;
 use App\Models\Holiday;
 use App\Http\traits\AutoUpdateTrait;
 use App\Http\traits\CalendarableModelTrait;
+use App\Http\traits\CurrencyTrait;
 use App\Http\traits\ShiftTimingOnDay;
 use App\Models\Invoice;
 use App\Models\IpSetting;
@@ -50,7 +51,7 @@ use Illuminate\Support\Facades\File;
 
 class DashboardController extends Controller {
 
-    use CalendarableModelTrait, AutoUpdateTrait;
+    use CalendarableModelTrait, AutoUpdateTrait, CurrencyTrait;
 
 	public function __construct() {
 		$this->middleware(['auth']);
@@ -133,20 +134,9 @@ class DashboardController extends Controller {
 		$total_salaries_paid = Payslip::sum('net_salary');
 
 
-		if (config('variable.currency_format') == 'suffix')
-		{
-			// $total_expense = $total_expense_raw . config('variable.currency');
-            $total_expense = number_format((float)$total_expense_raw, 3, '.', '') . config('variable.currency');
-			$total_deposit = $total_deposit_raw . config('variable.currency');
-			$total_salaries_paid = $total_salaries_paid . config('variable.currency');
-
-		} else
-		{
-			// $total_expense = config('variable.currency') . $total_expense_raw;
-			$total_expense = config('variable.currency') . number_format((float)$total_expense_raw, 3, '.', '');
-			$total_deposit = config('variable.currency') . $total_deposit_raw;
-			$total_salaries_paid = config('variable.currency') . $total_salaries_paid;
-		}
+        $total_expense = $this->displayWithCurrency($total_expense_raw);
+        $total_deposit = $this->displayWithCurrency($total_deposit_raw);
+        $total_salaries_paid = $this->displayWithCurrency($total_salaries_paid);
 
 
 		$months = [];
@@ -528,9 +518,6 @@ class DashboardController extends Controller {
 
 	public function clientDashboard()
 	{
-        // Auth::logout();
-        // return redirect()->back();
-
 		$user = auth()->user();
 
 		$client = Client::with('invoices', 'projects')->findOrFail($user->id);
@@ -551,17 +538,9 @@ class DashboardController extends Controller {
 
 		$invoice_unpaid_amount_raw = $unpaid_invoices->sum('grand_total');
 
-		if (config('variable.currency_format') == 'suffix')
-		{
-			$invoice_paid_amount = $invoice_paid_amount_raw . config('variable.currency');
-			$invoice_unpaid_amount = $invoice_unpaid_amount_raw . config('variable.currency');
 
-		} else
-		{
-			$invoice_paid_amount = config('variable.currency') . $invoice_paid_amount_raw;
-			$invoice_unpaid_amount = config('variable.currency') . $invoice_unpaid_amount_raw;
-		}
-
+        $invoice_paid_amount = $this->displayWithCurrency($invoice_paid_amount_raw);
+        $invoice_unpaid_amount = $this->displayWithCurrency($invoice_unpaid_amount_raw);
 
 		return view('dashboard.client_dashboard', compact('user', 'client',
 			'paid_invoice_count', 'unpaid_invoice_count', 'completed_project_count', 'in_progress_project_count',

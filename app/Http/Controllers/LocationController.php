@@ -57,11 +57,10 @@ class LocationController extends Controller
 		{
 
 			$validator = Validator::make($request->only('location_name', 'location_head', 'address1', 'address2', 'city',
-				'state', 'country', 'zip'),
+				'state', 'country'),
 				[
 					'location_name' => 'required|unique:locations,location_name,',
 					'address1' => 'required',
-					'zip' => 'nullable|numeric',
 					'country'=> 'required'
 				]
 			);
@@ -130,12 +129,11 @@ class LocationController extends Controller
 
 
 			$validator = Validator::make($request->only('location_name', 'location_head', 'address1', 'address2', 'city',
-				'state', 'country', 'zip'),
+				'state', 'country'),
 				[
 					'location_name' => 'required|unique:locations,location_name,' . $id,
 					'location_head' => 'nullable',
 					'address1' => 'required',
-					'zip' => 'nullable|numeric',
 					'country'=> 'required'
 				]
 			);

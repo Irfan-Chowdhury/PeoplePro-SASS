@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Utility;
+use App\Http\traits\CurrencyTrait;
 use App\Models\company;
 use App\Models\department;
 use App\Models\designation;
@@ -29,10 +30,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Validators\ValidationException;
 use Spatie\Permission\Models\Role;
 use Throwable;
-
 class EmployeeController extends Controller
 {
-    use LeaveTypeDataManageTrait;
+    use LeaveTypeDataManageTrait, CurrencyTrait;
 
 
     protected function getEmployees($request, $currentDate)
@@ -142,11 +142,12 @@ class EmployeeController extends Controller
                         }
 
                         $shift = '<span>'.__('file.Shift').': '.($row->officeShift->shift_name ?? '').'</span>';
-                        if (config('variable.currency_format') == 'suffix') {
-                            $salary = '<span>'.__('file.Salary').': '.($row->basic_salary ?? '').' '.config('variable.currency').'</span>';
-                        } else {
-                            $salary = '<span>'.__('file.Salary').': '.config('variable.currency').' '.($row->basic_salary ?? '').'</span>';
-                        }
+                        // if (config('variable.currency_format') == 'suffix') {
+                        //     $salary = '<span>'.__('file.Salary').': '.($row->basic_salary ?? '').' '.config('variable.currency').'</span>';
+                        // } else {
+                        //     $salary = '<span>'.__('file.Salary').': '.config('variable.currency').' '.($row->basic_salary ?? '').'</span>';
+                        // }
+                        $salary = '<span>'.__('file.Salary').': '.$this->displayWithCurrency($row->basic_salary).'</span>';
 
                         if ($row->payslip_type) {
                             $payslip_type = '<span>'.__('file.Payslip Type').': '.__('file.'.$row->payslip_type).'</span>';
@@ -442,13 +443,8 @@ class EmployeeController extends Controller
                     $data['joining_date'] = $request->joining_date;
                 }
 
-                if ($request->exit_date) {
-                    $data['exit_date'] = $request->exit_date;
-                }
-                // else {
-                //     $data['exit_date'] = NULL;
-                // }
 
+                $data['exit_date'] = $request->exit_date ? date('Y-m-d', strtotime($request->exit_date)) : null;
                 $data['address'] = $request->address;
                 $data['city'] = $request->city;
                 $data['state'] = $request->state;

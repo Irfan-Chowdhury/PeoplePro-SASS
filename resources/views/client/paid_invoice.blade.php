@@ -24,8 +24,8 @@
     </section>
 
     <script type="text/javascript">
-        (function($) {  
-         
+        (function($) {
+
             "use strict";
             $(document).ready(function () {
 
@@ -79,9 +79,6 @@
                         {
                             data: 'grand_total',
                             name: 'grand_total',
-                            render: function (data, type, row) {
-                                return '$' + data
-                            }
 
                         },
                         {
@@ -182,8 +179,8 @@
                 });
                 new $.fn.dataTable.FixedHeader(table_table);
             });
-        
-        })(jQuery); 
+
+        })(jQuery);
     </script>
 
 @endsection

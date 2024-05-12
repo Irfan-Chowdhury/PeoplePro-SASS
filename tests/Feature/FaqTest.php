@@ -164,6 +164,7 @@ test('Faq Detail Update', function () {
     $this->assertCount(1, FaqDetail::all());
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | Delete

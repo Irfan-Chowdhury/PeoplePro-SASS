@@ -76,7 +76,7 @@
                                     <option value="part time work">{{__('Part Time Work')}}</option>
                                     <option value="other income">{{__('Other Income')}}</option>
                                 </select>
-                            </div>
+                            </div>  
 
                             <div class="col-md-6 form-group">
                                 <label>{{trans('file.Amount')}} *</label>

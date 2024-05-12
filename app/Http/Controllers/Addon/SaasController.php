@@ -187,6 +187,7 @@ class SaasController extends Controller
     {
         $centralDomain = self::filterURL($request->central_domain);
 
+        $this->dataWriteInENVFile('CPANEL_API_KEY', $request->cpanel_api_key);
         $this->dataWriteInENVFile('CPANEL_USER_NAME', $request->cpanel_username);
         $this->dataWriteInENVFile('CENTRAL_DOMAIN', $centralDomain);
         $this->dataWriteInENVFile('DB_PREFIX', $request->db_prefix);
@@ -197,7 +198,7 @@ class SaasController extends Controller
         $this->dataWriteInENVFile('LANDLORD_DB', $request->db_name);
         $this->dataWriteInENVFile('DB_USERNAME', $request->db_username);
         $this->dataWriteInENVFile('DB_PASSWORD', $request->db_password);
-        $this->dataWriteInENVFile('VERSION', '1.2.0');
+        $this->dataWriteInENVFile('VERSION', '1.2.1');
     }
 
     protected static function filterURL(string $centralDomain): string

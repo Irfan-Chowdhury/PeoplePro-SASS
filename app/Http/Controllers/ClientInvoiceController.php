@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\traits\CurrencyTrait;
 use App\Models\Invoice;
 
 class ClientInvoiceController extends Controller
 {
+    use CurrencyTrait;
 	public function invoices()
 	{
 		$logged_user = auth()->user();
@@ -28,6 +30,10 @@ class ClientInvoiceController extends Controller
 						$project_name = empty($row->project->title) ? '' : $row->project->title;
 
 						return $project_name;
+					})
+					->addColumn('grand_total', function ($row)
+					{
+                        return $this->displayWithCurrency($row->grand_total);
 					})
 					->addColumn('action', function ($data)
 					{
@@ -71,6 +77,10 @@ class ClientInvoiceController extends Controller
 						$project_name = empty($row->project->title) ? '' : $row->project->title;
 
 						return $project_name;
+					})
+                    ->addColumn('grand_total', function ($row)
+					{
+                        return $this->displayWithCurrency($row->grand_total);
 					})
 					->addColumn('action', function ($data)
 					{

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('city', 191)->nullable();
             $table->string('state', 191)->nullable();
             $table->unsignedInteger('country')->nullable();
-            $table->integer('zip')->nullable();
+            $table->string('zip', 191)->nullable();
             $table->timestamps();
 
             $table->foreign('country', 'locations_country_foreign')->references('id')->on('countries')->onDelete('set NULL');
