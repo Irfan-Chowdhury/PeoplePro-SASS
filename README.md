@@ -1,13 +1,37 @@
+#### <i> [ N.B : Due to copyright issues, some important files have been hidden ]<i>
+
+<br>
+
+
+
 <div align='center'>
 
-# PeopleProSAAS (Landlord)
+# PeopleProSAAS
 </div>
 
 ## Visit
-- Demo : http://smarthishab.com/
+- Demo : https://peopleprohrmsaas.com
+- Documentation : https://peopleprohrmsaas.com/central-documentation
 
-- Super Admin : smarthishab.com/super-admin
-- Super Admin Credentials : Username & Password both "admin"
+<br>
+
+- Super-Admin : https://peopleprohrmsaas.com/super-admin
+- username : admin
+- password : admin
+
+<br>
+
+
+- Tenant-1 : https://acme.peopleprohrmsaas.com/login
+- username : admin
+- password : admin
+
+<br>
+
+
+- Tenant-2 : https://lion.peopleprohrmsaas.com/login
+- username : admin
+- password : admin
 
 
 ## About

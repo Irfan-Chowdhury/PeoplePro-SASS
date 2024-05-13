@@ -72,7 +72,6 @@ class InvoiceController extends Controller {
 		return abort('403', __('You are not authorized'));
 	}
 
-
 	public function create()
 	{
 		$projects = Project::select('id', 'title')->get();
@@ -242,83 +241,81 @@ class InvoiceController extends Controller {
 			);
 
 
-			if ($validator->fails())
-			{
+			if ($validator->fails()) {
 				return response()->json(['errors' => $validator->errors()->all()]);
 			}
 
 			DB::beginTransaction();
-				try
-				{
-					$data = [];
+            try
+            {
+                $data = [];
 
-					$project = Project::findOrFail($request->project_id);
+                $project = Project::findOrFail($request->project_id);
 
-					$client_id = $project->client->id;
+                $client_id = $project->client->id;
 
-					$data['project_id'] = $request->project_id;
-					$data['invoice_number'] = $request->invoice_number;
-					$data['sub_total'] = $request->items_sub_total;
-					$data ['discount_type'] = $request->discount_type;
-					$data ['client_id'] = $client_id;
-					$data ['discount_figure'] = $request->discount_figure;
-					$data ['total_discount'] = $request->discount_amount;
-					$data ['total_tax'] = $request->items_tax_total;
-					$data ['invoice_date'] = $request->invoice_date;
-					$data ['invoice_due_date'] = $request->invoice_due_date;
-					$data['grand_total'] = $request->grand_total;
-					$data['invoice_note'] = $request->invoice_note;
+                $data['project_id'] = $request->project_id;
+                $data['invoice_number'] = $request->invoice_number;
+                $data['sub_total'] = $request->items_sub_total;
+                $data ['discount_type'] = $request->discount_type;
+                $data ['client_id'] = $client_id;
+                $data ['discount_figure'] = $request->discount_figure;
+                $data ['total_discount'] = $request->discount_amount;
+                $data ['total_tax'] = $request->items_tax_total;
+                $data ['invoice_date'] = $request->invoice_date;
+                $data ['invoice_due_date'] = $request->invoice_due_date;
+                $data['grand_total'] = $request->grand_total;
+                $data['invoice_note'] = $request->invoice_note;
 
-					Invoice::find($id)->update($data);
-
-
-					$qty = $request->qty_hrs;
-					$unit_price = $request->unit_price;
-					$item_name = $request->item_name;
-					$tax_type_id = $request->tax_type_id;
-					$tax_amount = $request->tax_amount;
-					$sub_total_item = $request->sub_total_item;
-					$invoice_item_id = $request->invoice_item_id;
-
-					$invoice_item = [];
-
-					foreach ($invoice_item_id as $count => $item)
-					{
-
-						$invoice_item['invoice_id'] = $id;
-						$invoice_item['project_id'] = $request->project_id;
-						$invoice_item['item_qty'] = $qty[$count];
-						$invoice_item['item_unit_price'] = $unit_price[$count];
-						$invoice_item['item_name'] = $item_name[$count];
-						$invoice_item['item_tax_type'] = $tax_type_id[$count];
-						$invoice_item['item_tax_rate'] = $tax_amount[$count];
-						$invoice_item['item_sub_total'] = $sub_total_item[$count];
-						$invoice_item['sub_total'] = $request->items_sub_total;
-						$invoice_item['discount_type'] = $request->discount_type;
-						$invoice_item['discount_figure'] = $request->discount_figure;
-						$invoice_item['total_tax'] = $request->items_tax_total;
-						$invoice_item['total_discount'] = $request->discount_amount;
-						$invoice_item['grand_total'] = $request->grand_total;
+                Invoice::find($id)->update($data);
 
 
-						if (InvoiceItem::where('id', $item)->exists())
-						{
-							InvoiceItem::find($item)->update($invoice_item);
-						} else
-						{
-							InvoiceItem::create($invoice_item);
-						}
-					}
-					DB::commit();
-				} catch (Exception $e)
-				{
-					DB::rollback();
-					return response()->json(['error' =>  $e->getMessage()]);
-				} catch (Throwable $e)
-				{
-					DB::rollback();
-					return response()->json(['error' => $e->getMessage()]);
-				}
+                $qty = $request->qty_hrs;
+                $unit_price = $request->unit_price;
+                $item_name = $request->item_name;
+                $tax_type_id = $request->tax_type_id;
+                $tax_amount = $request->tax_amount;
+                $sub_total_item = $request->sub_total_item;
+                $invoice_item_id = $request->invoice_item_id;
+
+                $invoice_item = [];
+
+                foreach ($invoice_item_id as $count => $item)
+                {
+
+                    $invoice_item['invoice_id'] = $id;
+                    $invoice_item['project_id'] = $request->project_id;
+                    $invoice_item['item_qty'] = $qty[$count];
+                    $invoice_item['item_unit_price'] = $unit_price[$count];
+                    $invoice_item['item_name'] = $item_name[$count];
+                    $invoice_item['item_tax_type'] = $tax_type_id[$count];
+                    $invoice_item['item_tax_rate'] = $tax_amount[$count];
+                    $invoice_item['item_sub_total'] = $sub_total_item[$count];
+                    $invoice_item['sub_total'] = $request->items_sub_total;
+                    $invoice_item['discount_type'] = $request->discount_type;
+                    $invoice_item['discount_figure'] = $request->discount_figure;
+                    $invoice_item['total_tax'] = $request->items_tax_total;
+                    $invoice_item['total_discount'] = $request->discount_amount;
+                    $invoice_item['grand_total'] = $request->grand_total;
+
+                    if (InvoiceItem::where('id', $item)->exists())
+                    {
+                        InvoiceItem::find($item)->update($invoice_item);
+                    } else
+                    {
+                        InvoiceItem::create($invoice_item);
+                    }
+                }
+                DB::commit();
+            } catch (Exception $e)
+            {
+                DB::rollback();
+                return response()->json(['error' =>  $e->getMessage()]);
+            } catch (Throwable $e)
+            {
+                DB::rollback();
+                return response()->json(['error' => $e->getMessage()]);
+            }
 
 				return response()->json(['success' => __('Data Added successfully.')]);
 
