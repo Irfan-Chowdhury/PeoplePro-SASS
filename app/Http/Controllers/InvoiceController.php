@@ -119,8 +119,7 @@ class InvoiceController extends Controller {
 	{
 		$logged_user = auth()->user();
 
-		if ($logged_user->can('store-invoice'))
-		{
+		if ($logged_user->can('store-invoice')) {
 			$validator = Validator::make($request->only('project_id', 'invoice_number', 'item_name', 'qty_hrs', 'unit_price', 'tax_type_id',
 				'tax-amount', 'sub_total_item', 'invoice_due_date', 'items_sub_total', 'items_tax_total', 'invoice_date', 'discount_type', 'discount_amount'
 				, 'discount_figure', 'invoice_note', 'grand_total'
@@ -137,8 +136,7 @@ class InvoiceController extends Controller {
 			);
 
 
-			if ($validator->fails())
-			{
+			if ($validator->fails()) {
 				return response()->json(['errors' => $validator->errors()->all()]);
 			}
 
@@ -164,7 +162,6 @@ class InvoiceController extends Controller {
 					$data['grand_total'] = $request->grand_total;
 					$data['invoice_note'] = $request->invoice_note;
 					$data['status'] = 0;
-
 
 					$invoice = Invoice::create($data);
 
@@ -217,13 +214,11 @@ class InvoiceController extends Controller {
 		return response()->json(['success' => __('You are not authorized')]);
 	}
 
-
 	public function update(Request $request, $id)
 	{
 		$logged_user = auth()->user();
 
-		if ($logged_user->can('edit-invoice'))
-		{
+		if ($logged_user->can('edit-invoice')) {
 
 			$validator = Validator::make($request->only('project_id', 'invoice_number', 'item_name', 'qty_hrs', 'unit_price', 'tax_type_id',
 				'tax-amount', 'sub_total_item', 'invoice_due_date', 'items_sub_total', 'items_tax_total', 'invoice_date', 'discount_type', 'discount_amount'

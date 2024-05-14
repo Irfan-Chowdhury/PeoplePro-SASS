@@ -28,8 +28,7 @@ class FinanceExpenseController extends Controller {
 		$categories = ExpenseType::select('id', 'type')->get();
 
 
-		if ($logged_user->can('view-expense'))
-		{
+		if ($logged_user->can('view-expense')) {
 			if (request()->ajax())
 			{
 				return datatables()->of(FinanceExpense::with('Account', 'PaymentMethod', 'Payee', 'Category')->latest('expense_date'))
@@ -87,12 +86,6 @@ class FinanceExpenseController extends Controller {
 		return abort('403', __('You are not authorized'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param Request $request
-	 * @return Response
-	 */
 	public function store(Request $request)
 	{
 		$logged_user = auth()->user();
@@ -184,12 +177,6 @@ class FinanceExpenseController extends Controller {
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param int $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		if (request()->ajax())
@@ -206,30 +193,15 @@ class FinanceExpenseController extends Controller {
 	}
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param int $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		if (request()->ajax())
-		{
+		if (request()->ajax()) {
 			$data = FinanceExpense::findOrFail($id);
-
 
 			return response()->json(['data' => $data]);
 		}
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param Request $request
-	 * @param int $id
-	 * @return Response
-	 */
 	public function update(Request $request)
 	{
 		$logged_user = auth()->user();
@@ -252,18 +224,17 @@ class FinanceExpenseController extends Controller {
 			);
 
 
-			if ($validator->fails())
-			{
+			if ($validator->fails()) {
 				return response()->json(['errors' => $validator->errors()->all()]);
 			}
 
 			DB::beginTransaction();
 			try
-			{
-				if ($request->account_id != $request->hidden_account_id && $request->account_id)
-				{
+            {
+				if ($request->account_id != $request->hidden_account_id && $request->account_id) {
 
 					$data['account_id'] = $request->account_id;
+
 
 					$account_balance = DB::table('finance_bank_cashes')->where('id', $request->account_id)->pluck('account_balance')->first();
 
@@ -284,56 +255,46 @@ class FinanceExpenseController extends Controller {
 
 				} else
 				{
-
 					$data['account_id'] = $request->hidden_account_id;
 
 					$account_balance = DB::table('finance_bank_cashes')->where('id', $request->hidden_account_id)->pluck('account_balance')->first();
 
 					$new_balance = (int)$account_balance - (int)$request->amount + (int)$request->hidden_amount;
 
-					if ((int)$new_balance < (int)$request->amount)
-					{
+					if ((int)$new_balance < (int)$request->amount) {
 						return response()->json(['error' => __('requested balance is less then available balance')]);
 					}
 
 					FinanceBankCash::whereId($request->hidden_account_id)->update(['account_balance' => $new_balance]);
-
 				}
 
 				$data = [];
-
-
 				$data['amount'] = $request->amount;
-				$data ['description'] = $request->description;
-				$data ['expense_date'] = $request->expense_date;
-				$data['expense_date'] = date('Y-m-d', strtotime(str_replace('/', '-', $data['expense_date'])));
-				$data ['expense_reference'] = $request->expense_reference;
+				$data['description'] = $request->description;
+				$data['expense_date'] = date('Y-m-d', strtotime($request->expense_date));
 
-
+                $data['expense_reference'] = $request->expense_reference;
 				$data['category_id'] = $request->category_id;
-
-				$data ['payment_method_id'] = $request->payment_method_id;
-
-				$data ['payee_id'] = $request->payee_id;
+				$data['payment_method_id'] = $request->payment_method_id;
+				$data['payee_id'] = $request->payee_id;
 
 				$file = $request->expense_file;
 				$file_name = null;
-
-
-				if (isset($file))
-				{
+				if (isset($file)) {
 					$file_name = $request->expense_reference;
-					if ($file->isValid())
-					{
+					if ($file->isValid()) {
 						$file_name = preg_replace('/\s+/', '', $file_name) . '_' . time() . '.' . $file->getClientOriginalExtension();
 						$file->storeAs('expense_file', $file_name);
 						$data['expense_file'] = $file_name;
 					}
 				}
 
-				FinanceTransaction::find($id)->update($data);
+				// FinanceTransaction::find($id)->update($data);
+				FinanceTransaction::where('id',$id)->update($data);
 
-				FinanceExpense::find($id)->update($data);
+				// FinanceExpense::find($id)->update($data);
+				FinanceExpense::where('id',$id)->update($data);
+
 
 				DB::commit();
 

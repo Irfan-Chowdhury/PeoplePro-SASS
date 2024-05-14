@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Artisan;
 
 class TenantController extends Controller
 {
@@ -306,6 +307,32 @@ class TenantController extends Controller
             return redirect()->back()->withErrors(['errors' => [$e->getMessage()]]);
         }
     }
+
+    public function existingTenantDbMigrate()
+    {
+        DB::beginTransaction();
+        try {
+            $tenants = Tenant::all();
+            foreach ($tenants as $tenant) {
+                $tenant->run(function () {
+                    Artisan::call('migrate --path=database/migrations/tenant/primary');
+                    Artisan::call('migrate --path=database/migrations/tenant/modify');
+                });
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
+        }
+        return 'Successfully Migrated';
+    }
+
+
+
+
+
+
+
 
     // Switch Basic(14) to Standard(2)
 

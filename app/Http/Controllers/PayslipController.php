@@ -236,7 +236,7 @@ class PayslipController extends Controller {
 
 	public function show(Payslip $payslip)
 	{
-		$employee = Employee::with('user:id,username','company:id,company_name','department:id,department_name','designation:id,designation_name')
+		$employee = Employee::with('user:id,username,profile_photo','company:id,company_name','department:id,department_name','designation:id,designation_name')
 			->select('id','first_name','last_name','joining_date','contact_no','company_id','department_id','designation_id', 'payslip_type','pension_type','pension_amount')
 			->where('id',$payslip->employee_id)
 			->first();

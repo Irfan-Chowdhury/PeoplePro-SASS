@@ -17,18 +17,13 @@ use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		$logged_user = auth()->user();
 		$companies = company::select('id', 'company_name')->get();
 		$clients = Client::select('id', 'first_name', 'last_name')->get(); //Correction
-		if ($logged_user->can('view-project'))
-		{
+
+		if ($logged_user->can('view-project')) {
 			if (request()->ajax())
 			{
 				return datatables()->of(Project::with('client:id,first_name,last_name', 'assignedEmployees')->get())
@@ -65,12 +60,12 @@ class ProjectController extends Controller {
 					{
 						$button = '<a id="' . $data->id . '" class="show btn btn-success btn-sm" href="' . route('projects.show', $data) . '"><i class="dripicons-preview"></i></a>';
 						$button .= '&nbsp;&nbsp;';
-						if (auth()->user()->can('user-edit'))
+						if (auth()->user()->can('edit-project'))
 						{
 							$button .= '<button type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="dripicons-pencil"></i></button>';
 							$button .= '&nbsp;&nbsp;';
 						}
-						if (auth()->user()->can('user-delete'))
+						if (auth()->user()->can('delete-project'))
 						{
 							$button .= '<button type="button" name="delete" id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="dripicons-trash"></i></button>';
 						}
@@ -175,37 +170,21 @@ class ProjectController extends Controller {
 		return response()->json(['success' => __('You are not authorized')]);
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param Project $project
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		if (request()->ajax())
-		{
-			$data = Project::findOrFail($id);
+		if (request()->ajax()) {
 
+			$data = Project::findOrFail($id);
 
 			return response()->json(['data' => $data]);
 		}
 
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param Request $request
-	 * @param Project $project
-	 * @return Response
-	 */
 	public function update(Request $request)
 	{
 		$logged_user = auth()->user();
-		if ($logged_user->can('edit-project'))
-		{
+		if ($logged_user->can('edit-project')) {
 			$id = $request->hidden_id;
 
 			$validator = Validator::make($request->only('edit_title', 'edit_client_id', 'edit_project_priority', 'edit_description', 'edit_start_date'
@@ -255,12 +234,6 @@ class ProjectController extends Controller {
 		return response()->json(['success' => __('You are not authorized')]);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param Project $project
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
 		if (!env('USER_VERIFIED'))

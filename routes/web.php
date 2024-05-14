@@ -26,6 +26,7 @@ use App\Http\Controllers\Landlord\TranslationController;
 use App\Http\Controllers\LanguageSettingController;
 use App\Http\Controllers\Landlord\TenantController;
 use App\Http\Controllers\RouteClosureHandlerController;
+use App\Models\Tenant;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,25 @@ use IrfanChowdhury\VersionElevate\Http\Controllers\DashboardController AS Versio
 */
 
 Auth::routes(['register' => false]);
+
+
+// Route::get('/all_existing_tenant_db_migrate', function () {
+//     DB::beginTransaction();
+//     try {
+//         $tenants = Tenant::all();
+//         foreach ($tenants as $tenant) {
+//             $tenant->run(function () {
+//                 Artisan::call('migrate --path=database/migrations/tenant/primary');
+//                 Artisan::call('migrate --path=database/migrations/tenant/modify');
+//             });
+//         }
+//         DB::commit();
+//     } catch (Exception $e) {
+//         DB::rollback();
+//         return $e->getMessage();
+//     }
+//     return 'ok';
+// });
 
 
 Route::prefix('addons')->group(function () {
@@ -93,6 +113,7 @@ Route::middleware(['setPublicLocale','XSS'])->group(function () {
         Route::post('/customer-signup', 'customerSignUp')->name('customer.signup')->middleware('demoCheck');
         Route::get('/contact-for-renewal', 'contactForRenewal')->name('contact_for_renewal');
         Route::post('/contact-for-renewal', 'renewSubscription')->name('renew_subscription')->middleware('demoCheck');
+        Route::get('existing_tenant_db_migrate', 'existingTenantDbMigrate');
     });
 
     Route::controller(PaymentController::class)->group(function () {

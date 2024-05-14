@@ -22,12 +22,11 @@
                                  href="#collapseExample" role="button" aria-expanded="true"
                                  aria-controls="collapseExample">
                                 <div>
-                                    @if(!empty($employee->user()->profile_photo))
+                                    @if(isset($employee->user->profile_photo))
                                         <img class="profile-photo sm mr-1"
-                                             src="{{ asset('uploads/profile_photos/')}}/{{$employee->user()->profile_photo}}">
+                                            src="{{url(tenantPath().'/uploads/profile_photos/'.$employee->user->profile_photo)}}">
                                     @else
-                                        <img class="profile-photo sm mr-1"
-                                             src="{{ asset('uploads/profile_photos/avatar.jpg')}}">
+                                        <img class="profile-photo sm mr-1" src="{{ asset('../../images/logo/avatar.jpg')}}">
                                     @endif
                                     {{$employee->full_name}} ({{$employee->user->username ?? ''}})
                                 </div>
