@@ -1241,17 +1241,17 @@ class AttendanceController extends Controller {
 					})
 					->addColumn('action', function ($row)
 					{
-						if (auth()->user()->can('user-edit'))
-						{
+						// if (auth()->user()->can('user-edit'))
+						// {
 							$button = '<button type="button" name="edit" id="' . $row->id . '" class="edit btn btn-primary btn-sm"><i class="dripicons-pencil"></i></button>';
 							$button .= '&nbsp;&nbsp;&nbsp;';
 							$button .= '<button type="button" name="delete" id="' . $row->id . '" class="delete btn btn-danger btn-sm"><i class="dripicons-trash"></i></button>';
 
 							return $button;
-						} else
-						{
-							return '';
-						}
+						// } else
+						// {
+						// 	return '';
+						// }
 					})
 					->rawColumns(['action'])
 					->make(true);

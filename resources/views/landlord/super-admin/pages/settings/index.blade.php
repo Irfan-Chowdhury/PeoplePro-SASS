@@ -8,7 +8,7 @@
                     <a class="list-group-item list-group-item-action active" id="general-setting" data-toggle="list" href="#generalSetting" role="tab" aria-controls="home">@lang('file.General Setting')</a>
                     <a class="list-group-item list-group-item-action" id="payment-setting" data-toggle="list" href="#paymentSetting" role="tab" aria-controls="settings">@lang('file.Payment Setting')</a>
                     <a class="list-group-item list-group-item-action" id="mail-setting" data-toggle="list" href="#mailSetting" role="tab" aria-controls="settings">@lang('file.Mail Setting')</a>
-                    <a class="list-group-item list-group-item-action" id="analytics-setting" data-toggle="list" href="#analyticsSetting" role="tab" aria-controls="settings">@lang('file.Analytics Setting')</a>
+                    {{-- <a class="list-group-item list-group-item-action" id="analytics-setting" data-toggle="list" href="#analyticsSetting" role="tab" aria-controls="settings">@lang('file.Analytics Setting')</a> --}}
                     <a class="list-group-item list-group-item-action" id="seo-setting" data-toggle="list" href="#seoSetting" role="tab" aria-controls="settings">@lang('file.SEO Setting')</a>
                 </div>
             </div>

@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-6 offset-md-3 mb-5">
                     <img class="mb-5" src="{{asset('landlord/images/blog/'.$blog->image)}}" alt="{{$blog->title}}"/>
-                    {!! $blog->description !!}
+                    	{!! htmlspecialchars_decode($blog->description) !!}
                 </div>
             </div>
         </div>

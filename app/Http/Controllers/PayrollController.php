@@ -290,7 +290,7 @@ class PayrollController extends Controller {
 		return abort('403', __('You are not authorized'));
 	}
 
-
+    
     // Details
 	public function paySlip(Request $request)
 	{
@@ -395,7 +395,6 @@ class PayrollController extends Controller {
 
 	public function payslipGenerateInfoShow(Request $request)
 	{
-
 		$month_year = $request->filter_month_year;
 		$first_date = date('Y-m-d', strtotime('first day of ' . $month_year));
 		$last_date = date('Y-m-d', strtotime('last day of ' . $month_year));

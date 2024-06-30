@@ -312,31 +312,31 @@ aria-hidden="true">
                         $('#hours_worked').html('{{__('Total Hours Worked This Month')}}');
                         $('#total_hours_worked').html(result.data.monthly_worked_hours);
                         $('#hours_worked_amount').html('{{__('Total Amount')}}');
-                        $('#total_hours_worked_amount').html(result.data.monthly_worked_amount);
+                        $('#total_hours_worked_amount').html(result.data.monthly_worked_amount.toFixed(2));
                     }
 
                     if (currency_format == 'suffix') {
 
-                        $('#basic_salary_amount').html(result.data.basic_salary + ' {{ $generalSetting->currency }}');
-                        $('#pension_amount').html(result.data.pension_amount + ' {{ $generalSetting->currency }}');
-                        $('#total_allowance').html(total_allowance + ' {{ $generalSetting->currency }}');
-                        $('#total_commission').html(total_commission + ' {{ $generalSetting->currency }}');
-                        $('#total_loan').html(total_loan + ' {{ $generalSetting->currency }}');
-                        $('#total_overtime').html(total_overtime + ' {{ $generalSetting->currency }}');
-                        $('#total_deduction').html(total_deduction + ' {{ $generalSetting->currency }}');
-                        $('#total_other_payment').html(total_other_payment + ' {{ $generalSetting->currency }}');
-                        $('#total_salary').html(total_salary + ' {{ $generalSetting->currency }}');
+                        $('#basic_salary_amount').html(result.data.basic_salary.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#pension_amount').html(result.data.pension_amount.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#total_allowance').html(total_allowance.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#total_commission').html(total_commission.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#total_loan').html(total_loan.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#total_overtime').html(total_overtime.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#total_deduction').html(total_deduction.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#total_other_payment').html(total_other_payment.toFixed(2) + ' {{ $generalSetting->currency }}');
+                        $('#total_salary').html(total_salary.toFixed(2) + ' {{ $generalSetting->currency }}');
                     }
                     else {
-                        $('#basic_salary_amount').html('{{ $generalSetting->currency }} ' + result.data.basic_salary);
-                        $('#pension_amount').html('{{ $generalSetting->currency }} ' + result.data.pension_amount);
-                        $('#total_allowance').html('{{ $generalSetting->currency }} '+ total_allowance);
-                        $('#total_commission').html('{{ $generalSetting->currency }} ' + total_commission);
-                        $('#total_loan').html('{{ $generalSetting->currency }} '+ total_loan);
-                        $('#total_overtime').html('{{ $generalSetting->currency }} '+ total_overtime);
-                        $('#total_deduction').html('{{ $generalSetting->currency }} '+ total_deduction);
-                        $('#total_other_payment').html('{{ $generalSetting->currency }} '+ total_other_payment);
-                        $('#total_salary').html('{{ $generalSetting->currency }} '+ total_salary);
+                        $('#basic_salary_amount').html('{{ $generalSetting->currency }} ' + result.data.basic_salary.toFixed(2));
+                        $('#pension_amount').html('{{ $generalSetting->currency }} ' + result.data.pension_amount.toFixed(2));
+                        $('#total_allowance').html('{{ $generalSetting->currency }} '+ total_allowance.toFixed(2));
+                        $('#total_commission').html('{{ $generalSetting->currency }} ' + total_commission.toFixed(2));
+                        $('#total_loan').html('{{ $generalSetting->currency }} '+ total_loan.toFixed(2));
+                        $('#total_overtime').html('{{ $generalSetting->currency }} '+ total_overtime.toFixed(2));
+                        $('#total_deduction').html('{{ $generalSetting->currency }} '+ total_deduction.toFixed(2));
+                        $('#total_other_payment').html('{{ $generalSetting->currency }} '+ total_other_payment.toFixed(2));
+                        $('#total_salary').html('{{ $generalSetting->currency }} '+ total_salary.toFixed(2));
                     }
 
                     $('#salary_model').modal('show');

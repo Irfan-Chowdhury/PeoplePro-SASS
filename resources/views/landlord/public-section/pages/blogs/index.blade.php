@@ -17,7 +17,7 @@
                 </div>
                 @foreach ($blogs as $blog)
                     <div class="col-md-6 offset-md-3 mb-5">
-                        <a href="{{ route('landingPage.blogDetail', $blog->slug) }}">
+                        <a href="{{ route('landingPage.blogDetail', urlencode($blog->slug)) }}">
                             <img src="{{ asset('landlord/images/blog/'.$blog->image) }}"
                                 alt="{{ $blog->title }}" />
                             <h2 class="mt-3 text-center">{{ $blog->title }}</h2>

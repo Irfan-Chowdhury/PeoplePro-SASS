@@ -116,9 +116,7 @@ class LandingPageController extends Controller
 
     public function blogDetail($slug)
     {
-        $blog = Cache::remember('blog', config('cache.duration'), function () use ($slug) {
-            return $this->blogContract->fetchLatestDataBySlug($slug);
-        });
+        $blog = $this->blogContract->fetchLatestDataBySlug($slug);
 
         return view('landlord.public-section.pages.blogs.blog-details', compact('blog'));
     }

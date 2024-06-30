@@ -151,7 +151,7 @@ aria-hidden="true">
                     if (result.data.payslip_type == 'Hourly') {
                         $('.hide-element').show();
                         $('#worked_hours').val(result.data.total_hours);
-                        $('#worked_amount').val(result.data.worked_amount);
+                        $('#worked_amount').val(result.data.worked_amount.toFixed(2));
                     }
                     else
                     {
@@ -160,17 +160,17 @@ aria-hidden="true">
                         $('#worked_amount').val('');
                     }
                     $('#payslip_type_payment').val(result.data.payslip_type);
-                    $('#basic_salary_payment').val(result.data.basic_salary);
-                    $('#total_allowance_payment').val(result.data.total_allowance);
-                    $('#total_commission_payment').val(result.data.total_commission);
-                    $('#monthly_payable').val(result.data.monthly_payable);
-                    $('#amount_remaining').val(result.data.amount_remaining);
-                    $('#total_deduction_payment').val(result.data.total_deduction);
-                    $('#total_other_payment_payment').val(result.data.total_other_payment);
-                    $('#total_overtime_payment').val(result.data.total_overtime);
-                    $('#total_salary_payment').val(result.data.total_salary);
-                    $('#net_salary_payment').val(result.data.total_salary);
-                    $('#pension_amount_payment').val(result.data.pension_amount);
+                    $('#basic_salary_payment').val(result.data.basic_salary.toFixed(2));
+                    $('#total_allowance_payment').val(result.data.total_allowance.toFixed(2));
+                    $('#total_commission_payment').val(result.data.total_commission.toFixed(2));
+                    $('#monthly_payable').val(result.data.monthly_payable.toFixed(2));
+                    $('#amount_remaining').val(result.data.amount_remaining.toFixed(2));
+                    $('#total_deduction_payment').val(result.data.total_deduction.toFixed(2));
+                    $('#total_other_payment_payment').val(result.data.total_other_payment.toFixed(2));
+                    $('#total_overtime_payment').val(result.data.total_overtime.toFixed(2));
+                    $('#total_salary_payment').val(result.data.total_salary.toFixed(2));
+                    $('#net_salary_payment').val(result.data.total_salary.toFixed(2));
+                    $('#pension_amount_payment').val(result.data.pension_amount.toFixed(2));
                     $('#employee_id').val(result.data.employee);
                     $('#payment_model').modal('show');
                 }
