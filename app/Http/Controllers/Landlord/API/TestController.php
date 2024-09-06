@@ -10,10 +10,9 @@ class TestController extends Controller
 {
     public function index()
     {
-        return Package::find(4);
-        // return [
-        //     'Name' => 'Irfan',
-        //     'Company' => 'LionConders',
-        // ];
+        return [
+            'Name' => 'Irfan',
+            'Company' => 'LionConders',
+        ];
     }
 }

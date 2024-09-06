@@ -132,7 +132,7 @@ class TenantController extends Controller
         catch (Exception $e) {
             DB::rollback();
             $result =  Alert::errorMessage($e->getMessage());
-            return $e->getMessage();
+            // return $e->getMessage();
 
             if (request()->ajax()) {
                 return response()->json($result['alertMsg'], $result['statusCode']);

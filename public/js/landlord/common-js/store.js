@@ -16,7 +16,6 @@
                 let htmlContent = prepareMessage(response);
                 displayErrorMessage(htmlContent);
                 $('#submitButton').text('Save');
-
             },
             success: function (response) {
                 console.log(response);

@@ -83,6 +83,8 @@ class TenantService
 
     protected function numberOfDaysToExpired($package, $generalSetting, $request)
     {
+        $numberOfDaysToExpired = 0;
+
         if($package->is_free_trial)
             $numberOfDaysToExpired = $generalSetting->free_trial_limit;
         elseif($request->subscription_type == 'monthly')

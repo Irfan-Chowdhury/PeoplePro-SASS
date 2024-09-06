@@ -30,3 +30,5 @@ Route::get('fetch-data-upgrade', [DemoAutoUpdateController::class, 'fetchDataFor
 Route::get('fetch-data-bugs', [DemoAutoUpdateController::class, 'fetchDataForBugs'])->name('fetch-data-bugs');
 
 Route::get('saas-api-test',[TestController::class, 'index']);
+
+
