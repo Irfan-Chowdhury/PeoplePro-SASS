@@ -118,7 +118,7 @@ class SaasController extends Controller
             self::baseFileDelete();
 
             $zip = new ZipArchive;
-            self::unzipAndDeleteProcessing($zip, 'vendorSAAS.zip');
+            self::unzipAndDeleteProcessing($zip, 'saasinapp.zip');
             self::unzipAndDeleteProcessing($zip, $data['remoteFileName']);
        }
     }
@@ -138,6 +138,8 @@ class SaasController extends Controller
             'tests',
             'track',
             'vendor',
+            'Modules',
+            'stubs'
         ];
 
         foreach ($baseDirectories as $value) {
